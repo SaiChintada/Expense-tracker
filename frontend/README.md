@@ -9,7 +9,7 @@ Backend API: https://fastapi-crud-3deh.onrender.com
 
 ## Tech Stack
 
-React (Vite)
+React (Vite)    
 JavaScript
 CSS
 Fetch API

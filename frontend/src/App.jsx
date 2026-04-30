@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import List from "./components/List";
+import Sidebar from "./components/Sidebar";
+import Charts from "./components/Charts";
+import Login from "./components/Login";
+import { toggleDarkMode } from "./utils/ui";
 
 const API = "https://fastapi-crud-3deh.onrender.com/items/";
 
@@ -10,6 +14,11 @@ function App() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ✅ AUTH STATE (MOVE HERE)
+  const [isAuth, setIsAuth] = useState(
+    localStorage.getItem("auth") === "true"
+  );
+
   // FETCH ITEMS
   const fetchItems = async () => {
     setLoading(true);
@@ -18,7 +27,7 @@ function App() {
       const data = await res.json();
       setItems(data);
     } catch (error) {
-      console.error("Error fetching items:", error);
+      console.error(error);
     }
     setLoading(false);
   };
@@ -27,32 +36,28 @@ function App() {
     fetchItems();
   }, []);
 
-  // ADD ITEM
+  // ADD
   const addItem = async (item) => {
     await fetch(API, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item),
     });
     fetchItems();
   };
 
-  // UPDATE ITEM
+  // UPDATE
   const updateItem = async (id, item) => {
     await fetch(API + id, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item),
     });
     setEditItem(null);
     fetchItems();
   };
 
-  // DELETE ITEM
+  // DELETE
   const deleteItem = async (id) => {
     await fetch(API + id, {
       method: "DELETE",
@@ -60,46 +65,103 @@ function App() {
     fetchItems();
   };
 
-  // SEARCH FILTER
+  // FILTER
   const filteredItems = items.filter(
     (item) =>
       item.name.toLowerCase().includes(search.toLowerCase()) ||
       item.description.toLowerCase().includes(search.toLowerCase())
   );
 
+  // ✅ AUTH CHECK (PLACE HERE)
+  if (!isAuth) {
+    return <Login setIsAuth={setIsAuth} />;
+  }
+
+  // ✅ MAIN RETURN (INSIDE FUNCTION)
   return (
-    <div className="container">
-      <h1>FastAPI React CRUD</h1>
-    
+    <div className="layout">
+      
+      {/* SIDEBAR */}
+      <Sidebar />
 
-      {/* SEARCH */}
-      <input
-        className="search"
-        placeholder="Search items..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      {/* MAIN AREA */}
+      <div className="main">
 
-      {/* COUNT */}
-      <p className="count">Total Items: {filteredItems.length}</p>
+        {/* TOPBAR */}
+        <div className="topbar">
+          <h2>Dashboard</h2>
 
-      {/* FORM */}
-      <Form
-        addItem={addItem}
-        updateItem={updateItem}
-        editItem={editItem}
-      />
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button
+              className="btn"
+              onClick={() => {
+                localStorage.removeItem("auth");
+                setIsAuth(false);
+              }}
+            >
+              Logout
+            </button>
 
-      {/* LIST OR LOADING */}
-      {loading ? (
-        <p className="loading">Loading...</p>
-      ) : (
-        <List
-          items={filteredItems}
-          deleteItem={deleteItem}
-          setEditItem={setEditItem}
-        />
-      )}
+            <button className="btn" onClick={toggleDarkMode}>
+              🌙
+            </button>
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <div className="container">
+
+          {/* HERO */}
+          <div className="hero">
+            <h1>Manage Your Tasks</h1>
+            <p>Simple CRUD Dashboard</p>
+          </div>
+
+          {/* SEARCH */}
+          <input
+            className="search"
+            placeholder="Search items..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          {/* STATS */}
+          <div className="stats">
+            <div className="stat-card">
+              <h3>{items.length}</h3>
+              <p>Total Items</p>
+            </div>
+
+            <div className="stat-card">
+              <h3>{filteredItems.length}</h3>
+              <p>Filtered Results</p>
+            </div>
+          </div>
+
+          {/* CHARTS */}
+          <Charts items={items} />
+
+          {/* FORM */}
+          <h3 className="section-title">Add Item</h3>
+          <Form
+            addItem={addItem}
+            updateItem={updateItem}
+            editItem={editItem}
+          />
+
+          {/* LIST */}
+          <h3 className="section-title">Items List</h3>
+          {loading ? (
+            <div className="loader"></div>
+          ) : (
+            <List
+              items={filteredItems}
+              deleteItem={deleteItem}
+              setEditItem={setEditItem}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
