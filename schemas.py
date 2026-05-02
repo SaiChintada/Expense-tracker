@@ -1,10 +1,16 @@
 from pydantic import BaseModel
 
-class ItemCreate(BaseModel):
-    name: str
-    description: str
+class TransactionBase(BaseModel):
+    title: str
+    note: str
+    amount: float
+    category: str
+    type: str
 
-class ItemResponse(ItemCreate):
+class TransactionCreate(TransactionBase):
+    pass
+
+class TransactionResponse(TransactionBase):
     id: int
 
     class Config:

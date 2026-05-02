@@ -1,9 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Float
 from database import Base
 
-class Item(Base):
-    __tablename__ = "items"
+class Transaction(Base):
+    __tablename__ = "transactions"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
-    description = Column(String)
+    title = Column(String, nullable=False)
+    note = Column(String, nullable=True)
+    amount = Column(Float, nullable=False)
+    category = Column(String, nullable=False)
+    type = Column(String, nullable=False)  # "Income" or "Expense"
