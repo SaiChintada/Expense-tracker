@@ -1,63 +1,79 @@
+import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
+  BarElement,
   CategoryScale,
   LinearScale,
-  BarElement,
   ArcElement,
   Tooltip,
   Legend,
 } from "chart.js";
 
-import { Bar, Pie } from "react-chartjs-2";
-
 ChartJS.register(
+  BarElement,
   CategoryScale,
   LinearScale,
-  BarElement,
   ArcElement,
   Tooltip,
   Legend
 );
 
-const Charts = ({ items }) => {
-  const total = items.length;
-  const withDesc = items.filter(i => i.description).length;
-  const withoutDesc = total - withDesc;
+function Charts({ items }) {
+  // 💰 Calculate totals
+  const income = items
+    .filter((item) => item.type === "Income")
+    .reduce((sum, item) => sum + item.amount, 0);
 
-  const barData = {
-    labels: ["Total", "With Desc", "Without Desc"],
+  const expense = items
+    .filter((item) => item.type === "Expense")
+    .reduce((sum, item) => sum + item.amount, 0);
+
+  // 🥧 Category breakdown
+  const categoryData = {};
+
+  items
+    .filter((item) => item.type === "Expense")
+    .forEach((item) => {
+      categoryData[item.category] =
+        (categoryData[item.category] || 0) + item.amount;
+    });
+
+  const pieData = {
+    labels: Object.keys(categoryData),
     datasets: [
       {
-        label: "Items",
-        data: [total, withDesc, withoutDesc],
-        backgroundColor: ["navy", "violet", "crimson"],
+        data: Object.values(categoryData),
       },
     ],
   };
 
-  const pieData = {
-    labels: ["With Desc", "Without Desc"],
+  const barData = {
+    labels: ["Income", "Expense"],
     datasets: [
       {
-        data: [withDesc, withoutDesc],
-        backgroundColor: ["violet", "crimson"],
+        label: "Amount",
+        data: [income, expense],
       },
     ],
   };
 
   return (
     <div className="charts">
-      <div className="chart-card">
-        <h3>Items Overview</h3>
-        <Bar data={barData} />
-      </div>
+      <h3 className="section-title">Analytics</h3>
 
-      <div className="chart-card">
-        <h3>Distribution</h3>
-        <Pie data={pieData} />
+      <div className="chart-grid">
+        <div className="chart-card">
+          <h4>Income vs Expense</h4>
+          <Bar data={barData} />
+        </div>
+
+        <div className="chart-card">
+          <h4>Expenses by Category</h4>
+          <Pie data={pieData} />
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default Charts;

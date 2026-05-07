@@ -1,5 +1,17 @@
+# Python
 venv/
 __pycache__/
 *.pyc
-test.db
+
+# Database
+*.db
+
+# Node
+node_modules/
+
+# Build folders
+dist/
+build/
+
+# Environment variables
 .env

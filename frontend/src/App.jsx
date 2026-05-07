@@ -6,7 +6,7 @@ import Charts from "./components/Charts";
 import Login from "./components/Login";
 import { toggleDarkMode } from "./utils/ui";
 
-const API = "https://fastapi-crud-3deh.onrender.com/items/";
+const API = "https://fastapi-crud-3deh.onrender.com/transactions/";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -66,18 +66,28 @@ function App() {
   };
 
   // FILTER
-  const filteredItems = items.filter(
-    (item) =>
-      item.name.toLowerCase().includes(search.toLowerCase()) ||
-      item.description.toLowerCase().includes(search.toLowerCase())
-  );
+ const filteredItems = items.filter(
+  (item) =>
+    item.title.toLowerCase().includes(search.toLowerCase()) ||
+    item.note.toLowerCase().includes(search.toLowerCase())
+);
+   // STATS 
+   const income = items
+  .filter(item => item.type === "Income")
+  .reduce((sum, item) => sum + item.amount, 0);
 
-  // ✅ AUTH CHECK (PLACE HERE)
+   const expense = items
+  .filter(item => item.type === "Expense")
+  .reduce((sum, item) => sum + item.amount, 0);
+
+   const balance = income - expense;
+
+  //  AUTH CHECK 
   if (!isAuth) {
     return <Login setIsAuth={setIsAuth} />;
   }
 
-  // ✅ MAIN RETURN (INSIDE FUNCTION)
+  //  MAIN RETURN
   return (
     <div className="layout">
       
@@ -127,15 +137,20 @@ function App() {
 
           {/* STATS */}
           <div className="stats">
-            <div className="stat-card">
-              <h3>{items.length}</h3>
-              <p>Total Items</p>
-            </div>
+           <div className="stat-card">
+             <h3>₹{income}</h3>
+           <p>Income</p>
+         </div>
 
             <div className="stat-card">
-              <h3>{filteredItems.length}</h3>
-              <p>Filtered Results</p>
-            </div>
+            <h3>₹{expense}</h3>
+            <p>Expense</p>
+         </div>
+
+           <div className="stat-card">
+             <h3>₹{balance}</h3>
+             <p>Balance</p>
+           </div>
           </div>
 
           {/* CHARTS */}

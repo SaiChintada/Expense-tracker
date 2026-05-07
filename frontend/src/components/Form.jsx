@@ -1,47 +1,55 @@
 import { useState, useEffect } from "react";
 
-function Form({ addItem, updateItem, editItem }) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+function Form({ addItem }) {
+  const [form, setForm] = useState({
+    title: "",
+    note: "",
+    amount: "",
+    category: "",
+    type: "Expense"
+  });
 
-  useEffect(() => {
-    if (editItem) {
-      setName(editItem.name);
-      setDescription(editItem.description);
-    }
-  }, [editItem]);
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = () => {
-    if (!name || !description) return;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addItem({
+      ...form,
+      amount: parseFloat(form.amount)
+    });
 
-    if (editItem) {
-      updateItem(editItem.id, { name, description });
-    } else {
-      addItem({ name, description });
-    }
-
-    setName("");
-    setDescription("");
+    setForm({
+      title: "",
+      note: "",
+      amount: "",
+      category: "",
+      type: "Expense"
+    });
   };
 
   return (
-    <div className="form">
-      <input
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+    <form onSubmit={handleSubmit} className="form">
+      <input name="title" placeholder="Title" value={form.title} onChange={handleChange} required />
+      <input name="note" placeholder="Note" value={form.note} onChange={handleChange} />
+      <input name="amount" type="number" placeholder="Amount" value={form.amount} onChange={handleChange} required />
 
-      <input
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+      <select name="category" value={form.category} onChange={handleChange}>
+        <option value="">Select Category</option>
+        <option value="Food">Food</option>
+        <option value="Travel">Travel</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Salary">Salary</option>
+      </select>
 
-      <button onClick={handleSubmit}>
-        {editItem ? "Update" : "Add"}
-      </button>
-    </div>
+      <select name="type" value={form.type} onChange={handleChange}>
+        <option value="Expense">Expense</option>
+        <option value="Income">Income</option>
+      </select>
+
+      <button type="submit">Add Transaction</button>
+    </form>
   );
 }
 

@@ -1,12 +1,12 @@
 from sqlalchemy import Column, Integer, String, Float
-from database import Base
+from backend.database import Base
 
 class Transaction(Base):
     __tablename__ = "transactions"
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
-    note = Column(String, nullable=True)
     amount = Column(Float, nullable=False)
     category = Column(String, nullable=False)
-    type = Column(String, nullable=False)  # "Income" or "Expense"
+    type = Column(String, nullable=False)
+    date = Column(String, nullable=False)

@@ -215,3 +215,21 @@ input {
 .login-box h2 {
   margin-bottom: 20px;
 }
+
+.charts {
+  margin-top: 20px;
+}
+
+.chart-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.chart-card {
+  flex: 1;
+  min-width: 300px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
