@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from backend.models.transaction import Transaction
-from backend.schemas.transaction_schema import TransactionCreate
+from models.transaction import Transaction
+from schemas.transaction_schema import TransactionCreate
 
 
 def create_transaction(
