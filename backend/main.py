@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.database import Base, engine
-from backend.routes.transaction_routes import router
+from routes.transaction_routes import router
 
 from backend.models.transaction import Transaction
 

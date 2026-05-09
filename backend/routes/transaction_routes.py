@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from backend.database import SessionLocal
+from database import SessionLocal
 
-from backend.schemas.transaction_schema import (
+from schemas.transaction_schema import (
     TransactionCreate
 )
 
-from backend.crud.transaction_crud import (
+from crud.transaction_crud import (
     create_transaction,
     get_transactions,
     delete_transaction,
@@ -22,6 +22,7 @@ def get_db():
 
     try:
         yield db
+
     finally:
         db.close()
 
