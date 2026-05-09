@@ -1,10 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.database import Base, engine
+from database import Base, engine
 from routes.transaction_routes import router
-
-from backend.models.transaction import Transaction
 
 Base.metadata.create_all(bind=engine)
 
@@ -19,3 +17,10 @@ app.add_middleware(
 )
 
 app.include_router(router)
+
+
+@app.get("/")
+def home():
+    return {
+        "message": "Expense Tracker API Running"
+    }
