@@ -1,67 +1,31 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
+import { createContext, useContext, useEffect, useState } from "react";
 import API from "../services/api";
-import toast from "react-hot-toast";
 
 const TransactionContext = createContext();
 
 export const TransactionProvider = ({ children }) => {
-
   const [transactions, setTransactions] = useState([]);
 
+  // Fetch Transactions
   const fetchTransactions = async () => {
-
     try {
+      const res = await API.get("/transactions");
 
-      const response = await API.get("/transactions");
+      console.log("API RESPONSE:", res.data);
 
-      setTransactions(response.data);
-
+      // FIX FOR ARRAY ISSUE
+      if (Array.isArray(res.data)) {
+        setTransactions(res.data);
+      } else if (Array.isArray(res.data.transactions)) {
+        setTransactions(res.data.transactions);
+      } else {
+        setTransactions([]);
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching transactions:", error);
+      setTransactions([]);
     }
   };
-
- const addTransaction = async (data) => {
-
-  try {
-
-    await API.post("/transactions", data);
-
-    toast.success("Transaction Added");
-
-    fetchTransactions();
-
-  } catch (error) {
-
-    toast.error("Something went wrong");
-
-    console.log(error);
-  }
-};
-
-  const deleteTransaction = async (id) => {
-
-  try {
-
-    await API.delete(`/transactions/${id}`);
-
-    toast.success("Transaction Deleted");
-
-    fetchTransactions();
-
-  } catch (error) {
-
-    toast.error("Delete failed");
-
-    console.log(error);
-  }
-};
 
   useEffect(() => {
     fetchTransactions();
@@ -71,8 +35,8 @@ export const TransactionProvider = ({ children }) => {
     <TransactionContext.Provider
       value={{
         transactions,
-        addTransaction,
-        deleteTransaction,
+        setTransactions,
+        fetchTransactions,
       }}
     >
       {children}
@@ -80,5 +44,4 @@ export const TransactionProvider = ({ children }) => {
   );
 };
 
-export const useTransactions = () =>
-  useContext(TransactionContext);
+export const useTransactions = () => useContext(TransactionContext);

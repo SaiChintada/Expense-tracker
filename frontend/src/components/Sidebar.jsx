@@ -1,44 +1,30 @@
-import {
-  FaWallet,
-  FaChartPie,
-  FaMoneyBillWave,
-} from "react-icons/fa";
+import { FaWallet, FaChartPie, FaCog } from "react-icons/fa";
 
-function Sidebar() {
-
+const Sidebar = () => {
   return (
-    <div className="w-72 bg-slate-900/80 backdrop-blur-lg border-r border-slate-800 p-6">
+    <div className="h-full bg-[#121826] text-white flex flex-col p-5">
+      <h1 className="text-2xl font-bold mb-10 text-violet-400">
+        ExpenseTracker
+      </h1>
 
-      <div className="flex items-center gap-3 text-3xl font-bold text-violet-400">
-
-        <FaWallet />
-
-        <span>ExpenseTracker</span>
-
-      </div>
-
-      <div className="mt-12 space-y-4">
-
-        <div className="bg-violet-500 p-4 rounded-2xl flex items-center gap-3 cursor-pointer">
-
-          <FaChartPie />
-
+      <nav className="flex flex-col gap-4">
+        <button className="flex items-center gap-3 hover:bg-violet-500/20 p-3 rounded-xl transition">
+          <FaWallet />
           Dashboard
+        </button>
 
-        </div>
+        <button className="flex items-center gap-3 hover:bg-violet-500/20 p-3 rounded-xl transition">
+          <FaChartPie />
+          Analytics
+        </button>
 
-        <div className="hover:bg-slate-800 p-4 rounded-2xl flex items-center gap-3 cursor-pointer transition">
-
-          <FaMoneyBillWave />
-
-          Transactions
-
-        </div>
-
-      </div>
-
+        <button className="flex items-center gap-3 hover:bg-violet-500/20 p-3 rounded-xl transition">
+          <FaCog />
+          Settings
+        </button>
+      </nav>
     </div>
   );
-}
+};
 
 export default Sidebar;
