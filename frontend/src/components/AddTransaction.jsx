@@ -1,7 +1,9 @@
 import { useState } from "react";
 import API from "../services/api";
 
-const AddTransaction = ({ fetchTransactions }) => {
+const AddTransaction = ({
+  fetchTransactions,
+}) => {
   const [formData, setFormData] = useState({
     title: "",
     amount: "",
@@ -21,10 +23,15 @@ const AddTransaction = ({ fetchTransactions }) => {
     e.preventDefault();
 
     try {
-    await API.post("/transactions", formData);
+      await API.post("/transactions", {
+        title: formData.title,
+        amount: Number(formData.amount),
+        category: formData.category,
+        type: formData.type,
+        date: formData.date,
+      });
 
-      fetchTransactions();
-
+      // RESET FORM
       setFormData({
         title: "",
         amount: "",
@@ -32,8 +39,14 @@ const AddTransaction = ({ fetchTransactions }) => {
         type: "expense",
         date: "",
       });
+
+      // REFRESH DATA
+      fetchTransactions();
+
+      alert("Transaction Added");
     } catch (error) {
       console.log(error);
+
       alert("Failed to add transaction");
     }
   };
@@ -54,8 +67,8 @@ const AddTransaction = ({ fetchTransactions }) => {
           placeholder="Title"
           value={formData.title}
           onChange={handleChange}
-          className="bg-[#111827] text-white p-3 rounded-xl outline-none"
           required
+          className="p-3 rounded-lg bg-[#111827] text-white outline-none"
         />
 
         <input
@@ -64,8 +77,8 @@ const AddTransaction = ({ fetchTransactions }) => {
           placeholder="Amount"
           value={formData.amount}
           onChange={handleChange}
-          className="bg-[#111827] text-white p-3 rounded-xl outline-none"
           required
+          className="p-3 rounded-lg bg-[#111827] text-white outline-none"
         />
 
         <input
@@ -74,18 +87,23 @@ const AddTransaction = ({ fetchTransactions }) => {
           placeholder="Category"
           value={formData.category}
           onChange={handleChange}
-          className="bg-[#111827] text-white p-3 rounded-xl outline-none"
           required
+          className="p-3 rounded-lg bg-[#111827] text-white outline-none"
         />
 
         <select
           name="type"
           value={formData.type}
           onChange={handleChange}
-          className="bg-[#111827] text-white p-3 rounded-xl outline-none"
+          className="p-3 rounded-lg bg-[#111827] text-white outline-none"
         >
-          <option value="expense">Expense</option>
-          <option value="income">Income</option>
+          <option value="expense">
+            Expense
+          </option>
+
+          <option value="income">
+            Income
+          </option>
         </select>
 
         <input
@@ -93,13 +111,13 @@ const AddTransaction = ({ fetchTransactions }) => {
           name="date"
           value={formData.date}
           onChange={handleChange}
-          className="bg-[#111827] text-white p-3 rounded-xl outline-none"
           required
+          className="p-3 rounded-lg bg-[#111827] text-white outline-none"
         />
 
         <button
           type="submit"
-          className="bg-violet-600 hover:bg-violet-700 transition-all text-white p-3 rounded-xl font-semibold"
+          className="bg-violet-600 hover:bg-violet-700 text-white font-semibold p-3 rounded-lg md:col-span-2"
         >
           Add Transaction
         </button>
