@@ -16,8 +16,7 @@ ReactDOM.createRoot(
     <TransactionProvider>
 
       <Toaster position="top-right" />
-
-      <App />
+     <App />
 
     </TransactionProvider>
 

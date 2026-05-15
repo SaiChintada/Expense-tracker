@@ -68,8 +68,8 @@ const date = transaction.date
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
       
       {/* PIE CHART */}
-      <div className="bg-[#1B2333] p-6 rounded-2xl shadow-lg">
-        <h2 className="text-white text-xl font-semibold mb-6">
+      <div className="bg-[#1B2333] dark:bg-[#1B2333] p-6 rounded-2xl shadow-lg">
+        <h2 className="text-white dark:text-white text-xl font-semibold mb-6">
           Expense Breakdown
         </h2>
 
@@ -97,8 +97,8 @@ const date = transaction.date
       </div>
 
       {/* BAR CHART */}
-      <div className="bg-[#1B2333] p-6 rounded-2xl shadow-lg">
-        <h2 className="text-white text-xl font-semibold mb-6">
+      <div className="bg-[#1B2333] dark:bg-[#1B2333] p-6 rounded-2xl shadow-lg">
+        <h2 className="text-white dark:text-white text-xl font-semibold mb-6">
           Monthly Overview
         </h2>
 

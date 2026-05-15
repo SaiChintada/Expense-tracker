@@ -96,7 +96,7 @@ const filteredTransactions = useMemo(() => {
 ]);
 
   return (
-    <div className="bg-[#1B2333] p-6 rounded-2xl shadow-lg mt-6">
+    <div className="bg-[#1B2333] dark:bg-[#1B2333] p-6 rounded-2xl shadow-lg mt-6">
       <h2 className="text-white text-2xl font-semibold mb-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
   {/* SEARCH */}
@@ -107,7 +107,7 @@ const filteredTransactions = useMemo(() => {
     onChange={(e) =>
       setSearch(e.target.value)
     }
-    className="p-3 rounded-xl bg-[#111827] text-white outline-none"
+    className="p-3 rounded-xl bg-[#1B2333] dark:bg-[#1B2333] text-white outline-none"
   />
 
   {/* TYPE FILTER */}
@@ -116,7 +116,7 @@ const filteredTransactions = useMemo(() => {
     onChange={(e) =>
       setFilterType(e.target.value)
     }
-    className="p-3 rounded-xl bg-[#111827] text-white outline-none"
+    className="p-3 rounded-xl bg-[#1B2333] dark:bg-[#1B2333] text-white outline-none"
   >
     <option value="all">All Types</option>
 
@@ -135,7 +135,7 @@ const filteredTransactions = useMemo(() => {
     onChange={(e) =>
       setFilterCategory(e.target.value)
     }
-    className="p-3 rounded-xl bg-[#111827] text-white outline-none"
+    className="p-3 rounded-xl bg-[#1B2333] dark:bg-[#1B2333] text-white outline-none"
   >
     <option value="all">
       All Categories
@@ -160,7 +160,7 @@ const filteredTransactions = useMemo(() => {
           {filteredTransactions.map((transaction) => (
             <div
               key={transaction.id}
-              className="bg-[#111827] p-4 rounded-xl border border-gray-700"
+              className="bg-[#1B2333] dark:bg-[#1B2333] p-4 rounded-xl border border-gray-700"
             >
               {editingId === transaction.id ? (
                 // EDIT MODE
@@ -174,7 +174,7 @@ const filteredTransactions = useMemo(() => {
                         title: e.target.value,
                       })
                     }
-                    className="w-full p-3 rounded-lg bg-[#1B2333] text-white"
+                    className="w-full p-3 rounded-lg bg-[#1B2333] dark:bg-[#1B2333] text-white"
                     placeholder="Title"
                   />
 

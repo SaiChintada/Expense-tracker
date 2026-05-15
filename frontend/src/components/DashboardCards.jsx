@@ -27,13 +27,13 @@ const DashboardCards = ({ transactions = [] }) => {
       {cards.map((card, index) => (
         <div
           key={index}
-          className="bg-[#1B2333] p-6 rounded-2xl shadow-lg border border-violet-500/10"
+          className="bg-white dark:bg-[#1B2333] p-6 rounded-2xl shadow-lg border border-violet-500/10"
         >
           <h3 className="text-gray-400 text-sm mb-2">
             {card.title}
           </h3>
 
-          <p className="text-white text-3xl font-bold">
+          <p className="text-black dark:text-white text-3xl font-bold">
             {card.amount}
           </p>
         </div>

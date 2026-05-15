@@ -5,10 +5,12 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen bg-[#0F172A] flex">
       
+      {/* SIDEBAR */}
       <div className="hidden md:block w-64 fixed h-screen">
         <Sidebar />
       </div>
 
+      {/* MAIN CONTENT */}
       <div className="flex-1 md:ml-64 p-4 md:p-6">
         <Navbar />
 
