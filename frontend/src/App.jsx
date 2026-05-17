@@ -1,61 +1,86 @@
+import {
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import { useEffect, useState } from "react";
 
-import Layout from "./components/Layout";
-import DashboardCards from "./components/DashboardCards";
-import Analytics from "./components/Analytics";
-import TransactionList from "./components/TransactionList";
-import AddTransaction from "./components/AddTransaction";
-import BudgetProgress from "./components/BudgetProgress";
-import { FaPlus } from "react-icons/fa";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 import API from "./services/api";
 
 function App() {
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] =
+    useState([]);
 
-  const fetchTransactions = async () => {
-    try {
-      const res = await API.get("/transactions");
+  const token =
+    localStorage.getItem(
+      "token"
+    );
 
-      console.log(res.data);
+  const fetchTransactions =
+    async () => {
+      try {
+        const res =
+          await API.get(
+            "/transactions"
+          );
 
-      setTransactions(
-     Array.isArray(res.data)
-     ? res.data
-     : res.data.transactions || []
-  );
-    } catch (error) {
-      console.log(error);
-      setTransactions([]);
-    }
-  };
+        setTransactions(
+          Array.isArray(
+            res.data
+          )
+            ? res.data
+            : []
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   useEffect(() => {
-    fetchTransactions();
-  }, []);
+    if (token) {
+      fetchTransactions();
+    }
+  }, [token]);
 
   return (
-    <Layout>
-      <button
-        className="fixed bottom-6 right-6 bg-violet-600 hover:bg-violet-700 text-white p-5 rounded-full shadow-2xl md:hidden"
-      >
-      <FaPlus />
-     </button>
-      <DashboardCards transactions={transactions} />
-      <BudgetProgress transactions={transactions} />
-
-      {/* ADD TRANSACTION FORM */}
-      <AddTransaction
-        fetchTransactions={fetchTransactions}
+    <Routes>
+      
+      {/* LOGIN */}
+      <Route
+        path="/login"
+        element={<Login />}
       />
 
-      <Analytics transactions={transactions} />
-
-      <TransactionList
-        transactions={transactions}
-        fetchTransactions={fetchTransactions}
+      {/* REGISTER */}
+      <Route
+        path="/register"
+        element={<Register />}
       />
-    </Layout>
+
+      {/* DASHBOARD */}
+      <Route
+        path="/"
+        element={
+          token ? (
+            <Dashboard
+              transactions={
+                transactions
+              }
+              fetchTransactions={
+                fetchTransactions
+              }
+            />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+    </Routes>
   );
 }
 

@@ -1,7 +1,26 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://expense-tracker-nfcd.onrender.com",
+  baseURL:
+    import.meta.env
+      .VITE_API_URL,
 });
+
+// ADD TOKEN AUTOMATICALLY
+API.interceptors.request.use(
+  (req) => {
+    const token =
+      localStorage.getItem(
+        "token"
+      );
+
+    if (token) {
+      req.headers.Authorization =
+        `Bearer ${token}`;
+    }
+
+    return req;
+  }
+);
 
 export default API;

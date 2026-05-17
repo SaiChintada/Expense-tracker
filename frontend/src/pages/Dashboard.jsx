@@ -1,41 +1,43 @@
-import Sidebar from "../components/Sidebar";
+import Layout from "../components/Layout";
 import DashboardCards from "../components/DashboardCards";
-import TransactionForm from "../components/TransactionForm";
+import Analytics from "../components/Analytics";
 import TransactionList from "../components/TransactionList";
-import ExpenseChart from "../components/ExpenseChart";
+import AddTransaction from "../components/AddTransaction";
 
-function Dashboard() {
+const Dashboard = ({
+  transactions,
+  fetchTransactions,
+}) => {
   return (
-    <div className="flex min-h-screen bg-slate-950 text-white">
+    <Layout>
+      <DashboardCards
+        transactions={
+          transactions
+        }
+      />
 
-      <Sidebar />
+      <AddTransaction
+        fetchTransactions={
+          fetchTransactions
+        }
+      />
 
-      <div className="flex-1 p-6">
+      <Analytics
+        transactions={
+          transactions
+        }
+      />
 
-        <h1 className="text-4xl font-bold mb-6">
-          Expense Tracker
-        </h1>
-
-        <DashboardCards />
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-
-          <TransactionForm />
-           <ExpenseChart />
-          
-
-        </div>
-
-        <div className="mt-6">
-
-          <TransactionList />
-
-        </div>
-
-      </div>
-
-    </div>
+      <TransactionList
+        transactions={
+          transactions
+        }
+        fetchTransactions={
+          fetchTransactions
+        }
+      />
+    </Layout>
   );
-}
+};
 
 export default Dashboard;
