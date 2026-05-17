@@ -1,26 +1,37 @@
 const BudgetProgress = ({
   transactions = [],
 }) => {
-  const income = transactions
-    .filter((t) => t.type === "income")
-    .reduce(
-      (acc, item) =>
-        acc + Number(item.amount),
-      0
-    );
+  const income =
+    transactions
+      .filter(
+        (t) =>
+          t.type === "income"
+      )
+      .reduce(
+        (acc, curr) =>
+          acc +
+          Number(curr.amount),
+        0
+      );
 
-  const expenses = transactions
-    .filter((t) => t.type === "expense")
-    .reduce(
-      (acc, item) =>
-        acc + Number(item.amount),
-      0
-    );
+  const expenses =
+    transactions
+      .filter(
+        (t) =>
+          t.type === "expense"
+      )
+      .reduce(
+        (acc, curr) =>
+          acc +
+          Number(curr.amount),
+        0
+      );
 
   const percentage =
     income > 0
       ? Math.min(
-          (expenses / income) * 100,
+          (expenses / income) *
+            100,
           100
         )
       : 0;
@@ -29,7 +40,7 @@ const BudgetProgress = ({
     <div className="bg-[#1B2333] p-6 rounded-2xl shadow-lg mt-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-xl font-semibold">
-          Monthly Budget
+          Budget Usage
         </h2>
 
         <span className="text-violet-400 font-bold">
@@ -39,7 +50,7 @@ const BudgetProgress = ({
 
       <div className="w-full h-4 bg-[#111827] rounded-full overflow-hidden">
         <div
-          className="h-full bg-violet-500 transition-all duration-500"
+          className="h-full bg-violet-500 rounded-full transition-all duration-500"
           style={{
             width: `${percentage}%`,
           }}

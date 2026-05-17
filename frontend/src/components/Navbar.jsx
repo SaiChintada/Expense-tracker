@@ -1,6 +1,6 @@
 import {
-  FaSignOutAlt,
-} from "react-icons/fa";
+  LogOut,
+} from "lucide-react";
 
 const Navbar = () => {
   const handleLogout = () => {
@@ -13,23 +13,22 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between">
-      
+    <div className="sticky top-0 z-50 bg-[#0F172A] flex items-center justify-between mb-6 py-4">
       <div>
         <h1 className="text-white text-3xl font-bold">
-          Expense Tracker
+          Expense Dashboard
         </h1>
 
         <p className="text-gray-400 mt-1">
-          Manage your finances
+          Track your finances
         </p>
       </div>
 
       <button
         onClick={handleLogout}
-        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+        className="flex items-center gap-2 bg-red-500 hover:bg-red-600 px-4 py-2 rounded-xl text-white"
       >
-        <FaSignOutAlt />
+        <LogOut size={18} />
 
         Logout
       </button>
@@ -37,4 +36,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar; 

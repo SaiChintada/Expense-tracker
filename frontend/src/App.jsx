@@ -16,10 +16,8 @@ function App() {
   const [transactions, setTransactions] =
     useState([]);
 
-  const token =
-    localStorage.getItem(
-      "token"
-    );
+  // TEMPORARY TOKEN
+  const token = true;
 
   const fetchTransactions =
     async () => {
@@ -42,10 +40,8 @@ function App() {
     };
 
   useEffect(() => {
-    if (token) {
-      fetchTransactions();
-    }
-  }, [token]);
+    fetchTransactions();
+  }, []);
 
   return (
     <Routes>
