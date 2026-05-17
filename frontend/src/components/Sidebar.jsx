@@ -1,29 +1,55 @@
-import { FaWallet, FaChartPie, FaCog } from "react-icons/fa";
+import { motion } from "framer-motion";
+import {
+  FaWallet,
+  FaChartPie,
+  FaExchangeAlt,
+} from "react-icons/fa";
 
 const Sidebar = () => {
+  const menuItems = [
+    {
+      icon: <FaWallet />,
+      name: "Dashboard",
+    },
+    {
+      icon: <FaChartPie />,
+      name: "Analytics",
+    },
+    {
+      icon: <FaExchangeAlt />,
+      name: "Transactions",
+    },
+  ];
+
   return (
-    <div className="h-full bg-[#121826] text-white flex flex-col p-5">
-      <h1 className="text-2xl font-bold mb-10 text-violet-400">
-        ExpenseTracker
+    <motion.div
+      initial={{ x: -80, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="h-screen bg-[#111827] border-r border-gray-800 p-6"
+    >
+      <h1 className="text-3xl font-bold text-violet-400 mb-10">
+        FinTrack
       </h1>
 
-      <nav className="flex flex-col gap-4">
-        <button className="flex items-center gap-3 hover:bg-violet-500/20 p-3 rounded-xl transition">
-          <FaWallet />
-          Dashboard
-        </button>
+      <div className="space-y-4">
+        {menuItems.map((item, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.03 }}
+            className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-[#1B2333] hover:bg-violet-600 transition-all"
+          >
+            <span className="text-white text-xl">
+              {item.icon}
+            </span>
 
-        <button className="flex items-center gap-3 hover:bg-violet-500/20 p-3 rounded-xl transition">
-          <FaChartPie />
-          Analytics
-        </button>
-
-        <button className="flex items-center gap-3 hover:bg-violet-500/20 p-3 rounded-xl transition">
-          <FaCog />
-          Settings
-        </button>
-      </nav>
-    </div>
+            <span className="text-white font-medium">
+              {item.name}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
-import { useTransactions } from "../context/TransactionContext";
+import { motion } from "framer-motion";
+
 import {
   PieChart,
   Pie,
@@ -19,9 +20,26 @@ const COLORS = [
 ];
 
 const Analytics = ({ transactions = [] }) => {
-  
+  // SAFETY CHECK
+  if (!Array.isArray(transactions)) {
+    return null;
+  }
 
-  // EXPENSE FILTER
+  if (transactions.length === 0) {
+  return (
+    <div className="bg-[#1B2333] p-10 rounded-2xl mt-6 text-center">
+      <h2 className="text-white text-2xl font-bold">
+        No Analytics Yet
+      </h2>
+
+      <p className="text-gray-400 mt-2">
+        Add transactions to see charts
+      </p>
+    </div>
+  );
+}
+
+  // FILTER EXPENSES
   const expenseTransactions = transactions.filter(
     (t) => t.type === "expense"
   );
@@ -30,14 +48,17 @@ const Analytics = ({ transactions = [] }) => {
   const categoryMap = {};
 
   expenseTransactions.forEach((transaction) => {
-    const category = transaction.category || "Other";
+    const category =
+      transaction.category || "Other";
 
     categoryMap[category] =
       (categoryMap[category] || 0) +
       Number(transaction.amount || 0);
   });
 
-  const expenseData = Object.keys(categoryMap).map((key) => ({
+  const expenseData = Object.keys(
+    categoryMap
+  ).map((key) => ({
     name: key,
     value: categoryMap[key],
   }));
@@ -46,64 +67,95 @@ const Analytics = ({ transactions = [] }) => {
   const monthlyMap = {};
 
   transactions.forEach((transaction) => {
-const date = transaction.date
-  ? new Date(transaction.date)
-  : new Date();
+    const date = new Date(transaction.date);
 
-    const month = date.toLocaleString("default", {
-      month: "short",
-    });
+    const month = date.toLocaleString(
+      "default",
+      {
+        month: "short",
+      }
+    );
 
     monthlyMap[month] =
       (monthlyMap[month] || 0) +
       Number(transaction.amount || 0);
   });
 
-  const monthlyData = Object.keys(monthlyMap).map((key) => ({
-    month: key,
-    amount: monthlyMap[key],
-  }));
+  const monthlyData = Object.keys(
+  monthlyMap
+).map((key) => ({
+  month: key,
+  amount: monthlyMap[key],
+}));
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
       
       {/* PIE CHART */}
-      <div className="bg-[#1B2333] dark:bg-[#1B2333] p-6 rounded-2xl shadow-lg">
-        <h2 className="text-white dark:text-white text-xl font-semibold mb-6">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        whileHover={{ scale: 1.01 }}
+        className="bg-[#1B2333] p-6 rounded-2xl shadow-lg"
+      >
+        <h2 className="text-white text-xl font-semibold mb-6">
           Expense Breakdown
         </h2>
 
         <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+          >
             <PieChart>
               <Pie
-                data={expenseData.length ? expenseData : [{ name: "No Data", value: 1 }]}
+                data={expenseData}
                 dataKey="value"
                 outerRadius={100}
                 label
               >
-                {expenseData.map((entry, index) => (
-                  <Cell
-                    key={index}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
+                {expenseData.map(
+                  (entry, index) => (
+                    <Cell
+                      key={index}
+                      fill={
+                        COLORS[
+                          index %
+                            COLORS.length
+                        ]
+                      }
+                    />
+                  )
+                )}
               </Pie>
 
               <Tooltip />
             </PieChart>
           </ResponsiveContainer>
         </div>
-      </div>
+      </motion.div>
 
       {/* BAR CHART */}
-      <div className="bg-[#1B2333] dark:bg-[#1B2333] p-6 rounded-2xl shadow-lg">
-        <h2 className="text-white dark:text-white text-xl font-semibold mb-6">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.5,
+          delay: 0.2,
+        }}
+        whileHover={{ scale: 1.01 }}
+        className="bg-[#1B2333] p-6 rounded-2xl shadow-lg"
+      >
+        <h2 className="text-white text-xl font-semibold mb-6">
           Monthly Overview
         </h2>
 
         <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+          >
             <BarChart data={monthlyData}>
               <XAxis dataKey="month" />
 
@@ -117,7 +169,7 @@ const date = transaction.date
             </BarChart>
           </ResponsiveContainer>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

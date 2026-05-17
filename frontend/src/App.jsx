@@ -6,6 +6,7 @@ import Analytics from "./components/Analytics";
 import TransactionList from "./components/TransactionList";
 import AddTransaction from "./components/AddTransaction";
 import BudgetProgress from "./components/BudgetProgress";
+import { FaPlus } from "react-icons/fa";
 
 import API from "./services/api";
 
@@ -35,6 +36,11 @@ function App() {
 
   return (
     <Layout>
+      <button
+        className="fixed bottom-6 right-6 bg-violet-600 hover:bg-violet-700 text-white p-5 rounded-full shadow-2xl md:hidden"
+      >
+      <FaPlus />
+     </button>
       <DashboardCards transactions={transactions} />
       <BudgetProgress transactions={transactions} />
 

@@ -1,113 +1,60 @@
 const BudgetProgress = ({
   transactions = [],
 }) => {
-  // MONTHLY BUDGET
-  const monthlyBudget = 50000;
-
-  // TOTAL EXPENSES
-  const totalExpenses = transactions
-    .filter((t) => t.type === "expense")
+  const income = transactions
+    .filter((t) => t.type === "income")
     .reduce(
-      (acc, curr) =>
-        acc + Number(curr.amount),
+      (acc, item) =>
+        acc + Number(item.amount),
       0
     );
 
-  // PROGRESS %
-  const progress = Math.min(
-    (totalExpenses / monthlyBudget) * 100,
-    100
-  );
+  const expenses = transactions
+    .filter((t) => t.type === "expense")
+    .reduce(
+      (acc, item) =>
+        acc + Number(item.amount),
+      0
+    );
 
-  // REMAINING
-  const remaining =
-    monthlyBudget - totalExpenses;
+  const percentage =
+    income > 0
+      ? Math.min(
+          (expenses / income) * 100,
+          100
+        )
+      : 0;
 
   return (
     <div className="bg-[#1B2333] p-6 rounded-2xl shadow-lg mt-6">
-      {/* HEADER */}
       <div className="flex items-center justify-between mb-4">
-        <div>
-          <h2 className="text-white text-2xl font-semibold">
-            Monthly Budget
-          </h2>
+        <h2 className="text-white text-xl font-semibold">
+          Monthly Budget
+        </h2>
 
-          <p className="text-gray-400 text-sm mt-1">
-            Track your monthly spending
-          </p>
-        </div>
-
-        <div className="text-right">
-          <p className="text-violet-400 text-xl font-bold">
-            ₹{monthlyBudget}
-          </p>
-
-          <p className="text-gray-400 text-sm">
-            Budget Limit
-          </p>
-        </div>
+        <span className="text-violet-400 font-bold">
+          {percentage.toFixed(0)}%
+        </span>
       </div>
 
-      {/* PROGRESS BAR */}
-      <div className="w-full bg-[#111827] rounded-full h-5 overflow-hidden">
+      <div className="w-full h-4 bg-[#111827] rounded-full overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-700 ${
-            progress > 90
-              ? "bg-red-500"
-              : progress > 70
-              ? "bg-yellow-500"
-              : "bg-violet-500"
-          }`}
+          className="h-full bg-violet-500 transition-all duration-500"
           style={{
-            width: `${progress}%`,
+            width: `${percentage}%`,
           }}
         />
       </div>
 
-      {/* STATS */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-        {/* SPENT */}
-        <div className="bg-[#111827] p-4 rounded-xl">
-          <p className="text-gray-400 text-sm">
-            Spent
-          </p>
+      <div className="flex justify-between mt-4 text-sm">
+        <p className="text-green-400">
+          Income: ₹{income}
+        </p>
 
-          <h3 className="text-red-400 text-2xl font-bold mt-1">
-            ₹{totalExpenses}
-          </h3>
-        </div>
-
-        {/* REMAINING */}
-        <div className="bg-[#111827] p-4 rounded-xl">
-          <p className="text-gray-400 text-sm">
-            Remaining
-          </p>
-
-          <h3 className="text-green-400 text-2xl font-bold mt-1">
-            ₹{remaining}
-          </h3>
-        </div>
-
-        {/* PROGRESS */}
-        <div className="bg-[#111827] p-4 rounded-xl">
-          <p className="text-gray-400 text-sm">
-            Used
-          </p>
-
-          <h3 className="text-violet-400 text-2xl font-bold mt-1">
-            {progress.toFixed(0)}%
-          </h3>
-        </div>
+        <p className="text-red-400">
+          Expenses: ₹{expenses}
+        </p>
       </div>
-
-      {/* WARNING */}
-      {progress > 90 && (
-        <div className="mt-6 bg-red-500/20 border border-red-500 p-4 rounded-xl">
-          <p className="text-red-400 font-semibold">
-            Warning: Budget almost exceeded!
-          </p>
-        </div>
-      )}
     </div>
   );
 };

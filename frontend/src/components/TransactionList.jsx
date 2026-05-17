@@ -1,316 +1,246 @@
-import { useState, useMemo } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import { useState } from "react";
+
+import { motion } from "framer-motion";
+
+import {
+  FaTrash,
+  FaEdit,
+} from "react-icons/fa";
+
 import API from "../services/api";
+
+import EditTransactionModal from "./EditTransactionModal";
 
 const TransactionList = ({
   transactions = [],
   fetchTransactions,
 }) => {
-  const [editingId, setEditingId] = useState(null);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] =
+    useState("");
+
   const [filterType, setFilterType] =
-  useState("all");
-  const [filterCategory, setFilterCategory] =
-  useState("all");
+    useState("all");
 
-  const [editData, setEditData] = useState({
-    title: "",
-    amount: "",
-    category: "",
-    type: "expense",
-    date: "",
-  });
+  const [
+    selectedTransaction,
+    setSelectedTransaction,
+  ] = useState(null);
 
-  // DELETE
-  const handleDelete = async (id) => {
+  // DELETE TRANSACTION
+  const handleDelete = async (
+    id
+  ) => {
     try {
-      await API.delete(`/transactions/${id}`);
-
-      fetchTransactions();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // EDIT CLICK
-  const handleEditClick = (transaction) => {
-    setEditingId(transaction.id);
-
-    setEditData({
-      title: transaction.title,
-      amount: transaction.amount,
-      category: transaction.category,
-      type: transaction.type,
-      date: transaction.date,
-    });
-  };
-
-  // UPDATE
-  const handleUpdate = async () => {
-    try {
-      await API.put(
-        `/transactions/${editingId}`,
-        editData
+      await API.delete(
+        `/transactions/${id}`
       );
 
-      setEditingId(null);
-
       fetchTransactions();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const categories = [
-  ...new Set(
-    transactions.map((t) => t.category)
-  ),
-];
+  // FILTER + SEARCH
+  const filteredTransactions =
+    transactions.filter(
+      (transaction) => {
+        const matchesSearch =
+          transaction.title
+            ?.toLowerCase()
+            .includes(
+              search.toLowerCase()
+            );
 
-const filteredTransactions = useMemo(() => {
-  return transactions.filter((transaction) => {
-    const matchesSearch =
-      transaction.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
+        const matchesType =
+          filterType === "all"
+            ? true
+            : transaction.type ===
+              filterType;
 
-    const matchesType =
-      filterType === "all" ||
-      transaction.type === filterType;
-
-    const matchesCategory =
-      filterCategory === "all" ||
-      transaction.category === filterCategory;
-
-    return (
-      matchesSearch &&
-      matchesType &&
-      matchesCategory
+        return (
+          matchesSearch &&
+          matchesType
+        );
+      }
     );
-  });
-}, [
-  transactions,
-  search,
-  filterType,
-  filterCategory,
-]);
 
   return (
-    <div className="bg-[#1B2333] dark:bg-[#1B2333] p-6 rounded-2xl shadow-lg mt-6">
-      <h2 className="text-white text-2xl font-semibold mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-  {/* SEARCH */}
-  <input
-    type="text"
-    placeholder="Search transaction..."
-    value={search}
-    onChange={(e) =>
-      setSearch(e.target.value)
-    }
-    className="p-3 rounded-xl bg-[#1B2333] dark:bg-[#1B2333] text-white outline-none"
-  />
+    <div className="bg-[#1B2333] p-6 rounded-2xl shadow-lg mt-6">
+      
+      {/* HEADER */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+        
+        <h2 className="text-white text-2xl font-semibold">
+          Recent Transactions
+        </h2>
 
-  {/* TYPE FILTER */}
-  <select
-    value={filterType}
-    onChange={(e) =>
-      setFilterType(e.target.value)
-    }
-    className="p-3 rounded-xl bg-[#1B2333] dark:bg-[#1B2333] text-white outline-none"
-  >
-    <option value="all">All Types</option>
+        <div className="flex gap-3 flex-col sm:flex-row">
+          
+          {/* SEARCH */}
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) =>
+              setSearch(
+                e.target.value
+              )
+            }
+            className="bg-[#111827] text-white px-4 py-2 rounded-lg outline-none"
+          />
 
-    <option value="income">
-      Income
-    </option>
+          {/* FILTER */}
+          <select
+            value={filterType}
+            onChange={(e) =>
+              setFilterType(
+                e.target.value
+              )
+            }
+            className="bg-[#111827] text-white px-4 py-2 rounded-lg outline-none"
+          >
+            <option value="all">
+              All
+            </option>
 
-    <option value="expense">
-      Expense
-    </option>
-  </select>
+            <option value="income">
+              Income
+            </option>
 
-  {/* CATEGORY FILTER */}
-  <select
-    value={filterCategory}
-    onChange={(e) =>
-      setFilterCategory(e.target.value)
-    }
-    className="p-3 rounded-xl bg-[#1B2333] dark:bg-[#1B2333] text-white outline-none"
-  >
-    <option value="all">
-      All Categories
-    </option>
+            <option value="expense">
+              Expense
+            </option>
+          </select>
+        </div>
+      </div>
 
-    {categories.map((category, index) => (
-      <option key={index} value={category}>
-        {category}
-      </option>
-    ))}
-  </select>
-</div>
-        Recent Transactions
-      </h2>
-
-      {transactions.length === 0 ? (
-        <p className="text-gray-400">
-          No transactions found.
-        </p>
+      {/* EMPTY */}
+      {filteredTransactions.length ===
+      0 ? (
+        <div className="text-center py-10">
+          <p className="text-gray-400">
+            No Transactions Found
+          </p>
+        </div>
       ) : (
         <div className="space-y-4">
-          {filteredTransactions.map((transaction) => (
-            <div
-              key={transaction.id}
-              className="bg-[#1B2333] dark:bg-[#1B2333] p-4 rounded-xl border border-gray-700"
-            >
-              {editingId === transaction.id ? (
-                // EDIT MODE
-                <div className="space-y-4">
-                  <input
-                    type="text"
-                    value={editData.title}
-                    onChange={(e) =>
-                      setEditData({
-                        ...editData,
-                        title: e.target.value,
-                      })
+          {filteredTransactions.map(
+            (
+              transaction,
+              index
+            ) => (
+              <motion.div
+                key={
+                  transaction.id
+                }
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay:
+                    index * 0.05,
+                }}
+                whileHover={{
+                  scale: 1.01,
+                }}
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-[#111827] p-4 rounded-xl border border-gray-700"
+              >
+                
+                {/* LEFT */}
+                <div>
+                  <h3 className="text-white font-semibold text-lg">
+                    {
+                      transaction.title
                     }
-                    className="w-full p-3 rounded-lg bg-[#1B2333] dark:bg-[#1B2333] text-white"
-                    placeholder="Title"
-                  />
+                  </h3>
 
-                  <input
-                    type="number"
-                    value={editData.amount}
-                    onChange={(e) =>
-                      setEditData({
-                        ...editData,
-                        amount: e.target.value,
-                      })
+                  <p className="text-gray-400 text-sm">
+                    {
+                      transaction.category
                     }
-                    className="w-full p-3 rounded-lg bg-[#1B2333] text-white"
-                    placeholder="Amount"
-                  />
-
-                  <input
-                    type="text"
-                    value={editData.category}
-                    onChange={(e) =>
-                      setEditData({
-                        ...editData,
-                        category: e.target.value,
-                      })
-                    }
-                    className="w-full p-3 rounded-lg bg-[#1B2333] text-white"
-                    placeholder="Category"
-                  />
-
-                  <select
-                    value={editData.type}
-                    onChange={(e) =>
-                      setEditData({
-                        ...editData,
-                        type: e.target.value,
-                      })
-                    }
-                    className="w-full p-3 rounded-lg bg-[#1B2333] text-white"
-                  >
-                    <option value="income">
-                      Income
-                    </option>
-
-                    <option value="expense">
-                      Expense
-                    </option>
-                  </select>
-
-                  <input
-                    type="date"
-                    value={editData.date}
-                    onChange={(e) =>
-                      setEditData({
-                        ...editData,
-                        date: e.target.value,
-                      })
-                    }
-                    className="w-full p-3 rounded-lg bg-[#1B2333] text-white"
-                  />
-
-                  <div className="flex gap-3">
-                    <button
-                      onClick={handleUpdate}
-                      className="bg-violet-600 hover:bg-violet-700 px-5 py-2 rounded-lg text-white"
-                    >
-                      Save
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setEditingId(null)
-                      }
-                      className="bg-gray-600 hover:bg-gray-700 px-5 py-2 rounded-lg text-white"
-                    >
-                      Cancel
-                    </button>
-                  </div>
+                  </p>
                 </div>
-              ) : (
-                // NORMAL MODE
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <h3 className="text-white font-semibold text-lg">
-                      {transaction.title}
-                    </h3>
 
-                    <p className="text-gray-400 text-sm">
-                      {transaction.category}
+                {/* RIGHT */}
+                <div className="flex items-center gap-5 mt-4 sm:mt-0">
+                  
+                  <div className="text-right">
+                    <p
+                      className={`text-lg font-bold ${
+                        transaction.type ===
+                        "income"
+                          ? "text-green-400"
+                          : "text-red-400"
+                      }`}
+                    >
+                      {transaction.type ===
+                      "income"
+                        ? "+"
+                        : "-"}
+                      ₹
+                      {
+                        transaction.amount
+                      }
+                    </p>
+
+                    <p className="text-gray-500 text-sm">
+                      {
+                        transaction.date
+                      }
                     </p>
                   </div>
 
-                  <div className="mt-4 sm:mt-0 flex items-center gap-4">
-                    <div className="text-right">
-                      <p
-                        className={`text-lg font-bold ${
-                          transaction.type ===
-                          "income"
-                            ? "text-green-400"
-                            : "text-red-400"
-                        }`}
-                      >
-                        {transaction.type ===
-                        "income"
-                          ? "+"
-                          : "-"}
-                        ₹{transaction.amount}
-                      </p>
+                  {/* EDIT BUTTON */}
+                  <button
+                    onClick={() =>
+                      setSelectedTransaction(
+                        transaction
+                      )
+                    }
+                    className="text-cyan-400 hover:text-cyan-500"
+                  >
+                    <FaEdit />
+                  </button>
 
-                      <p className="text-gray-500 text-sm">
-                        {transaction.date}
-                      </p>
-                    </div>
-
-                    <button
-                      onClick={() =>
-                        handleEditClick(transaction)
-                      }
-                      className="text-blue-400 hover:text-blue-500"
-                    >
-                      <FaEdit />
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        handleDelete(transaction.id)
-                      }
-                      className="text-red-400 hover:text-red-500"
-                    >
-                      <FaTrash />
-                    </button>
-                  </div>
+                  {/* DELETE BUTTON */}
+                  <button
+                    onClick={() =>
+                      handleDelete(
+                        transaction.id
+                      )
+                    }
+                    className="text-red-400 hover:text-red-500"
+                  >
+                    <FaTrash />
+                  </button>
                 </div>
-              )}
-            </div>
-          ))}
+              </motion.div>
+            )
+          )}
         </div>
+      )}
+
+      {/* EDIT MODAL */}
+      {selectedTransaction && (
+        <EditTransactionModal
+          transaction={
+            selectedTransaction
+          }
+          onClose={() =>
+            setSelectedTransaction(
+              null
+            )
+          }
+          fetchTransactions={
+            fetchTransactions
+          }
+        />
       )}
     </div>
   );
