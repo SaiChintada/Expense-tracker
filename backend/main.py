@@ -1,30 +1,39 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+# Import Routes
 from routes.auth_routes import router as auth_router
-from routes.transaction_routes import router as transaction_router
 
+# Create FastAPI App
 app = FastAPI()
+
+
+# CORS Configuration
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://your-vercel-app.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.include_router(auth_router)
+
+# Routes
 
 app.include_router(
-    transaction_router
+    auth_router,
+    prefix="/auth",
+    tags=["Auth"]
 )
+
+
+# Test Route
 
 @app.get("/")
 def home():
     return {
-        "message": "Expense Tracker API Running"
+        "message": "Expense Tracker API Running Successfully"
     }
