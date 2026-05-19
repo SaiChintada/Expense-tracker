@@ -1,13 +1,72 @@
 import { useState } from "react";
 
+import API from "../services/api";
+
+import toast from "react-hot-toast";
+
+import {
+  FaShoppingBag,
+  FaUtensils,
+  FaCar,
+  FaMoneyBill,
+} from "react-icons/fa";
+
 const TransactionList = ({
   transactions = [],
+  fetchTransactions,
 }) => {
   const [search, setSearch] =
     useState("");
 
   const [filter, setFilter] =
     useState("all");
+
+  const handleDelete = async (
+    id
+  ) => {
+    const confirmDelete =
+      window.confirm(
+        "Delete this transaction?"
+      );
+
+    if (!confirmDelete) return;
+
+    try {
+      await API.delete(
+        `/transactions/${id}`
+      );
+
+      toast.success(
+        "Transaction Deleted"
+      );
+
+      fetchTransactions();
+    } catch (error) {
+      toast.error(
+        "Delete Failed"
+      );
+    }
+  };
+
+  const getIcon = (category) => {
+    switch (
+      category?.toLowerCase()
+    ) {
+      case "food":
+        return <FaUtensils />;
+
+      case "travel":
+        return <FaCar />;
+
+      case "salary":
+        return <FaMoneyBill />;
+
+      default:
+        return (
+          <FaShoppingBag />
+        );
+    }
+  };
 
   const filteredTransactions =
     transactions
@@ -96,13 +155,21 @@ const TransactionList = ({
               >
                 {/* LEFT */}
                 <div>
-                  <h3 className="text-white font-semibold text-lg">
-                    {
-                      transaction.title
-                    }
-                  </h3>
+                  <div className="flex items-center gap-3">
+                    <div className="text-violet-400 text-xl">
+                      {getIcon(
+                        transaction.category
+                      )}
+                    </div>
 
-                  <p className="text-gray-400 text-sm">
+                    <h3 className="text-white font-semibold text-lg">
+                      {
+                        transaction.title
+                      }
+                    </h3>
+                  </div>
+
+                  <p className="text-gray-400 text-sm mt-1">
                     {
                       transaction.category
                     }
@@ -134,6 +201,17 @@ const TransactionList = ({
                       transaction.date
                     }
                   </p>
+
+                  <button
+                    onClick={() =>
+                      handleDelete(
+                        transaction.id
+                      )
+                    }
+                    className="mt-2 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             )

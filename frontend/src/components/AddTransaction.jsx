@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../services/api";
+import toast from "react-hot-toast";
 
 const AddTransaction = ({
   fetchTransactions,
@@ -43,11 +44,11 @@ const AddTransaction = ({
       // REFRESH DATA
       fetchTransactions();
 
-      alert("Transaction Added");
+      toast.success("Transaction Added");
     } catch (error) {
       console.log(error);
 
-      alert("Failed to add transaction");
+      toast.error("Failed to add transaction");
     }
   };
 
