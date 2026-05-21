@@ -4,98 +4,115 @@ import API from "../services/api";
 import toast from "react-hot-toast";
 
 const Login = () => {
+
   const navigate = useNavigate();
 
-  const [formData, setFormData] =
-    useState({
-      email: "",
-      password: "",
-    });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
+  // Handle Input Change
   const handleChange = (e) => {
+
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.value,
+      [e.target.name]: e.target.value,
     });
+
   };
 
-  const handleSubmit = async (
-    e
-  ) => {
+  // Handle Login Submit
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     try {
-      const res =
-        await API.post(
-          "/auth/login",
-          formData
-        );
 
+      const res = await API.post(
+        "/auth/login",
+        formData
+      );
+
+      // Save JWT Token
       localStorage.setItem(
         "token",
         res.data.access_token
+      );
+
+      // Save User Info
+      localStorage.setItem(
+        "user",
+        JSON.stringify(res.data.user)
       );
 
       toast.success(
         "Login Successful"
       );
 
-      navigate("/");
+      // Redirect Dashboard
+      navigate("/dashboard");
+
     } catch (error) {
+
+      console.log(error);
+
       toast.error(
-        "Invalid Credentials"
+        error.response?.data?.detail ||
+        "Login Failed"
       );
+
     }
+
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] flex items-center justify-center p-4">
-      <div className="bg-[#1B2333] w-full max-w-md p-8 rounded-2xl shadow-lg">
-        
-        <h1 className="text-white text-3xl font-bold mb-6 text-center">
+
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
+      >
+
+        <h2 className="text-3xl font-bold text-center mb-6">
           Login
-        </h1>
+        </h2>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
+        {/* Email Input */}
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-black"
+        />
+
+        {/* Password Input */}
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 p-3 rounded-lg mb-6 outline-none focus:ring-2 focus:ring-black"
+        />
+
+        {/* Login Button */}
+        <button
+          type="submit"
+          className="w-full bg-black text-white py-3 rounded-lg hover:opacity-90 transition"
         >
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={
-              handleChange
-            }
-            required
-            className="w-full p-3 rounded-lg bg-[#111827] text-white outline-none"
-          />
+          Login
+        </button>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={
-              formData.password
-            }
-            onChange={
-              handleChange
-            }
-            required
-            className="w-full p-3 rounded-lg bg-[#111827] text-white outline-none"
-          />
+      </form>
 
-          <button
-            type="submit"
-            className="w-full bg-violet-600 hover:bg-violet-700 text-white p-3 rounded-lg font-semibold"
-          >
-            Login
-          </button>
-        </form>
-      </div>
     </div>
+
   );
 };
 

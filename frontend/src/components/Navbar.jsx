@@ -1,39 +1,47 @@
 import {
-  LogOut,
-} from "lucide-react";
+  useNavigate,
+} from "react-router-dom";
+
+import {
+  useAuth,
+} from "../context/AuthContext";
 
 const Navbar = () => {
-  const handleLogout = () => {
-    localStorage.removeItem(
-      "token"
-    );
+  const navigate =
+    useNavigate();
 
-    window.location.href =
-      "/login";
+  const { logout } =
+    useAuth();
+
+  const handleLogout = () => {
+    logout();
+
+    navigate("/login");
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-[#0F172A] flex items-center justify-between mb-6 py-4">
+    <div className="flex justify-between items-center mb-6">
+      
       <div>
-        <h1 className="text-white text-3xl font-bold">
+        <h1 className="text-3xl font-bold text-white">
           Expense Dashboard
         </h1>
 
         <p className="text-gray-400 mt-1">
-          Track your finances
+          Track your expenses smartly
         </p>
       </div>
 
       <button
-        onClick={handleLogout}
-        className="flex items-center gap-2 bg-red-500 hover:bg-red-600 px-4 py-2 rounded-xl text-white"
+        onClick={
+          handleLogout
+        }
+        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl"
       >
-        <LogOut size={18} />
-
         Logout
       </button>
     </div>
   );
 };
 
-export default Navbar; 
+export default Navbar;

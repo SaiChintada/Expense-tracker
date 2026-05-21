@@ -4,7 +4,10 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
@@ -12,16 +15,22 @@ import Register from "./pages/Register";
 
 import API from "./services/api";
 
+import { useAuth } from "./context/AuthContext";
+
 function App() {
+
   const [transactions, setTransactions] =
     useState([]);
 
-  // TEMPORARY TOKEN
-  const token = true;
+  const { token } =
+    useAuth();
 
+  // Fetch Transactions
   const fetchTransactions =
     async () => {
+
       try {
+
         const res =
           await API.get(
             "/transactions"
@@ -34,50 +43,103 @@ function App() {
             ? res.data
             : []
         );
+
       } catch (error) {
+
         console.log(error);
+
       }
+
     };
 
+  // Load Transactions
   useEffect(() => {
-    fetchTransactions();
-  }, []);
+
+    if (token) {
+
+      fetchTransactions();
+
+    }
+
+  }, [token]);
 
   return (
+
     <Routes>
-      
-      {/* LOGIN */}
+
+      {/* Login Route */}
       <Route
         path="/login"
-        element={<Login />}
+        element={
+          token
+            ? (
+                <Navigate
+                  to="/dashboard"
+                />
+              )
+            : (
+                <Login />
+              )
+        }
       />
 
-      {/* REGISTER */}
+      {/* Register Route */}
       <Route
         path="/register"
-        element={<Register />}
+        element={
+          token
+            ? (
+                <Navigate
+                  to="/dashboard"
+                />
+              )
+            : (
+                <Register />
+              )
+        }
       />
 
-      {/* DASHBOARD */}
+      {/* Dashboard Route */}
+      <Route
+        path="/dashboard"
+        element={
+          token
+            ? (
+                <Dashboard
+                  transactions={
+                    transactions
+                  }
+                  fetchTransactions={
+                    fetchTransactions
+                  }
+                />
+              )
+            : (
+                <Navigate
+                  to="/login"
+                />
+              )
+        }
+      />
+
+      {/* Default Route */}
       <Route
         path="/"
         element={
-          token ? (
-            <Dashboard
-              transactions={
-                transactions
-              }
-              fetchTransactions={
-                fetchTransactions
-              }
-            />
-          ) : (
-            <Navigate to="/login" />
-          )
+          <Navigate
+            to={
+              token
+                ? "/dashboard"
+                : "/login"
+            }
+          />
         }
       />
+
     </Routes>
+
   );
+
 }
 
 export default App;

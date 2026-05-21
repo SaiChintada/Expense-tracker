@@ -1,16 +1,19 @@
-from fastapi import APIRouter, Depends, HTTPException
-
+from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 
+# Database
 from database import SessionLocal
 
+# Models
 from models.user_model import User
 
+# Schemas
 from schemas.user_schema import (
     UserCreate,
     UserLogin
 )
 
+# Auth Utils
 from utils.auth import (
     hash_password,
     verify_password,
@@ -19,8 +22,11 @@ from utils.auth import (
 
 router = APIRouter()
 
-
+# =========================
+# Database Dependency
+# =========================
 def get_db():
+
     db = SessionLocal()
 
     try:
@@ -29,33 +35,37 @@ def get_db():
     finally:
         db.close()
 
-
-# REGISTER
+# =========================
+# REGISTER API
+# =========================
 @router.post("/register")
 def register(
     user: UserCreate,
     db: Session = Depends(get_db)
 ):
-    existing_user = (
-        db.query(User)
-        .filter(
-            User.email == user.email
-        )
-        .first()
-    )
+
+    # Check Existing Email
+    existing_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
 
     if existing_user:
+
         raise HTTPException(
             status_code=400,
             detail="Email already exists"
         )
 
+    # Hash Password
+    hashed_password = hash_password(
+        user.password
+    )
+
+    # Create User
     new_user = User(
         username=user.username,
         email=user.email,
-        password=hash_password(
-            user.password
-        )
+        password=hashed_password
     )
 
     db.add(new_user)
@@ -65,48 +75,54 @@ def register(
     db.refresh(new_user)
 
     return {
-        "message":
-        "User Registered Successfully"
+        "message": "User registered successfully"
     }
 
-
-# LOGIN
+# =========================
+# LOGIN API
+# =========================
 @router.post("/login")
 def login(
     user: UserLogin,
     db: Session = Depends(get_db)
 ):
-    existing_user = (
-        db.query(User)
-        .filter(
-            User.email == user.email
-        )
-        .first()
-    )
 
-    if not existing_user:
+    # Find User
+    db_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
+
+    # Email Check
+    if not db_user:
+
         raise HTTPException(
-            status_code=401,
+            status_code=400,
             detail="Invalid Email"
         )
 
-    valid_password = verify_password(
+    # Password Check
+    if not verify_password(
         user.password,
-        existing_user.password
-    )
+        db_user.password
+    ):
 
-    if not valid_password:
         raise HTTPException(
-            status_code=401,
+            status_code=400,
             detail="Invalid Password"
         )
 
-    token = create_access_token({
-        "user_id":
-        existing_user.id
-    })
+    # Generate JWT Token
+    access_token = create_access_token(
+        data={
+            "sub": db_user.email
+        }
+    )
 
     return {
-        "access_token": token,
-        "token_type": "bearer"
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": {
+            "username": db_user.username,
+            "email": db_user.email
+        }
     }
