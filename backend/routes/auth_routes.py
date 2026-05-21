@@ -17,10 +17,7 @@ from utils.auth import (
     create_access_token
 )
 
-router = APIRouter(
-    prefix="/auth",
-    tags=["Authentication"]
-)
+router = APIRouter()
 
 
 def get_db():
