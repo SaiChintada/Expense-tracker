@@ -51,3 +51,69 @@ def create_access_token(data: dict):
     )
 
     return encoded_jwt
+
+from jose import jwt, JWTError
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+
+from database import SessionLocal
+from models.user_model import User
+
+SECRET_KEY = "SECRET123"
+ALGORITHM = "HS256"
+
+security = HTTPBearer()
+
+# Get DB
+def get_db():
+
+    db = SessionLocal()
+
+    try:
+        yield db
+
+    finally:
+        db.close()
+
+# Get Current User
+def get_current_user(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    db = Depends(get_db)
+):
+
+    token = credentials.credentials
+
+    try:
+
+        payload = jwt.decode(
+            token,
+            SECRET_KEY,
+            algorithms=[ALGORITHM]
+        )
+
+        user_id = payload.get("id")
+
+        if not user_id:
+            raise HTTPException(
+                status_code=401,
+                detail="Invalid Token"
+            )
+
+        user = db.query(User).filter(
+            User.id == user_id
+        ).first()
+
+        if not user:
+            raise HTTPException(
+                status_code=401,
+                detail="User not found"
+            )
+
+        return user
+
+    except JWTError:
+
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid Token"
+        )

@@ -1,23 +1,28 @@
-from fastapi import APIRouter, Depends
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException
+)
+
 from sqlalchemy.orm import Session
 
 from database import SessionLocal
 
-from schemas.transaction_schema import (
-    TransactionCreate
+# Models
+from models.transcation import Transaction
+from models.user_model import User
+
+# Auth
+from utils.auth import get_current_user
+
+router = APIRouter(
+    prefix="/transactions",
+    tags=["Transactions"]
 )
 
-from crud.transaction_crud import (
-    create_transaction,
-    get_transactions,
-    delete_transaction,
-    update_transaction
-)
-
-router = APIRouter()
-
-
+# Database Dependency
 def get_db():
+
     db = SessionLocal()
 
     try:
@@ -26,38 +31,17 @@ def get_db():
     finally:
         db.close()
 
-
-@router.post("/transactions")
-def add_transaction(
-    transaction: TransactionCreate,
+# GET ALL TRANSACTIONS
+@router.get("/")
+def get_transactions(
+    current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    return create_transaction(db, transaction)
 
+    transactions = db.query(
+        Transaction
+    ).filter(
+        Transaction.user_id == current_user.id
+    ).all()
 
-@router.get("/transactions")
-def read_transactions(
-    db: Session = Depends(get_db)
-):
-    return get_transactions(db)
-
-
-@router.delete("/transactions/{id}")
-def remove_transaction(
-    id: int,
-    db: Session = Depends(get_db)
-):
-    return delete_transaction(db, id)
-
-
-@router.put("/transactions/{id}")
-def edit_transaction(
-    id: int,
-    updated_data: TransactionCreate,
-    db: Session = Depends(get_db)
-):
-    return update_transaction(
-        db,
-        id,
-        updated_data
-    )
+    return transactions
