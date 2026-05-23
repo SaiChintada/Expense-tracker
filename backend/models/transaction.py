@@ -1,13 +1,50 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Float,
+    ForeignKey
+)
+
 from database import Base
 
 
 class Transaction(Base):
+
     __tablename__ = "transactions"
 
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, nullable=False)
-    amount = Column(Float, nullable=False)
-    category = Column(String, nullable=False)
-    type = Column(String, nullable=False)
-    date = Column(String, nullable=False)
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
+
+    title = Column(
+        String,
+        nullable=False
+    )
+
+    amount = Column(
+        Float,
+        nullable=False
+    )
+
+    category = Column(
+        String,
+        nullable=False
+    )
+
+    type = Column(
+        String,
+        nullable=False
+    )
+
+    date = Column(
+        String,
+        nullable=False
+    )
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id")
+    )
