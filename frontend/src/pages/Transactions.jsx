@@ -1,10 +1,8 @@
 import Layout from "../components/Layout";
 
-import DashboardCards from "../components/DashboardCards";
+import TransactionList from "../components/TransactionList";
 
-import AddTransaction from "../components/AddTransaction";
-
-const Dashboard = ({
+const Transactions = ({
 
   transactions,
 
@@ -19,25 +17,26 @@ const Dashboard = ({
       <div className="page-header">
 
         <h1>
-          Dashboard
+          Transactions
         </h1>
 
         <p>
-          Welcome back to your finance dashboard
+          Manage all your
+          income and expenses
         </p>
 
       </div>
 
-      <DashboardCards
+      <TransactionList
+
         transactions={
           transactions
         }
-      />
 
-      <AddTransaction
         fetchTransactions={
           fetchTransactions
         }
+
       />
 
     </Layout>
@@ -46,4 +45,4 @@ const Dashboard = ({
 
 };
 
-export default Dashboard;
+export default Transactions;

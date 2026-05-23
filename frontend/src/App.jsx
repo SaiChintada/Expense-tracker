@@ -9,6 +9,10 @@ import {
   useState,
 } from "react";
 
+import Transactions from "./pages/Transactions";
+
+import AnalyticsPage from "./pages/AnalyticsPage";
+
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -63,6 +67,33 @@ function App() {
   return (
 
     <Routes>
+
+      <Route
+  path="/transactions"
+  element={
+    token ? (
+      <Transactions
+        transactions={transactions}
+        fetchTransactions={fetchTransactions}
+      />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+
+<Route
+  path="/analytics"
+  element={
+    token ? (
+      <AnalyticsPage
+        transactions={transactions}
+      />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
 
       <Route
         path="/login"
