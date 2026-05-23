@@ -1,3 +1,120 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#0f172a;
+  color:white;
+}
+
+.layout{
+  min-height:100vh;
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  background:#111827;
+  border-bottom:1px solid #1e293b;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.logout-btn{
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  background:#ef4444;
+  color:white;
+  cursor:pointer;
+}
+
+.main-content{
+  padding:30px;
+}
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-bottom:30px;
+}
+
+.card{
+  background:#1e293b;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:
+  0 4px 10px rgba(0,0,0,0.2);
+}
+
+.card h3{
+  margin-bottom:10px;
+  color:#94a3b8;
+}
+
+.card h1{
+  font-size:32px;
+}
+
+.auth-container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0f172a;
+}
+
+.auth-form{
+  width:350px;
+  background:#1e293b;
+  padding:40px;
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.auth-form h2{
+  text-align:center;
+}
+
+.auth-form input{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#334155;
+  color:white;
+}
+
+.auth-form button{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#3b82f6;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.auth-form button:hover{
+  opacity:0.9;
+}

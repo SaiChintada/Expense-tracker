@@ -17,6 +17,8 @@ import API from "./services/api";
 
 import { useAuth } from "./context/AuthContext";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+
 function App() {
 
   const [transactions, setTransactions] =
@@ -25,7 +27,6 @@ function App() {
   const { token } =
     useAuth();
 
-  // Fetch Transactions
   const fetchTransactions =
     async () => {
 
@@ -37,9 +38,7 @@ function App() {
           );
 
         setTransactions(
-          Array.isArray(
-            res.data
-          )
+          Array.isArray(res.data)
             ? res.data
             : []
         );
@@ -49,10 +48,8 @@ function App() {
         console.log(error);
 
       }
-
     };
 
-  // Load Transactions
   useEffect(() => {
 
     if (token) {
@@ -67,71 +64,39 @@ function App() {
 
     <Routes>
 
-      {/* Login Route */}
       <Route
         path="/login"
-        element={
-          token
-            ? (
-                <Navigate
-                  to="/dashboard"
-                />
-              )
-            : (
-                <Login />
-              )
-        }
+        element={<Login />}
       />
 
-      {/* Register Route */}
       <Route
         path="/register"
-        element={
-          token
-            ? (
-                <Navigate
-                  to="/dashboard"
-                />
-              )
-            : (
-                <Register />
-              )
-        }
+        element={<Register />}
       />
 
-      {/* Dashboard Route */}
       <Route
         path="/dashboard"
         element={
-          token
-            ? (
-                <Dashboard
-                  transactions={
-                    transactions
-                  }
-                  fetchTransactions={
-                    fetchTransactions
-                  }
-                />
-              )
-            : (
-                <Navigate
-                  to="/login"
-                />
-              )
+          <ProtectedRoute>
+
+            <Dashboard
+              transactions={
+                transactions
+              }
+              fetchTransactions={
+                fetchTransactions
+              }
+            />
+
+          </ProtectedRoute>
         }
       />
 
-      {/* Default Route */}
       <Route
         path="/"
         element={
           <Navigate
-            to={
-              token
-                ? "/dashboard"
-                : "/login"
-            }
+            to="/dashboard"
           />
         }
       />
@@ -139,7 +104,6 @@ function App() {
     </Routes>
 
   );
-
 }
 
 export default App;

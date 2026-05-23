@@ -1,51 +1,76 @@
-import { calculateSummary } from "../utils/calculateSummary";
-
 const DashboardCards = ({
-  transactions = [],
+  transactions,
 }) => {
-  const summary =
-    calculateSummary(
-      transactions
-    );
 
-  const cards = [
-    {
-      title: "Total Balance",
-      amount: `₹${summary.balance}`,
-    },
-    {
-      title: "Income",
-      amount: `₹${summary.income}`,
-    },
-    {
-      title: "Expenses",
-      amount: `₹${summary.expenses}`,
-    },
-    {
-      title: "Savings",
-      amount: `${summary.savings}%`,
-    },
-  ];
+  const income =
+    transactions
+      .filter(
+        (t) =>
+          t.type === "income"
+      )
+      .reduce(
+        (acc, item) =>
+          acc + item.amount,
+        0
+      );
+
+  const expense =
+    transactions
+      .filter(
+        (t) =>
+          t.type === "expense"
+      )
+      .reduce(
+        (acc, item) =>
+          acc + item.amount,
+        0
+      );
+
+  const balance =
+    income - expense;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
-      {cards.map(
-        (card, index) => (
-          <div
-            key={index}
-            className="bg-[#1B2333] p-6 rounded-2xl shadow-lg border border-violet-500/10"
-          >
-            <h3 className="text-gray-400 text-sm mb-2">
-              {card.title}
-            </h3>
 
-            <p className="text-white text-3xl font-bold">
-              {card.amount}
-            </p>
-          </div>
-        )
-      )}
+    <div className="cards-grid">
+
+      <div className="card">
+
+        <h3>
+          Total Balance
+        </h3>
+
+        <h1>
+          ₹ {balance}
+        </h1>
+
+      </div>
+
+      <div className="card">
+
+        <h3>
+          Total Income
+        </h3>
+
+        <h1>
+          ₹ {income}
+        </h1>
+
+      </div>
+
+      <div className="card">
+
+        <h3>
+          Total Expense
+        </h3>
+
+        <h1>
+          ₹ {expense}
+        </h1>
+
+      </div>
+
     </div>
+
   );
 };
 

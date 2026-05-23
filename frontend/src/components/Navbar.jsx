@@ -1,46 +1,71 @@
 import {
+  FaWallet,
+  FaSignOutAlt,
+} from "react-icons/fa";
+
+import {
   useNavigate,
 } from "react-router-dom";
 
-import {
-  useAuth,
-} from "../context/AuthContext";
-
 const Navbar = () => {
+
   const navigate =
     useNavigate();
 
-  const { logout } =
-    useAuth();
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
 
-  const handleLogout = () => {
-    logout();
+  const logout = () => {
+
+    localStorage.removeItem(
+      "token"
+    );
+
+    localStorage.removeItem(
+      "user"
+    );
 
     navigate("/login");
   };
 
   return (
-    <div className="flex justify-between items-center mb-6">
-      
-      <div>
-        <h1 className="text-3xl font-bold text-white">
-          Expense Dashboard
-        </h1>
 
-        <p className="text-gray-400 mt-1">
-          Track your expenses smartly
-        </p>
+    <div className="navbar">
+
+      <div className="logo">
+
+        <FaWallet />
+
+        <span>
+          ExpensePro
+        </span>
+
       </div>
 
-      <button
-        onClick={
-          handleLogout
-        }
-        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl"
-      >
-        Logout
-      </button>
+      <div className="nav-right">
+
+        <p>
+          Welcome,
+          {" "}
+          {user?.username}
+        </p>
+
+        <button
+          onClick={logout}
+          className="logout-btn"
+        >
+
+          <FaSignOutAlt />
+
+          Logout
+
+        </button>
+
+      </div>
+
     </div>
+
   );
 };
 
