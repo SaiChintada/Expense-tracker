@@ -1,7 +1,12 @@
 import { useState } from "react";
 
+import API from "../services/api";
+
+import toast from "react-hot-toast";
+
 const TransactionList = ({
   transactions,
+  fetchTransactions,
 }) => {
 
   const [search, setSearch] =
@@ -31,6 +36,38 @@ const TransactionList = ({
       );
 
     });
+
+  const deleteTransaction =
+    async (id) => {
+
+      const confirmDelete =
+        window.confirm(
+          "Delete transaction?"
+        );
+
+      if (!confirmDelete)
+        return;
+
+      try {
+
+        await API.delete(
+          `/transactions/${id}`
+        );
+
+        toast.success(
+          "Transaction Deleted"
+        );
+
+        fetchTransactions();
+
+      } catch (error) {
+
+        toast.error(
+          "Delete Failed"
+        );
+
+      }
+    };
 
   return (
 
@@ -130,6 +167,19 @@ const TransactionList = ({
                   <small>
                     {item.date}
                   </small>
+
+                  <button
+                    className="delete-btn"
+                    onClick={() =>
+                      deleteTransaction(
+                        item.id
+                      )
+                    }
+                  >
+
+                    Delete
+
+                  </button>
 
                 </div>
 
