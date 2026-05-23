@@ -1,106 +1,49 @@
 import { useState } from "react";
 
-import API from "../services/api";
-
-import toast from "react-hot-toast";
-
-import {
-  FaShoppingBag,
-  FaUtensils,
-  FaCar,
-  FaMoneyBill,
-} from "react-icons/fa";
-
 const TransactionList = ({
-  transactions = [],
-  fetchTransactions,
+  transactions,
 }) => {
+
   const [search, setSearch] =
     useState("");
 
   const [filter, setFilter] =
     useState("all");
 
-  const handleDelete = async (
-    id
-  ) => {
-    const confirmDelete =
-      window.confirm(
-        "Delete this transaction?"
-      );
-
-    if (!confirmDelete) return;
-
-    try {
-      await API.delete(
-        `/transactions/${id}`
-      );
-
-      toast.success(
-        "Transaction Deleted"
-      );
-
-      fetchTransactions();
-    } catch (error) {
-      toast.error(
-        "Delete Failed"
-      );
-    }
-  };
-
-  const getIcon = (category) => {
-    switch (
-      category?.toLowerCase()
-    ) {
-      case "food":
-        return <FaUtensils />;
-
-      case "travel":
-        return <FaCar />;
-
-      case "salary":
-        return <FaMoneyBill />;
-
-      default:
-        return (
-          <FaShoppingBag />
-        );
-    }
-  };
-
   const filteredTransactions =
-    transactions
-      .filter((transaction) => {
-        const matchesSearch =
-          transaction.title
-            ?.toLowerCase()
-            .includes(
-              search.toLowerCase()
-            );
+    transactions.filter((t) => {
 
-        const matchesFilter =
-          filter === "all"
-            ? true
-            : transaction.type ===
-              filter;
+      const matchesSearch =
+        t.title
+          .toLowerCase()
+          .includes(
+            search.toLowerCase()
+          );
 
-        return (
-          matchesSearch &&
-          matchesFilter
-        );
-      })
-      .reverse();
+      const matchesFilter =
+        filter === "all"
+          ? true
+          : t.type === filter;
+
+      return (
+        matchesSearch &&
+        matchesFilter
+      );
+
+    });
 
   return (
-    <div className="bg-[#1B2333] p-6 rounded-2xl shadow-lg mt-6">
-      
-      {/* TOP */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-        <h2 className="text-white text-2xl font-semibold">
+
+    <div className="list-card">
+
+      <div className="list-header">
+
+        <h2>
           Recent Transactions
         </h2>
 
-        <div className="flex gap-3">
+        <div className="list-controls">
+
           <input
             type="text"
             placeholder="Search..."
@@ -110,7 +53,6 @@ const TransactionList = ({
                 e.target.value
               )
             }
-            className="bg-[#111827] text-white px-4 py-2 rounded-lg outline-none"
           />
 
           <select
@@ -120,8 +62,8 @@ const TransactionList = ({
                 e.target.value
               )
             }
-            className="bg-[#111827] text-white px-4 py-2 rounded-lg outline-none"
           >
+
             <option value="all">
               All
             </option>
@@ -133,92 +75,75 @@ const TransactionList = ({
             <option value="expense">
               Expense
             </option>
+
           </select>
+
         </div>
+
       </div>
 
-      {/* EMPTY */}
-      {filteredTransactions.length ===
-      0 ? (
-        <div className="text-center py-10 text-gray-400">
+      {filteredTransactions.length === 0 ? (
+
+        <p className="empty-text">
           No transactions found
-        </div>
+        </p>
+
       ) : (
-        <div className="space-y-4">
+
+        <div className="transaction-grid">
+
           {filteredTransactions.map(
-            (transaction) => (
+            (item) => (
+
               <div
-                key={
-                  transaction.id
-                }
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-[#111827] p-4 rounded-xl border border-gray-700 hover:border-violet-500 transition-all"
+                key={item.id}
+                className="transaction-card"
               >
-                {/* LEFT */}
+
                 <div>
-                  <div className="flex items-center gap-3">
-                    <div className="text-violet-400 text-xl">
-                      {getIcon(
-                        transaction.category
-                      )}
-                    </div>
 
-                    <h3 className="text-white font-semibold text-lg">
-                      {
-                        transaction.title
-                      }
-                    </h3>
-                  </div>
+                  <h3>
+                    {item.title}
+                  </h3>
 
-                  <p className="text-gray-400 text-sm mt-1">
-                    {
-                      transaction.category
-                    }
+                  <p>
+                    {item.category}
                   </p>
+
                 </div>
 
-                {/* RIGHT */}
-                <div className="mt-3 sm:mt-0 text-right">
-                  <p
-                    className={`text-lg font-bold ${
-                      transaction.type ===
+                <div className="transaction-right">
+
+                  <span
+                    className={
+                      item.type ===
                       "income"
-                        ? "text-green-400"
-                        : "text-red-400"
-                    }`}
+                        ? "income"
+                        : "expense"
+                    }
                   >
-                    {transaction.type ===
-                    "income"
-                      ? "+"
-                      : "-"}
-                    ₹
-                    {
-                      transaction.amount
-                    }
-                  </p>
 
-                  <p className="text-gray-500 text-sm">
-                    {
-                      transaction.date
-                    }
-                  </p>
+                    ₹ {item.amount}
 
-                  <button
-                    onClick={() =>
-                      handleDelete(
-                        transaction.id
-                      )
-                    }
-                    className="mt-2 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm"
-                  >
-                    Delete
-                  </button>
+                  </span>
+
+                  <small>
+                    {item.date}
+                  </small>
+
                 </div>
+
               </div>
+
             )
           )}
+
         </div>
+
       )}
+
     </div>
+
   );
 };
 
