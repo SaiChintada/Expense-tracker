@@ -118,3 +118,64 @@ body{
 .auth-form button:hover{
   opacity:0.9;
 }
+
+.form-card{
+  background:#1e293b;
+  padding:25px;
+  border-radius:16px;
+  margin-bottom:30px;
+}
+
+.transaction-form{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+
+.transaction-form input,
+.transaction-form select{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#334155;
+  color:white;
+  font-size:15px;
+}
+
+.transaction-form button{
+  background:#3b82f6;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+  transition:0.3s;
+}
+
+.transaction-form button:hover{
+  opacity:0.9;
+  transform:translateY(-2px);
+}
+
+.chart-card{
+  background:#1e293b;
+  padding:30px;
+  border-radius:16px;
+  margin-bottom:30px;
+}
+
+.chart-card h2{
+  margin-bottom:20px;
+}
+
+.chart-card p{
+  color:#94a3b8;
+}
+
+.pie-wrapper{
+  width:350px;
+  margin:auto;
+}
+
