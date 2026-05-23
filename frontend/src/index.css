@@ -424,3 +424,92 @@ body{
 .cancel-btn:hover{
   background:#475569;
 }
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-bottom:30px;
+}
+
+.stats-card{
+  padding:28px;
+  border-radius:22px;
+  color:white;
+  transition:0.3s;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.stats-card::before{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  background:rgba(255,255,255,0.1);
+  border-radius:50%;
+  top:-30px;
+  right:-30px;
+}
+
+.stats-card:hover{
+  transform:translateY(-5px);
+}
+
+.stats-card h3{
+  font-size:16px;
+  margin-bottom:15px;
+  color:#e2e8f0;
+}
+
+.stats-card h1{
+  font-size:32px;
+  font-weight:700;
+}
+
+.balance-card{
+  background:
+  linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  );
+}
+
+.income-card{
+  background:
+  linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+}
+
+.expense-card{
+  background:
+  linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  );
+}
+
+.savings-card{
+  background:
+  linear-gradient(
+    135deg,
+    #0ea5e9,
+    #2563eb
+  );
+}
+
+.charts-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(400px,1fr));
+  gap:20px;
+  margin-bottom:30px;
+}
+

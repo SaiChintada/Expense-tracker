@@ -29,11 +29,16 @@ const DashboardCards = ({
   const balance =
     income - expense;
 
+  const savings =
+    balance > 0
+      ? balance
+      : 0;
+
   return (
 
-    <div className="cards-grid">
+    <div className="stats-grid">
 
-      <div className="card">
+      <div className="stats-card balance-card">
 
         <h3>
           Total Balance
@@ -45,7 +50,7 @@ const DashboardCards = ({
 
       </div>
 
-      <div className="card">
+      <div className="stats-card income-card">
 
         <h3>
           Total Income
@@ -57,7 +62,7 @@ const DashboardCards = ({
 
       </div>
 
-      <div className="card">
+      <div className="stats-card expense-card">
 
         <h3>
           Total Expense
@@ -65,6 +70,18 @@ const DashboardCards = ({
 
         <h1>
           ₹ {expense}
+        </h1>
+
+      </div>
+
+      <div className="stats-card savings-card">
+
+        <h3>
+          Savings
+        </h3>
+
+        <h1>
+          ₹ {savings}
         </h1>
 
       </div>
