@@ -256,3 +256,33 @@ body{
 .empty-text{
   color:#94a3b8;
 }
+
+.action-buttons{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.edit-btn{
+  background:#3b82f6;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.delete-btn{
+  background:#ef4444;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.edit-btn:hover,
+.delete-btn:hover{
+  opacity:0.9;
+}
+

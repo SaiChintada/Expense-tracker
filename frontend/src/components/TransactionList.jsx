@@ -4,6 +4,8 @@ import API from "../services/api";
 
 import toast from "react-hot-toast";
 
+import EditTransactionModal from "./EditTransactionModal";
+
 const TransactionList = ({
   transactions,
   fetchTransactions,
@@ -14,6 +16,10 @@ const TransactionList = ({
 
   const [filter, setFilter] =
     useState("all");
+
+  const [selectedTransaction,
+    setSelectedTransaction] =
+    useState(null);
 
   const filteredTransactions =
     transactions.filter((t) => {
@@ -168,18 +174,35 @@ const TransactionList = ({
                     {item.date}
                   </small>
 
-                  <button
-                    className="delete-btn"
-                    onClick={() =>
-                      deleteTransaction(
-                        item.id
-                      )
-                    }
-                  >
+                  <div className="action-buttons">
 
-                    Delete
+                    <button
+                      className="edit-btn"
+                      onClick={() =>
+                        setSelectedTransaction(
+                          item
+                        )
+                      }
+                    >
 
-                  </button>
+                      Edit
+
+                    </button>
+
+                    <button
+                      className="delete-btn"
+                      onClick={() =>
+                        deleteTransaction(
+                          item.id
+                        )
+                      }
+                    >
+
+                      Delete
+
+                    </button>
+
+                  </div>
 
                 </div>
 
@@ -189,6 +212,28 @@ const TransactionList = ({
           )}
 
         </div>
+
+      )}
+
+      {selectedTransaction && (
+
+        <EditTransactionModal
+
+          transaction={
+            selectedTransaction
+          }
+
+          onClose={() =>
+            setSelectedTransaction(
+              null
+            )
+          }
+
+          fetchTransactions={
+            fetchTransactions
+          }
+
+        />
 
       )}
 
