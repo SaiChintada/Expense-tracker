@@ -36,113 +36,171 @@ const AddTransaction = ({
 
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =
+    async (e) => {
 
-    e.preventDefault();
+      e.preventDefault();
 
-    try {
+      try {
 
-      await API.post(
-        "/transactions",
-        formData
-      );
+        await API.post(
+          "/transactions",
+          formData
+        );
 
-      toast.success(
-        "Transaction Added"
-      );
+        toast.success(
+          "Transaction Added"
+        );
 
-      setFormData({
+        setFormData({
 
-        title: "",
+          title: "",
 
-        amount: "",
+          amount: "",
 
-        category: "",
+          category: "",
 
-        type: "expense",
+          type: "expense",
 
-        date: "",
+          date: "",
 
-      });
+        });
 
-      fetchTransactions();
+        fetchTransactions();
 
-    } catch (error) {
+      } catch (error) {
 
-      toast.error(
-        "Failed to Add"
-      );
+        toast.error(
+          "Failed to add transaction"
+        );
 
-    }
+      }
 
-  };
+    };
 
   return (
 
-    <div className="form-card">
+    <div className="add-transaction-card">
 
-      <h2>
-        Add Transaction
-      </h2>
+      <div className="add-transaction-header">
+
+        <div>
+
+          <h2>
+            Add Transaction
+          </h2>
+
+          <p>
+            Track your income and expenses
+          </p>
+
+        </div>
+
+      </div>
 
       <form
-        className="transaction-form"
         onSubmit={handleSubmit}
+        className="premium-form"
       >
 
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-        />
+        <div className="premium-input-group">
 
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          value={formData.amount}
-          onChange={handleChange}
-          required
-        />
+          <label>
+            Title
+          </label>
 
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={formData.category}
-          onChange={handleChange}
-          required
-        />
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
 
-        <select
-          name="type"
-          value={formData.type}
-          onChange={handleChange}
+        </div>
+
+        <div className="premium-input-group">
+
+          <label>
+            Amount
+          </label>
+
+          <input
+            type="number"
+            name="amount"
+            placeholder="Enter amount"
+            value={formData.amount}
+            onChange={handleChange}
+            required
+          />
+
+        </div>
+
+        <div className="premium-input-group">
+
+          <label>
+            Category
+          </label>
+
+          <input
+            type="text"
+            name="category"
+            placeholder="Food / Salary / Shopping"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          />
+
+        </div>
+
+        <div className="premium-input-group">
+
+          <label>
+            Type
+          </label>
+
+          <select
+            name="type"
+            value={formData.type}
+            onChange={handleChange}
+          >
+
+            <option value="expense">
+              Expense
+            </option>
+
+            <option value="income">
+              Income
+            </option>
+
+          </select>
+
+        </div>
+
+        <div className="premium-input-group">
+
+          <label>
+            Date
+          </label>
+
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            required
+          />
+
+        </div>
+
+        <button
+          type="submit"
+          className="premium-submit-btn"
         >
 
-          <option value="expense">
-            Expense
-          </option>
-
-          <option value="income">
-            Income
-          </option>
-
-        </select>
-
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          required
-        />
-
-        <button type="submit">
           Add Transaction
+
         </button>
 
       </form>
@@ -150,6 +208,7 @@ const AddTransaction = ({
     </div>
 
   );
+
 };
 
 export default AddTransaction;

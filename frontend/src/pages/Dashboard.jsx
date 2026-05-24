@@ -4,6 +4,8 @@ import DashboardCards from "../components/DashboardCards";
 
 import AddTransaction from "../components/AddTransaction";
 
+import DashboardHero from "../components/DashboardHero";
+
 const Dashboard = ({
 
   transactions,
@@ -16,17 +18,11 @@ const Dashboard = ({
 
     <Layout>
 
-      <div className="page-header">
-
-        <h1>
-          Dashboard
-        </h1>
-
-        <p>
-          Welcome back to your finance dashboard
-        </p>
-
-      </div>
+      <DashboardHero
+        transactions={
+          transactions
+        }
+      />
 
       <DashboardCards
         transactions={

@@ -7,8 +7,11 @@ import toast from "react-hot-toast";
 import EditTransactionModal from "./EditTransactionModal";
 
 const TransactionList = ({
+
   transactions,
+
   fetchTransactions,
+
 }) => {
 
   const [search, setSearch] =
@@ -77,19 +80,27 @@ const TransactionList = ({
 
   return (
 
-    <div className="list-card">
+    <div className="transactions-wrapper">
 
-      <div className="list-header">
+      <div className="transactions-top">
 
-        <h2>
-          Recent Transactions
-        </h2>
+        <div>
 
-        <div className="list-controls">
+          <h2>
+            Transactions
+          </h2>
+
+          <p>
+            Track your recent activity
+          </p>
+
+        </div>
+
+        <div className="transactions-controls">
 
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search transactions..."
             value={search}
             onChange={(e) =>
               setSearch(
@@ -125,56 +136,93 @@ const TransactionList = ({
 
       </div>
 
-      {filteredTransactions.length === 0 ? (
+      <div className="transactions-grid">
 
-        <p className="empty-text">
-          No transactions found
-        </p>
+        {filteredTransactions.length === 0 ? (
 
-      ) : (
+          <div className="empty-transactions">
 
-        <div className="transaction-grid">
+            No transactions found
 
-          {filteredTransactions.map(
+          </div>
+
+        ) : (
+
+          filteredTransactions.map(
             (item) => (
 
               <div
+
                 key={item.id}
-                className="transaction-card"
+
+                className={`transaction-premium-card ${
+                  item.type ===
+                  "income"
+                    ? "income-transaction"
+                    : "expense-transaction"
+                }`}
+
               >
 
-                <div>
+                <div className="transaction-left">
 
-                  <h3>
-                    {item.title}
-                  </h3>
+                  <div
+                    className={`transaction-icon ${
+                      item.type ===
+                      "income"
+                        ? "income-icon"
+                        : "expense-icon"
+                    }`}
+                  >
 
-                  <p>
-                    {item.category}
-                  </p>
+                    {item.type ===
+                    "income"
+                      ? "+"
+                      : "-"}
+
+                  </div>
+
+                  <div>
+
+                    <h3>
+                      {item.title}
+                    </h3>
+
+                    <p>
+                      {
+                        item.category
+                      }
+                    </p>
+
+                  </div>
 
                 </div>
 
                 <div className="transaction-right">
 
-                  <span
+                  <h2
                     className={
                       item.type ===
                       "income"
-                        ? "income"
-                        : "expense"
+                        ? "income-amount"
+                        : "expense-amount"
                     }
                   >
 
+                    {item.type ===
+                    "income"
+                      ? "+"
+                      : "-"}
+
                     ₹ {item.amount}
 
+                  </h2>
+
+                  <span>
+                    {item.date}
                   </span>
 
-                  <small>
-                    {item.date}
-                  </small>
-
-                  <div className="action-buttons">
+                  <div className="transaction-actions">
 
                     <button
                       className="edit-btn"
@@ -209,11 +257,11 @@ const TransactionList = ({
               </div>
 
             )
-          )}
+          )
 
-        </div>
+        )}
 
-      )}
+      </div>
 
       {selectedTransaction && (
 
@@ -240,6 +288,7 @@ const TransactionList = ({
     </div>
 
   );
+
 };
 
 export default TransactionList;
