@@ -1012,3 +1012,357 @@ body{
   font-weight:700;
 }
 
+.mobile-topbar{
+  display:none;
+}
+
+@media (max-width: 900px){
+
+  .mobile-topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:#111827;
+
+    position:fixed;
+
+    width:100%;
+
+    z-index:1200;
+
+    top:0;
+
+    left:0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.05);
+  }
+
+  .mobile-topbar h1{
+    color:white;
+    font-size:24px;
+    font-weight:700;
+  }
+
+  .mobile-topbar button{
+    background:none;
+    border:none;
+    color:white;
+    cursor:pointer;
+  }
+
+  .sidebar{
+
+    position:fixed;
+
+    left:-100%;
+
+    top:0;
+
+    z-index:1300;
+
+    transition:0.3s;
+
+    width:260px;
+  }
+
+  .show-sidebar{
+    left:0;
+  }
+
+  .main-content{
+
+    padding:100px 20px 20px;
+  }
+
+  .hero-section{
+    padding:30px;
+  }
+
+  .hero-left h1{
+    font-size:32px;
+  }
+
+  .hero-right{
+    width:100%;
+  }
+
+  .hero-mini-card{
+    flex:1;
+    min-width:140px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .charts-grid{
+    grid-template-columns:1fr;
+  }
+
+  .premium-form{
+    grid-template-columns:1fr;
+  }
+
+  .transaction-premium-card{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .transaction-right{
+    width:100%;
+    text-align:left;
+  }
+
+  .transaction-actions{
+    justify-content:flex-start;
+  }
+
+  .transactions-top{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .transactions-controls{
+    width:100%;
+    flex-direction:column;
+  }
+
+  .transactions-controls input,
+  .transactions-controls select{
+    width:100%;
+  }
+}
+
+.insights-card{
+
+  background:#111827;
+
+  border-radius:26px;
+
+  padding:30px;
+
+  margin-bottom:35px;
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.3);
+}
+
+.insights-card h2{
+
+  color:white;
+
+  font-size:28px;
+
+  margin-bottom:25px;
+
+  font-weight:700;
+}
+
+.insight-item{
+
+  background:#1e293b;
+
+  padding:18px 20px;
+
+  border-radius:18px;
+
+  margin-bottom:15px;
+
+  border-left:
+  4px solid #6366f1;
+}
+
+.insight-item p{
+
+  color:#e2e8f0;
+
+  font-size:16px;
+
+  line-height:1.6;
+}
+
+.insight-item strong{
+  color:white;
+}
+
+.recent-card{
+
+  background:#111827;
+
+  border-radius:28px;
+
+  padding:30px;
+
+  margin-bottom:35px;
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.3);
+}
+
+.recent-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:25px;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+}
+
+.recent-header h2{
+
+  color:white;
+
+  font-size:28px;
+
+  font-weight:700;
+}
+
+.recent-header span{
+
+  color:#94a3b8;
+
+  font-size:14px;
+}
+
+.recent-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+}
+
+.recent-item{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  background:#1e293b;
+
+  padding:18px 20px;
+
+  border-radius:20px;
+
+  transition:0.3s;
+
+  border:
+  1px solid transparent;
+}
+
+.recent-item:hover{
+
+  transform:translateY(-3px);
+
+  border:
+  1px solid rgba(99,102,241,0.4);
+}
+
+.recent-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+}
+
+.recent-icon{
+
+  width:50px;
+
+  height:50px;
+
+  border-radius:16px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:white;
+}
+
+.income-bg{
+  background:#16a34a;
+}
+
+.expense-bg{
+  background:#dc2626;
+}
+
+.recent-left h3{
+
+  color:white;
+
+  font-size:17px;
+
+  margin-bottom:5px;
+}
+
+.recent-left p{
+
+  color:#94a3b8;
+
+  font-size:14px;
+}
+
+.recent-right{
+  text-align:right;
+}
+
+.recent-right h4{
+
+  font-size:18px;
+
+  font-weight:700;
+
+  margin-bottom:5px;
+}
+
+.income-text{
+  color:#22c55e;
+}
+
+.expense-text{
+  color:#ef4444;
+}
+
+.recent-right span{
+
+  color:#94a3b8;
+
+  font-size:13px;
+}
+
+.no-transactions{
+
+  color:#94a3b8;
+
+  text-align:center;
+
+  padding:20px;
+}

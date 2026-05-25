@@ -6,6 +6,10 @@ import AddTransaction from "../components/AddTransaction";
 
 import DashboardHero from "../components/DashboardHero";
 
+import FinanceInsights from "../components/FinanceInsights";
+
+import RecentActivity from "../components/RecentActivity";
+
 const Dashboard = ({
 
   transactions,
@@ -25,6 +29,18 @@ const Dashboard = ({
       />
 
       <DashboardCards
+        transactions={
+          transactions
+        }
+      />
+
+      <FinanceInsights
+        transactions={
+          transactions
+        }
+      />
+
+      <RecentActivity
         transactions={
           transactions
         }

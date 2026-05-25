@@ -10,6 +10,10 @@ import {
 
   LogOut,
 
+  Menu,
+
+  X,
+
 } from "lucide-react";
 
 import {
@@ -20,6 +24,8 @@ import {
 
 } from "react-router-dom";
 
+import { useState } from "react";
+
 const Layout = ({
   children,
 }) => {
@@ -29,6 +35,10 @@ const Layout = ({
 
   const location =
     useLocation();
+
+  const [mobileOpen,
+    setMobileOpen] =
+    useState(false);
 
   const logout = () => {
 
@@ -44,11 +54,51 @@ const Layout = ({
 
   };
 
+  const navigatePage = (
+    path
+  ) => {
+
+    navigate(path);
+
+    setMobileOpen(false);
+
+  };
+
   return (
 
     <div className="app-layout">
 
-      <aside className="sidebar">
+      {/* MOBILE TOPBAR */}
+
+      <div className="mobile-topbar">
+
+        <h1>
+          ExpensePro
+        </h1>
+
+        <button
+          onClick={() =>
+            setMobileOpen(
+              !mobileOpen
+            )
+          }
+        >
+
+          {mobileOpen
+            ? <X size={26} />
+            : <Menu size={26} />}
+
+        </button>
+
+      </div>
+
+      {/* SIDEBAR */}
+
+      <aside className={`sidebar ${
+        mobileOpen
+          ? "show-sidebar"
+          : ""
+      }`}>
 
         <div>
 
@@ -70,7 +120,7 @@ const Layout = ({
               }`}
 
               onClick={() =>
-                navigate(
+                navigatePage(
                   "/dashboard"
                 )
               }
@@ -96,7 +146,7 @@ const Layout = ({
               }`}
 
               onClick={() =>
-                navigate(
+                navigatePage(
                   "/transactions"
                 )
               }
@@ -122,7 +172,7 @@ const Layout = ({
               }`}
 
               onClick={() =>
-                navigate(
+                navigatePage(
                   "/analytics"
                 )
               }
@@ -166,6 +216,8 @@ const Layout = ({
         </button>
 
       </aside>
+
+      {/* CONTENT */}
 
       <main className="main-content">
 
