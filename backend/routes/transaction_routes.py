@@ -18,6 +18,7 @@ router = APIRouter(
     tags=["Transactions"]
 )
 
+
 # DATABASE
 def get_db():
 
@@ -30,11 +31,14 @@ def get_db():
         db.close()
 
 
-# GET ALL TRANSACTIONS
+# GET TRANSACTIONS
 @router.get("/")
 def get_transactions(
+
     current_user: User = Depends(get_current_user),
+
     db: Session = Depends(get_db)
+
 ):
 
     transactions = db.query(
@@ -49,22 +53,28 @@ def get_transactions(
 # ADD TRANSACTION
 @router.post("/")
 def add_transaction(
+
     transaction: dict,
+
     current_user: User = Depends(get_current_user),
+
     db: Session = Depends(get_db)
+
 ):
 
     new_transaction = Transaction(
 
-        title=transaction.get("title"),
+        title=transaction["title"],
 
-        amount=transaction.get("amount"),
+        amount=float(
+            transaction["amount"]
+        ),
 
-        category=transaction.get("category"),
+        category=transaction["category"],
 
-        type=transaction.get("type"),
+        type=transaction["type"],
 
-        date=transaction.get("date"),
+        date=transaction["date"],
 
         user_id=current_user.id
     )
@@ -75,76 +85,28 @@ def add_transaction(
 
     db.refresh(new_transaction)
 
-    return new_transaction
-
-
-# UPDATE TRANSACTION
-@router.put("/{transaction_id}")
-def update_transaction(
-    transaction_id: int,
-    updated_data: dict,
-    current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
-):
-
-    transaction = db.query(
-        Transaction
-    ).filter(
-        Transaction.id == transaction_id,
-        Transaction.user_id == current_user.id
-    ).first()
-
-    if not transaction:
-
-        raise HTTPException(
-            status_code=404,
-            detail="Transaction not found"
-        )
-
-    transaction.title = updated_data.get(
-        "title",
-        transaction.title
-    )
-
-    transaction.amount = updated_data.get(
-        "amount",
-        transaction.amount
-    )
-
-    transaction.category = updated_data.get(
-        "category",
-        transaction.category
-    )
-
-    transaction.type = updated_data.get(
-        "type",
-        transaction.type
-    )
-
-    transaction.date = updated_data.get(
-        "date",
-        transaction.date
-    )
-
-    db.commit()
-
-    db.refresh(transaction)
-
-    return transaction
+    return {
+        "message":
+        "Transaction Added"
+    }
 
 
 # DELETE TRANSACTION
-@router.delete("/{transaction_id}")
+@router.delete("/{id}")
 def delete_transaction(
-    transaction_id: int,
+
+    id: int,
+
     current_user: User = Depends(get_current_user),
+
     db: Session = Depends(get_db)
+
 ):
 
     transaction = db.query(
         Transaction
     ).filter(
-        Transaction.id == transaction_id,
+        Transaction.id == id,
         Transaction.user_id == current_user.id
     ).first()
 
@@ -160,5 +122,54 @@ def delete_transaction(
     db.commit()
 
     return {
-        "message": "Transaction deleted successfully"
+        "message":
+        "Deleted Successfully"
+    }
+
+
+# UPDATE TRANSACTION
+@router.put("/{id}")
+def update_transaction(
+
+    id: int,
+
+    updated_data: dict,
+
+    current_user: User = Depends(get_current_user),
+
+    db: Session = Depends(get_db)
+
+):
+
+    transaction = db.query(
+        Transaction
+    ).filter(
+        Transaction.id == id,
+        Transaction.user_id == current_user.id
+    ).first()
+
+    if not transaction:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Transaction not found"
+        )
+
+    transaction.title = updated_data["title"]
+
+    transaction.amount = float(
+        updated_data["amount"]
+    )
+
+    transaction.category = updated_data["category"]
+
+    transaction.type = updated_data["type"]
+
+    transaction.date = updated_data["date"]
+
+    db.commit()
+
+    return {
+        "message":
+        "Updated Successfully"
     }
