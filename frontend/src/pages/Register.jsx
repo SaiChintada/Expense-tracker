@@ -22,27 +22,40 @@ const Register = () => {
   };
 
   const handleSubmit = async (
-    e
-  ) => {
-    e.preventDefault();
+  e
+) => {
 
-    try {
+  e.preventDefault();
+
+  try {
+
+    const response =
       await API.post(
         "/auth/register",
-        formData
+        {
+          username,
+          email,
+          password,
+        }
       );
 
-      toast.success(
-        "Account Created"
-      );
+    console.log(
+      response.data
+    );
 
-      navigate("/login");
-    } catch (error) {
-      toast.error(
-        "Registration Failed"
-      );
-    }
-  };
+    alert(
+      "Register Successful"
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert(
+      "Registration Failed"
+    );
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#0F172A] flex items-center justify-center p-4">

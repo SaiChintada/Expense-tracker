@@ -10,6 +10,8 @@ import RecentActivity from "../components/RecentActivity";
 
 import AddTransaction from "../components/AddTransaction";
 
+import AnalyticsChart from "../components/AnalyticsChart";
+
 const Dashboard = ({
 
   transactions,
@@ -33,6 +35,10 @@ const Dashboard = ({
           transactions
         }
       />
+
+      <AnalyticsChart
+  transactions={transactions}
+/>
 
       <FinanceInsights
         transactions={
