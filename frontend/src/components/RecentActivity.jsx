@@ -1,10 +1,9 @@
 import {
-
   ArrowDownCircle,
-
   ArrowUpCircle,
-
 } from "lucide-react";
+
+import { motion } from "framer-motion";
 
 const RecentActivity = ({
   transactions,
@@ -12,9 +11,7 @@ const RecentActivity = ({
 
   const recentTransactions =
     [...transactions]
-
       .reverse()
-
       .slice(0, 5);
 
   return (
@@ -40,8 +37,30 @@ const RecentActivity = ({
           recentTransactions.map(
             (item) => (
 
-              <div
+              <motion.div
+
                 key={item.id}
+
+                initial={{
+  opacity: 0,
+  y: 10,
+}}
+
+animate={{
+  opacity: 1,
+  y: 0,
+}}
+
+transition={{
+  duration: 0.35,
+  ease:
+    [0.22,1,0.36,1],
+}}
+
+whileHover={{
+  y: -3,
+}}
+
                 className="recent-item"
               >
 
@@ -51,9 +70,7 @@ const RecentActivity = ({
                     className={`recent-icon ${
                       item.type ===
                       "income"
-
                         ? "income-bg"
-
                         : "expense-bg"
                     }`}
                   >
@@ -82,9 +99,7 @@ const RecentActivity = ({
                     </h3>
 
                     <p>
-                      {
-                        item.category
-                      }
+                      {item.category}
                     </p>
 
                   </div>
@@ -97,18 +112,14 @@ const RecentActivity = ({
                     className={
                       item.type ===
                       "income"
-
                         ? "income-text"
-
                         : "expense-text"
                     }
                   >
 
                     {item.type ===
                     "income"
-
                       ? "+"
-
                       : "-"}
 
                     ₹ {item.amount}
@@ -121,7 +132,7 @@ const RecentActivity = ({
 
                 </div>
 
-              </div>
+              </motion.div>
 
             )
           )

@@ -1,14 +1,14 @@
 import Layout from "../components/Layout";
 
-import DashboardCards from "../components/DashboardCards";
-
-import AddTransaction from "../components/AddTransaction";
-
 import DashboardHero from "../components/DashboardHero";
+
+import DashboardCards from "../components/DashboardCards";
 
 import FinanceInsights from "../components/FinanceInsights";
 
 import RecentActivity from "../components/RecentActivity";
+
+import AddTransaction from "../components/AddTransaction";
 
 const Dashboard = ({
 

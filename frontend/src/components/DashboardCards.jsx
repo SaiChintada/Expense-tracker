@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const DashboardCards = ({
   transactions,
 }) => {
@@ -29,66 +31,93 @@ const DashboardCards = ({
   const balance =
     income - expense;
 
-  const savings =
-    balance > 0
-      ? balance
-      : 0;
+  const cards = [
+
+    {
+      title: "Balance",
+      amount: balance,
+      icon: "💳",
+      className:
+        "balance-gradient",
+    },
+
+    {
+      title: "Income",
+      amount: income,
+      icon: "📈",
+      className:
+        "income-gradient",
+    },
+
+    {
+      title: "Expenses",
+      amount: expense,
+      icon: "📉",
+      className:
+        "expense-gradient",
+    },
+
+  ];
 
   return (
 
-    <div className="stats-grid">
+    <div className="modern-grid">
 
-      <div className="stats-card balance-card">
+      {cards.map(
+        (card, index) => (
 
-        <h3>
-          Total Balance
-        </h3>
+          <motion.div
 
-        <h1>
-          ₹ {balance}
-        </h1>
+            key={index}
 
-      </div>
+            initial={{
+              opacity: 0,
+              y: 18,
+            }}
 
-      <div className="stats-card income-card">
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
 
-        <h3>
-          Total Income
-        </h3>
+            transition={{
+              duration: 0.45,
+              delay:
+                index * 0.08,
+            }}
 
-        <h1>
-          ₹ {income}
-        </h1>
+            whileHover={{
+              y: -5,
+            }}
 
-      </div>
+            className={`modern-card ${card.className}`}
+          >
 
-      <div className="stats-card expense-card">
+            <div className="card-top">
 
-        <h3>
-          Total Expense
-        </h3>
+              <span className="card-icon">
+                {card.icon}
+              </span>
 
-        <h1>
-          ₹ {expense}
-        </h1>
+              <p>
+                {card.title}
+              </p>
 
-      </div>
+            </div>
 
-      <div className="stats-card savings-card">
+            <h1>
+              ₹ {card.amount}
+            </h1>
 
-        <h3>
-          Savings
-        </h3>
+          </motion.div>
 
-        <h1>
-          ₹ {savings}
-        </h1>
-
-      </div>
+        )
+      )}
 
     </div>
 
   );
+
 };
 
 export default DashboardCards;
