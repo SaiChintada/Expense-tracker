@@ -1,21 +1,23 @@
-import {
-  useState,
-} from "react";
+import { useState } from "react";
 
 import Layout from "../components/Layout";
 
 import TransactionCard from "../components/TransactionCard";
+
+import ExportPDF from "../components/ExportPDF";
 
 const Transactions = ({
   transactions,
   fetchTransactions,
 }) => {
 
-  const [search, setSearch] =
-    useState("");
+  const [search,
+    setSearch] =
+      useState("");
 
-  const [filterType, setFilterType] =
-    useState("all");
+  const [filter,
+    setFilter] =
+      useState("all");
 
   const filteredTransactions =
     transactions.filter((t) => {
@@ -27,15 +29,15 @@ const Transactions = ({
             search.toLowerCase()
           );
 
-      const matchesType =
-        filterType === "all"
+      const matchesFilter =
+
+        filter === "all"
           ? true
-          : t.type ===
-            filterType;
+          : t.type === filter;
 
       return (
         matchesSearch &&
-        matchesType
+        matchesFilter
       );
     });
 
@@ -45,7 +47,7 @@ const Transactions = ({
 
       <div className="transactions-page">
 
-        <div className="transactions-header">
+        <div className="transactions-top">
 
           <div>
 
@@ -54,20 +56,20 @@ const Transactions = ({
             </h1>
 
             <p>
-              Manage your financial activity
+              Manage and track your activity
             </p>
 
           </div>
 
         </div>
 
-        <div className="filter-bar">
+        <div className="transaction-toolbar">
 
           <input
             type="text"
             placeholder="Search transactions..."
             value={search}
-            onChange={(e)=>
+            onChange={(e) =>
               setSearch(
                 e.target.value
               )
@@ -75,9 +77,9 @@ const Transactions = ({
           />
 
           <select
-            value={filterType}
-            onChange={(e)=>
-              setFilterType(
+            value={filter}
+            onChange={(e) =>
+              setFilter(
                 e.target.value
               )
             }
@@ -97,45 +99,29 @@ const Transactions = ({
 
           </select>
 
+          <ExportPDF
+            transactions={
+            filteredTransactions
+           }
+          />
+
         </div>
 
-        <div className="transactions-grid">
+        <div className="transactions-list">
 
-          {filteredTransactions
-            .length > 0 ? (
+          {filteredTransactions.map(
+            (transaction) => (
 
-            filteredTransactions.map(
-              (transaction) => (
-
-                <TransactionCard
-                  key={
-                    transaction.id
-                  }
-                  transaction={
-                    transaction
-                  }
-                  fetchTransactions={
-                    fetchTransactions
-                  }
-                />
-
-              )
+              <TransactionCard
+                key={transaction.id}
+                transaction={
+                  transaction
+                }
+                fetchTransactions={
+                  fetchTransactions
+                }
+              />
             )
-
-          ) : (
-
-            <div className="empty-state">
-
-              <h2>
-                No Transactions Found
-              </h2>
-
-              <p>
-                Try adjusting filters
-              </p>
-
-            </div>
-
           )}
 
         </div>
@@ -143,9 +129,7 @@ const Transactions = ({
       </div>
 
     </Layout>
-
   );
-
 };
 
 export default Transactions;
