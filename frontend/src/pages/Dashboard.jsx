@@ -102,6 +102,30 @@ const Dashboard = ({
 
         </div>
 
+        <div className="insight-box">
+
+  {balance > 0 ? (
+
+    <p>
+
+      Great job 🎉
+      Your balance is positive.
+
+    </p>
+
+  ) : (
+
+    <p>
+
+      Your expenses are higher
+      than income this month.
+
+    </p>
+
+  )}
+
+</div>
+
         <AddTransaction
           fetchTransactions={
             fetchTransactions

@@ -3086,3 +3086,69 @@ body{
   box-shadow:
   0 10px 20px rgba(139,92,246,0.25);
 }
+
+.empty-state{
+
+  background:
+  linear-gradient(
+    135deg,
+    #111827,
+    #1e293b
+  );
+
+  padding:60px 30px;
+
+  border-radius:28px;
+
+  text-align:center;
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+}
+
+.empty-state h2{
+
+  color:white;
+
+  margin-bottom:12px;
+
+  font-size:28px;
+}
+
+.empty-state p{
+
+  color:#94a3b8;
+
+  font-size:15px;
+}
+
+.insight-box{
+
+  margin-bottom:30px;
+
+  padding:22px 26px;
+
+  border-radius:24px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #1e1b4b,
+    #312e81
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.2);
+}
+
+.insight-box p{
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:500;
+}

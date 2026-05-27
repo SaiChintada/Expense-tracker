@@ -107,24 +107,43 @@ const Transactions = ({
 
         </div>
 
-        <div className="transactions-list">
+       <div className="transactions-list">
 
-          {filteredTransactions.map(
-            (transaction) => (
+  {filteredTransactions.length === 0 ? (
 
-              <TransactionCard
-                key={transaction.id}
-                transaction={
-                  transaction
-                }
-                fetchTransactions={
-                  fetchTransactions
-                }
-              />
-            )
-          )}
+    <div className="empty-state">
 
-        </div>
+      <h2>
+        No Transactions Found
+      </h2>
+
+      <p>
+        Try adding transactions
+        or changing filters
+      </p>
+
+    </div>
+
+  ) : (
+
+    filteredTransactions.map(
+      (transaction) => (
+
+        <TransactionCard
+          key={transaction.id}
+          transaction={
+            transaction
+          }
+          fetchTransactions={
+            fetchTransactions
+          }
+        />
+      )
+    )
+
+  )}
+
+</div>
 
       </div>
 
