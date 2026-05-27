@@ -1,212 +1,119 @@
 import {
-
   LayoutDashboard,
-
   Wallet,
-
-  PieChart,
-
+  BarChart3,
   Settings,
-
   LogOut,
-
-  Menu,
-
-  X,
-
 } from "lucide-react";
 
 import {
-
+  NavLink,
   useNavigate,
-
-  useLocation,
-
 } from "react-router-dom";
 
-import { useState } from "react";
-
-const Layout = ({
-  children,
-}) => {
+const Layout = ({ children }) => {
 
   const navigate =
     useNavigate();
 
-  const location =
-    useLocation();
-
-  const [mobileOpen,
-    setMobileOpen] =
-    useState(false);
-
   const logout = () => {
 
-    localStorage.removeItem(
-      "token"
-    );
-
-    localStorage.removeItem(
-      "user"
-    );
+    localStorage.clear();
 
     navigate("/login");
-
-  };
-
-  const navigatePage = (
-    path
-  ) => {
-
-    navigate(path);
-
-    setMobileOpen(false);
-
   };
 
   return (
 
     <div className="app-layout">
 
-      {/* MOBILE TOPBAR */}
+      <aside className="sidebar">
 
-      <div className="mobile-topbar">
+        <div className="sidebar-top">
 
-        <h1>
-          ExpensePro
-        </h1>
-
-        <button
-          onClick={() =>
-            setMobileOpen(
-              !mobileOpen
-            )
-          }
-        >
-
-          {mobileOpen
-            ? <X size={26} />
-            : <Menu size={26} />}
-
-        </button>
-
-      </div>
-
-      {/* SIDEBAR */}
-
-      <aside className={`sidebar ${
-        mobileOpen
-          ? "show-sidebar"
-          : ""
-      }`}>
-
-        <div>
-
-          <h1 className="logo">
-
-            ExpensePro
-
+          <h1>
+            ExpenseFlow
           </h1>
 
-          <nav className="sidebar-nav">
-
-            <div
-
-              className={`nav-item ${
-                location.pathname ===
-                "/dashboard"
-                  ? "active-nav"
-                  : ""
-              }`}
-
-              onClick={() =>
-                navigatePage(
-                  "/dashboard"
-                )
-              }
-            >
-
-              <LayoutDashboard
-                size={20}
-              />
-
-              <span>
-                Dashboard
-              </span>
-
-            </div>
-
-            <div
-
-              className={`nav-item ${
-                location.pathname ===
-                "/transactions"
-                  ? "active-nav"
-                  : ""
-              }`}
-
-              onClick={() =>
-                navigatePage(
-                  "/transactions"
-                )
-              }
-            >
-
-              <Wallet
-                size={20}
-              />
-
-              <span>
-                Transactions
-              </span>
-
-            </div>
-
-            <div
-
-              className={`nav-item ${
-                location.pathname ===
-                "/analytics"
-                  ? "active-nav"
-                  : ""
-              }`}
-
-              onClick={() =>
-                navigatePage(
-                  "/analytics"
-                )
-              }
-            >
-
-              <PieChart
-                size={20}
-              />
-
-              <span>
-                Analytics
-              </span>
-
-            </div>
-
-            <div className="nav-item">
-
-              <Settings
-                size={20}
-              />
-
-              <span>
-                Settings
-              </span>
-
-            </div>
-
-          </nav>
+          <p>
+            Smart Finance
+          </p>
 
         </div>
 
+        <nav className="sidebar-links">
+
+          <NavLink
+            to="/dashboard"
+            className={({isActive}) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link"
+            }
+          >
+
+            <LayoutDashboard
+              size={20}
+            />
+
+            Dashboard
+
+          </NavLink>
+
+          <NavLink
+            to="/transactions"
+            className={({isActive}) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link"
+            }
+          >
+
+            <Wallet size={20} />
+
+            Transactions
+
+          </NavLink>
+
+          <NavLink
+            to="/analytics"
+            className={({isActive}) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link"
+            }
+          >
+
+            <BarChart3
+              size={20}
+            />
+
+            Analytics
+
+          </NavLink>
+
+          <NavLink
+            to="/settings"
+            className={({isActive}) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link"
+            }
+          >
+
+            <Settings
+              size={20}
+            />
+
+            Settings
+
+          </NavLink>
+
+        </nav>
+
         <button
-          className="logout-btn"
           onClick={logout}
+          className="logout-btn"
         >
 
           <LogOut size={18} />
@@ -217,8 +124,6 @@ const Layout = ({
 
       </aside>
 
-      {/* CONTENT */}
-
       <main className="main-content">
 
         {children}
@@ -226,9 +131,7 @@ const Layout = ({
       </main>
 
     </div>
-
   );
-
 };
 
 export default Layout;

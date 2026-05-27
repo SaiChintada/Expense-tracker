@@ -29,54 +29,36 @@ const Login = () => {
 
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (
+  e
+) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
+  try {
 
-      const res =
-        await API.post(
-          "/auth/login",
-          formData
-        );
-
-      console.log(res.data);
-
-      localStorage.setItem(
-        "token",
-        res.data.access_token
+    const response =
+      await API.post(
+        "/auth/login",
+        formData
       );
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(
-          res.data.user
-        )
-      );
+    localStorage.setItem(
+      "token",
+      response.data.access_token
+    );
 
-      toast.success(
-        "Login Successful"
-      );
+    alert("Login Successful");
 
-      navigate("/dashboard");
+    navigate("/dashboard");
 
-    } catch (error) {
+  } catch (error) {
 
-      console.log(error);
+    console.log(error);
 
-      toast.error(
-
-        error.response?.data?.detail ||
-
-        "Login Failed"
-
-      );
-
-    }
-
-  };
-
+    alert("Login Failed");
+  }
+};
   return (
 
     <div className="auth-container">

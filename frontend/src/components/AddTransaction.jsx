@@ -36,47 +36,56 @@ const AddTransaction = ({
 
   };
 
-  const handleSubmit =
-    async (e) => {
+  const handleSubmit = async (
+  e
+) => {
 
-      e.preventDefault();
+  e.preventDefault();
 
-      try {
+  try {
 
-        await API.post(
-          "/transactions",
-          formData
-        );
+    const payload = {
 
-        toast.success(
-          "Transaction Added"
-        );
+      title,
 
-        setFormData({
+      amount:
+        Number(amount),
 
-          title: "",
+      category,
 
-          amount: "",
+      type,
 
-          category: "",
-
-          type: "expense",
-
-          date: "",
-
-        });
-
-        fetchTransactions();
-
-      } catch (error) {
-
-        toast.error(
-          "Failed to add transaction"
-        );
-
-      }
-
+      date,
     };
+
+    await API.post(
+      "/transaction/",
+      payload
+    );
+
+    toast.success(
+      "Transaction Added"
+    );
+
+    fetchTransactions();
+
+    setTitle("");
+    setAmount("");
+    setCategory("");
+    setType("expense");
+    setDate("");
+
+  } catch (error) {
+
+    console.log(
+      error.response?.data
+    );
+
+    toast.error(
+      "Failed to add transaction"
+    );
+  }
+};
 
   return (
 

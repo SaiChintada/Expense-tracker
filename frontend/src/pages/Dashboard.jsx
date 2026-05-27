@@ -12,6 +12,10 @@ import AddTransaction from "../components/AddTransaction";
 
 import AnalyticsChart from "../components/AnalyticsChart";
 
+import MonthlyChart from "../components/MonthlyChart";
+
+import CategoryInsights from "../components/CategoryInsights";
+
 const Dashboard = ({
 
   transactions,
@@ -37,6 +41,14 @@ const Dashboard = ({
       />
 
       <AnalyticsChart
+  transactions={transactions}
+/>
+
+      <MonthlyChart
+  transactions={transactions}
+/>  
+
+     <CategoryInsights
   transactions={transactions}
 />
 
