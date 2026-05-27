@@ -1,15 +1,9 @@
 import Layout from "../components/Layout";
 
-import {
-  useTheme
-} from "../context/ThemeContext";
+
 
 const Settings = () => {
 
-    const {
-  darkMode,
-  toggleTheme
-} = useTheme();
 
   return (
 
@@ -61,28 +55,23 @@ const Settings = () => {
 
           </div>
 
-          <div className="settings-card">
+         <div className="settings-card">
 
-            <h2>
-              Appearance
-            </h2>
+  <h2>
+    Theme Accent
+  </h2>
 
-            <div className="theme-toggle">
+  <div className="theme-colors">
 
-             <button
-              onClick={toggleTheme}
-        >
+    <div className="theme-dot purple-theme"></div>
 
-             {darkMode
-               ? "Switch to Light"
-               : "Switch to Dark"}
+    <div className="theme-dot blue-theme"></div>
 
-            </button>
-            
-            </div>
+    <div className="theme-dot emerald-theme"></div>
 
-          </div>
+  </div>
 
+</div>
           <div className="settings-card">
 
             <h2>
