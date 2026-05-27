@@ -25,6 +25,7 @@ import { useAuth } from "./context/AuthContext";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import Settings from "./pages/Settings";
 
 function App() {
 
@@ -107,6 +108,11 @@ function App() {
         path="/register"
         element={<Register />}
       />
+
+      <Route
+       path="/settings"
+       element={<Settings />}
+     />
 
       <Route
         path="/dashboard"
