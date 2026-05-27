@@ -11,6 +11,9 @@ import { Toaster } from "react-hot-toast";
 import App from "./App";
 
 import "./index.css";
+import {
+  ThemeProvider
+} from "./context/ThemeContext";
 
 import {
   AuthProvider,
@@ -25,8 +28,12 @@ ReactDOM.createRoot(
     <BrowserRouter>
       <AuthProvider>
         <Toaster position="top-right" />
+         <ThemeProvider>
 
-        <App />
+           <App />
+
+        
+        </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

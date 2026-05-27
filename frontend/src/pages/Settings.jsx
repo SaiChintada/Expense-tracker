@@ -1,6 +1,15 @@
 import Layout from "../components/Layout";
 
+import {
+  useTheme
+} from "../context/ThemeContext";
+
 const Settings = () => {
+
+    const {
+  darkMode,
+  toggleTheme
+} = useTheme();
 
   return (
 
@@ -60,10 +69,16 @@ const Settings = () => {
 
             <div className="theme-toggle">
 
-              <button>
-                Dark Mode
-              </button>
+             <button
+              onClick={toggleTheme}
+        >
 
+             {darkMode
+               ? "Switch to Light"
+               : "Switch to Dark"}
+
+            </button>
+            
             </div>
 
           </div>

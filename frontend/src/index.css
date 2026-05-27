@@ -2710,3 +2710,86 @@ body{
   box-shadow:
   0 10px 20px rgba(139,92,246,0.25);
 }
+
+body{
+
+  margin:0;
+
+  font-family:
+  Inter,
+  sans-serif;
+
+  transition:
+  background 0.3s ease,
+  color 0.3s ease;
+}
+
+.dark-theme{
+
+  background:#0f172a;
+}
+
+.light-theme{
+
+  background:#f8fafc;
+}
+
+.light-theme .sidebar{
+
+  background:#ffffff;
+
+  border-right:
+  1px solid #e2e8f0;
+}
+
+.light-theme .nav-link{
+
+  color:#334155;
+}
+
+.light-theme .nav-link:hover{
+
+  background:#f1f5f9;
+}
+
+.light-theme .dashboard-header h1,
+
+.light-theme .analytics-top h1,
+
+.light-theme .settings-header h1{
+
+  color:#0f172a;
+}
+
+.light-theme .dashboard-header p,
+
+.light-theme .analytics-top p,
+
+.light-theme .settings-header p{
+
+  color:#475569;
+}
+
+.light-theme .settings-card,
+
+.light-theme .category-card{
+
+  background:#ffffff;
+
+  border:
+  1px solid #e2e8f0;
+}
+
+.light-theme .category-top h3,
+
+.light-theme .settings-card h2,
+
+.light-theme .profile-box h3{
+
+  color:#0f172a;
+}
+
+.light-theme .profile-box p{
+
+  color:#64748b;
+}
