@@ -14,7 +14,9 @@ import Transactions from "./pages/Transactions";
 import AnalyticsPage from "./pages/AnalyticsPage";
 
 import Dashboard from "./pages/Dashboard";
+
 import Login from "./pages/Login";
+
 import Register from "./pages/Register";
 
 import API from "./services/api";
@@ -22,6 +24,7 @@ import API from "./services/api";
 import { useAuth } from "./context/AuthContext";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+
 
 function App() {
 
@@ -123,14 +126,10 @@ function App() {
         }
       />
 
-      <Route
-        path="/"
-        element={
-          <Navigate
-            to="/dashboard"
-          />
-        }
-      />
+     <Route
+      path="/"
+      element={<Navigate to="/login" />}
+    />
 
     </Routes>
 

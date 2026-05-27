@@ -2338,3 +2338,221 @@ body{
 
   padding:32px;
 }
+
+.analytics-page{
+
+  width:100%;
+}
+
+.analytics-top{
+
+  margin-bottom:32px;
+}
+
+.analytics-top h1{
+
+  color:white;
+
+  font-size:42px;
+
+  font-weight:700;
+
+  margin-bottom:8px;
+}
+
+.analytics-top p{
+
+  color:#94a3b8;
+
+  font-size:16px;
+}
+
+.analytics-cards{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(
+    auto-fit,
+    minmax(240px,1fr)
+  );
+
+  gap:24px;
+
+  margin-bottom:35px;
+}
+
+.analytics-card{
+
+  padding:28px;
+
+  border-radius:28px;
+
+  color:white;
+
+  transition:0.3s ease;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.25);
+}
+
+.analytics-card:hover{
+
+  transform:
+  translateY(-5px);
+}
+
+.analytics-card p{
+
+  color:#e2e8f0;
+
+  margin-bottom:12px;
+
+  font-size:15px;
+}
+
+.analytics-card h2{
+
+  font-size:36px;
+
+  font-weight:700;
+}
+
+.income-card{
+
+  background:
+  linear-gradient(
+    135deg,
+    #14532d,
+    #166534
+  );
+}
+
+.expense-card{
+
+  background:
+  linear-gradient(
+    135deg,
+    #7f1d1d,
+    #991b1b
+  );
+}
+
+.balance-card{
+
+  background:
+  linear-gradient(
+    135deg,
+    #4c1d95,
+    #6d28d9
+  );
+}
+
+.dashboard-page{
+
+  width:100%;
+}
+
+.dashboard-header{
+
+  margin-bottom:32px;
+}
+
+.dashboard-header h1{
+
+  color:white;
+
+  font-size:42px;
+
+  font-weight:700;
+
+  margin-bottom:8px;
+}
+
+.dashboard-header p{
+
+  color:#94a3b8;
+
+  font-size:16px;
+}
+
+.dashboard-cards{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(
+    auto-fit,
+    minmax(240px,1fr)
+  );
+
+  gap:24px;
+
+  margin-bottom:35px;
+}
+
+.dashboard-card{
+
+  padding:28px;
+
+  border-radius:28px;
+
+  color:white;
+
+  transition:0.3s ease;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.25);
+}
+
+.dashboard-card:hover{
+
+  transform:
+  translateY(-5px);
+}
+
+.dashboard-card p{
+
+  color:#e2e8f0;
+
+  margin-bottom:12px;
+
+  font-size:15px;
+}
+
+.dashboard-card h2{
+
+  font-size:36px;
+
+  font-weight:700;
+}
+
+.income-dashboard{
+
+  background:
+  linear-gradient(
+    135deg,
+    #14532d,
+    #166534
+  );
+}
+
+.expense-dashboard{
+
+  background:
+  linear-gradient(
+    135deg,
+    #7f1d1d,
+    #991b1b
+  );
+}
+
+.balance-dashboard{
+
+  background:
+  linear-gradient(
+    135deg,
+    #4c1d95,
+    #6d28d9
+  );
+}

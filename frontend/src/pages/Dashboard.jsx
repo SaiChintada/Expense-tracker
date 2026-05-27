@@ -1,79 +1,124 @@
 import Layout from "../components/Layout";
 
-import DashboardHero from "../components/DashboardHero";
-
-import DashboardCards from "../components/DashboardCards";
-
-import FinanceInsights from "../components/FinanceInsights";
+import AddTransaction from "../components/AddTransaction";
 
 import RecentActivity from "../components/RecentActivity";
 
-import AddTransaction from "../components/AddTransaction";
-
-import AnalyticsChart from "../components/AnalyticsChart";
-
-import MonthlyChart from "../components/MonthlyChart";
-
-import CategoryInsights from "../components/CategoryInsights";
-
 const Dashboard = ({
-
   transactions,
-
   fetchTransactions,
-
 }) => {
+
+  const income =
+    transactions
+
+      .filter(
+        (t) =>
+          t.type === "income"
+      )
+
+      .reduce(
+        (acc, item) =>
+          acc + item.amount,
+        0
+      );
+
+  const expense =
+    transactions
+
+      .filter(
+        (t) =>
+          t.type === "expense"
+      )
+
+      .reduce(
+        (acc, item) =>
+          acc + item.amount,
+        0
+      );
+
+  const balance =
+    income - expense;
 
   return (
 
     <Layout>
 
-      <DashboardHero
-        transactions={
-          transactions
-        }
-      />
+      <div className="dashboard-page">
 
-      <DashboardCards
-        transactions={
-          transactions
-        }
-      />
+        <div className="dashboard-header">
 
-      <AnalyticsChart
-  transactions={transactions}
-/>
+          <div>
 
-      <MonthlyChart
-  transactions={transactions}
-/>  
+            <h1>
+              Dashboard
+            </h1>
 
-     <CategoryInsights
-  transactions={transactions}
-/>
+            <p>
+              Manage your finances smartly
+            </p>
 
-      <FinanceInsights
-        transactions={
-          transactions
-        }
-      />
+          </div>
 
-      <RecentActivity
-        transactions={
-          transactions
-        }
-      />
+        </div>
 
-      <AddTransaction
-        fetchTransactions={
-          fetchTransactions
-        }
-      />
+        <div className="dashboard-cards">
+
+          <div className="dashboard-card income-dashboard">
+
+            <p>
+              Total Income
+            </p>
+
+            <h2>
+              ₹ {income}
+            </h2>
+
+          </div>
+
+          <div className="dashboard-card expense-dashboard">
+
+            <p>
+              Total Expense
+            </p>
+
+            <h2>
+              ₹ {expense}
+            </h2>
+
+          </div>
+
+          <div className="dashboard-card balance-dashboard">
+
+            <p>
+              Current Balance
+            </p>
+
+            <h2>
+              ₹ {balance}
+            </h2>
+
+          </div>
+
+        </div>
+
+        <AddTransaction
+          fetchTransactions={
+            fetchTransactions
+          }
+        />
+
+        <RecentActivity
+          transactions={transactions}
+          fetchTransactions={
+            fetchTransactions
+          }
+        />
+
+      </div>
 
     </Layout>
-
   );
-
 };
 
 export default Dashboard;
