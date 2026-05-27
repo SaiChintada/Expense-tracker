@@ -2793,3 +2793,175 @@ body{
 
   color:#64748b;
 }
+
+@media (max-width: 1024px){
+
+  .sidebar{
+
+    width:220px;
+  }
+
+  .main-content{
+
+    padding:24px;
+  }
+
+  .dashboard-header h1,
+
+  .analytics-top h1,
+
+  .settings-header h1{
+
+    font-size:34px;
+  }
+}
+
+@media (max-width: 768px){
+
+  .app-layout{
+
+    flex-direction:column;
+  }
+
+  .sidebar{
+
+    width:100%;
+
+    height:auto;
+
+    position:relative;
+
+    border-right:none;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.05);
+
+    padding:18px;
+  }
+
+  .sidebar-links{
+
+    flex-direction:row;
+
+    overflow-x:auto;
+
+    padding-bottom:8px;
+
+    margin-top:24px;
+  }
+
+  .sidebar-links::-webkit-scrollbar{
+
+    display:none;
+  }
+
+  .nav-link{
+
+    min-width:max-content;
+  }
+
+  .logout-btn{
+
+    margin-top:24px;
+  }
+
+  .main-content{
+
+    padding:20px;
+  }
+
+  .dashboard-header h1,
+
+  .analytics-top h1,
+
+  .settings-header h1{
+
+    font-size:28px;
+  }
+
+  .dashboard-cards,
+
+  .analytics-cards,
+
+  .settings-grid,
+
+  .category-grid{
+
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-card h2,
+
+  .analytics-card h2{
+
+    font-size:30px;
+  }
+
+  .recent-card{
+
+    padding:20px;
+  }
+
+  .transaction-card{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:14px;
+  }
+
+  .profile-box{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+  }
+}
+
+@media (max-width: 480px){
+
+  .main-content{
+
+    padding:16px;
+  }
+
+  .dashboard-header h1,
+
+  .analytics-top h1,
+
+  .settings-header h1{
+
+    font-size:24px;
+  }
+
+  .dashboard-card,
+
+  .analytics-card,
+
+  .settings-card,
+
+  .category-card{
+
+    padding:22px;
+  }
+
+  .dashboard-card h2,
+
+  .analytics-card h2{
+
+    font-size:26px;
+  }
+
+  .nav-link{
+
+    padding:12px 14px;
+
+    font-size:14px;
+  }
+
+  .sidebar-top h1{
+
+    font-size:24px;
+  }
+}
