@@ -4,6 +4,9 @@ import AddTransaction from "../components/AddTransaction";
 
 import RecentActivity from "../components/RecentActivity";
 
+import AIInsights
+from "../components/AIInsights";
+
 const Dashboard = ({
   transactions,
   fetchTransactions,
@@ -102,7 +105,7 @@ const Dashboard = ({
 
         </div>
 
-        <div className="insight-box">
+       <div className="insight-box">
 
   {balance > 0 ? (
 
@@ -125,6 +128,12 @@ const Dashboard = ({
   )}
 
 </div>
+
+<AIInsights
+  transactions={transactions}
+/>
+
+
 
         <AddTransaction
           fetchTransactions={
