@@ -4,6 +4,9 @@ import MonthlyChart from "../components/MonthlyChart";
 
 import CategoryInsights from "../components/CategoryInsights";
 
+import ExpenseBreakdown
+from "../components/ExpenseBreakdown";
+
 const AnalyticsPage = ({
   transactions,
 }) => {
@@ -103,6 +106,10 @@ const AnalyticsPage = ({
 
         <CategoryInsights
           transactions={transactions}
+        />
+
+        <ExpenseBreakdown
+         transactions={transactions}
         />
 
       </div>

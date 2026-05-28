@@ -3231,3 +3231,114 @@ body{
 
   line-height:1.6;
 }
+
+.breakdown-card{
+
+  margin-top:30px;
+
+  padding:30px;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #111827,
+    #1e293b
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.2);
+}
+
+.breakdown-card h2{
+
+  color:white;
+
+  margin-bottom:28px;
+
+  font-size:28px;
+}
+
+.breakdown-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:24px;
+}
+
+.breakdown-item{
+
+  background:
+  rgba(255,255,255,0.03);
+
+  padding:22px;
+
+  border-radius:22px;
+}
+
+.breakdown-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:14px;
+}
+
+.breakdown-top h3{
+
+  color:white;
+}
+
+.breakdown-top span{
+
+  color:#c4b5fd;
+
+  font-weight:600;
+}
+
+.progress-bar{
+
+  width:100%;
+
+  height:12px;
+
+  border-radius:20px;
+
+  background:
+  rgba(255,255,255,0.05);
+
+  overflow:hidden;
+
+  margin-bottom:10px;
+}
+
+.progress-fill{
+
+  height:100%;
+
+  border-radius:20px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #8b5cf6,
+    #7c3aed
+  );
+
+  transition:
+  width 0.6s ease;
+}
+
+.breakdown-item p{
+
+  color:#94a3b8;
+
+  font-size:14px;
+}
