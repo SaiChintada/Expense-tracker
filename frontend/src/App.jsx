@@ -34,39 +34,53 @@ function App() {
 
   const { token } =
     useAuth();
+const fetchTransactions =
+  async () => {
 
-  const fetchTransactions =
-    async () => {
+    try {
 
-      try {
-
-        const res =
-          await API.get(
-            "/transactions"
-          );
-
-        setTransactions(
-          Array.isArray(res.data)
-            ? res.data
-            : []
+      const token =
+        localStorage.getItem(
+          "token"
         );
 
-      } catch (error) {
+      const response =
+        await API.get(
 
-        console.log(error);
+          "/transactions/",
 
-      }
-    };
+          {
 
-  useEffect(() => {
+            headers: {
 
-    if (token) {
+              Authorization:
+                `Bearer ${token}`,
+            },
+          }
+        );
 
-      fetchTransactions();
+      setTransactions(
+        response.data
+      );
 
+    } catch (error) {
+
+      console.log(error);
     }
+  };
+useEffect(() => {
 
-  }, [token]);
+  const token =
+    localStorage.getItem(
+      "token"
+    );
+
+  if (token) {
+
+    fetchTransactions();
+  }
+
+}, []);
 
   return (
 

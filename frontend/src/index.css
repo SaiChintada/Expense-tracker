@@ -3373,3 +3373,102 @@ body{
 
   font-size:28px;
 }
+
+.add-transaction-card{
+
+  margin-top:30px;
+
+  padding:30px;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #111827,
+    #1e293b
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.2);
+}
+
+.add-transaction-card h2{
+
+  color:white;
+
+  margin-bottom:24px;
+
+  font-size:28px;
+}
+
+.transaction-form{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(
+    auto-fit,
+    minmax(220px,1fr)
+  );
+
+  gap:18px;
+}
+
+.transaction-form input,
+
+.transaction-form select{
+
+  background:#0f172a;
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  color:white;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  outline:none;
+
+  font-size:15px;
+}
+
+.transaction-form button{
+
+  background:
+  linear-gradient(
+    135deg,
+    #8b5cf6,
+    #7c3aed
+  );
+
+  border:none;
+
+  color:white;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  font-weight:600;
+
+  transition:0.3s ease;
+}
+
+.transaction-form button:hover{
+
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 10px 20px rgba(139,92,246,0.25);
+}

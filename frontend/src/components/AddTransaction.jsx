@@ -1,29 +1,31 @@
 import { useState } from "react";
 
-import API from "../services/api";
-
 import toast from "react-hot-toast";
+
+import API from "../services/api";
 
 const AddTransaction = ({
   fetchTransactions,
 }) => {
 
-  const [formData, setFormData] =
-    useState({
+  const [formData,
+    setFormData] =
+      useState({
 
-      title: "",
+        title: "",
 
-      amount: "",
+        amount: "",
 
-      category: "",
+        category: "",
 
-      type: "expense",
+        type: "expense",
 
-      date: "",
+        date: "",
+      });
 
-    });
-
-  const handleChange = (e) => {
+  const handleChange = (
+    e
+  ) => {
 
     setFormData({
 
@@ -31,182 +33,188 @@ const AddTransaction = ({
 
       [e.target.name]:
         e.target.value,
-
     });
-
   };
 
-  const handleSubmit = async (
-  e
-) => {
+  const handleSubmit =
+    async (e) => {
 
-  e.preventDefault();
+      e.preventDefault();
 
-  try {
+      try {
 
-    const payload = {
+        const token =
+          localStorage.getItem(
+            "token"
+          );
 
-      title,
+        await API.post(
 
-      amount:
-        Number(amount),
+          "/transactions/",
 
-      category,
+          {
 
-      type,
+            ...formData,
 
-      date,
+            amount:
+              parseFloat(
+                formData.amount
+              ),
+          },
+
+          {
+
+            headers: {
+
+              Authorization:
+                `Bearer ${token}`,
+            },
+          }
+        );
+
+        toast.success(
+          "Transaction added successfully"
+        );
+
+        setFormData({
+
+          title: "",
+
+          amount: "",
+
+          category: "",
+
+          type: "expense",
+
+          date: "",
+        });
+
+        fetchTransactions();
+
+      } catch (error) {
+
+        console.log(error);
+
+        toast.error(
+          "Failed to add transaction"
+        );
+      }
     };
-
-    await API.post(
-      "/transaction/",
-      payload
-    );
-
-    toast.success(
-      "Transaction Added"
-    );
-
-    fetchTransactions();
-
-    setTitle("");
-    setAmount("");
-    setCategory("");
-    setType("expense");
-    setDate("");
-
-  } catch (error) {
-
-    console.log(
-      error.response?.data
-    );
-
-    toast.error(
-      "Failed to add transaction"
-    );
-  }
-};
 
   return (
 
     <div className="add-transaction-card">
 
-      <div className="add-transaction-header">
-
-        <div>
-
-          <h2>
-            Add Transaction
-          </h2>
-
-          <p>
-            Track your income and expenses
-          </p>
-
-        </div>
-
-      </div>
+      <h2>
+        Add Transaction
+      </h2>
 
       <form
-        onSubmit={handleSubmit}
-        className="premium-form"
+        onSubmit={
+          handleSubmit
+        }
+        className="transaction-form"
       >
 
-        <div className="premium-input-group">
+        <input
 
-          <label>
-            Title
-          </label>
+          type="text"
 
-          <input
-            type="text"
-            name="title"
-            placeholder="Enter title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
+          name="title"
 
-        </div>
+          placeholder="Title"
 
-        <div className="premium-input-group">
+          value={
+            formData.title
+          }
 
-          <label>
-            Amount
-          </label>
+          onChange={
+            handleChange
+          }
 
-          <input
-            type="number"
-            name="amount"
-            placeholder="Enter amount"
-            value={formData.amount}
-            onChange={handleChange}
-            required
-          />
+          required
+        />
 
-        </div>
+        <input
 
-        <div className="premium-input-group">
+          type="number"
 
-          <label>
-            Category
-          </label>
+          name="amount"
 
-          <input
-            type="text"
-            name="category"
-            placeholder="Food / Salary / Shopping"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          />
+          placeholder="Amount"
 
-        </div>
+          value={
+            formData.amount
+          }
 
-        <div className="premium-input-group">
+          onChange={
+            handleChange
+          }
 
-          <label>
-            Type
-          </label>
+          required
+        />
 
-          <select
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-          >
+        <input
 
-            <option value="expense">
-              Expense
-            </option>
+          type="text"
 
-            <option value="income">
-              Income
-            </option>
+          name="category"
 
-          </select>
+          placeholder="Category"
 
-        </div>
+          value={
+            formData.category
+          }
 
-        <div className="premium-input-group">
+          onChange={
+            handleChange
+          }
 
-          <label>
-            Date
-          </label>
+          required
+        />
 
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
+        <input
 
-        </div>
+          type="date"
 
-        <button
-          type="submit"
-          className="premium-submit-btn"
+          name="date"
+
+          value={
+            formData.date
+          }
+
+          onChange={
+            handleChange
+          }
+
+          required
+        />
+
+        <select
+
+          name="type"
+
+          value={
+            formData.type
+          }
+
+          onChange={
+            handleChange
+          }
+
         >
+
+          <option value="expense">
+            Expense
+          </option>
+
+          <option value="income">
+            Income
+          </option>
+
+        </select>
+
+        <button type="submit">
 
           Add Transaction
 
@@ -215,9 +223,7 @@ const AddTransaction = ({
       </form>
 
     </div>
-
   );
-
 };
 
 export default AddTransaction;
