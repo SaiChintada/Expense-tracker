@@ -7,6 +7,9 @@ import CategoryInsights from "../components/CategoryInsights";
 import ExpenseBreakdown
 from "../components/ExpenseBreakdown";
 
+import CategoryPieChart
+from "../components/CategoryPieChart";
+
 const AnalyticsPage = ({
   transactions,
 }) => {
@@ -109,6 +112,10 @@ const AnalyticsPage = ({
         />
 
         <ExpenseBreakdown
+         transactions={transactions}
+        />
+
+        <CategoryPieChart
          transactions={transactions}
         />
 

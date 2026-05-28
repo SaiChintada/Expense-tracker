@@ -3342,3 +3342,34 @@ body{
 
   font-size:14px;
 }
+
+.pie-chart-card{
+
+  margin-top:30px;
+
+  padding:30px;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #111827,
+    #1e293b
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.2);
+}
+
+.pie-chart-card h2{
+
+  color:white;
+
+  margin-bottom:20px;
+
+  font-size:28px;
+}
