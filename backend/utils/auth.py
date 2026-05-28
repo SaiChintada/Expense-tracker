@@ -1,81 +1,51 @@
-from datetime import (
-    datetime,
-    timedelta
-)
+from datetime import datetime, timedelta
 
-from jose import jwt, JWTError
+from jose import JWTError, jwt
 
 from passlib.context import CryptContext
 
-from fastapi import (
-    Depends,
-    HTTPException
-)
-
-from fastapi.security import (
-    OAuth2PasswordBearer
-)
-
-from sqlalchemy.orm import Session
-
-from database import SessionLocal
-
-from models.user_model import User
-
-
-# JWT CONFIG
-SECRET_KEY = "SECRET123"
+SECRET_KEY = "mysecretkey"
 
 ALGORITHM = "HS256"
 
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 
-
-# PASSWORD HASHING
 pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
 )
 
-
-# TOKEN SCHEME
-oauth2_scheme = OAuth2PasswordBearer(
-    tokenUrl="/auth/login"
-)
-
-
-# HASH PASSWORD
 def hash_password(password: str):
 
-    return pwd_context.hash(
-        password[:72]
-    )
+    return pwd_context.hash(password)
 
-
-# VERIFY PASSWORD
 def verify_password(
     plain_password,
     hashed_password
 ):
 
     return pwd_context.verify(
-        plain_password[:72],
+        plain_password,
         hashed_password
     )
 
-
-# CREATE TOKEN
-def create_access_token(data: dict):
+def create_access_token(
+    data: dict
+):
 
     to_encode = data.copy()
 
-    expire = datetime.utcnow() + timedelta(
-        minutes=ACCESS_TOKEN_EXPIRE_MINUTES
+    expire = (
+        datetime.utcnow()
+        + timedelta(
+            minutes=
+            ACCESS_TOKEN_EXPIRE_MINUTES
+        )
     )
 
-    to_encode.update({
-        "exp": expire
-    })
+    to_encode.update(
+        {"exp": expire}
+    )
 
     return jwt.encode(
         to_encode,
@@ -83,34 +53,7 @@ def create_access_token(data: dict):
         algorithm=ALGORITHM
     )
 
-
-# DATABASE
-def get_db():
-
-    db = SessionLocal()
-
-    try:
-        yield db
-
-    finally:
-        db.close()
-
-
-# GET CURRENT USER
-def get_current_user(
-
-    token: str = Depends(oauth2_scheme),
-
-    db: Session = Depends(get_db)
-
-):
-
-    credentials_exception = HTTPException(
-
-        status_code=401,
-
-        detail="Could not validate credentials"
-    )
+def verify_token(token: str):
 
     try:
 
@@ -120,22 +63,8 @@ def get_current_user(
             algorithms=[ALGORITHM]
         )
 
-        user_id = payload.get("id")
-
-        if user_id is None:
-
-            raise credentials_exception
+        return payload
 
     except JWTError:
 
-        raise credentials_exception
-
-    user = db.query(User).filter(
-        User.id == user_id
-    ).first()
-
-    if user is None:
-
-        raise credentials_exception
-
-    return user
+        return None

@@ -1,7 +1,8 @@
 from fastapi import (
     APIRouter,
     Depends,
-    HTTPException
+    Header,
+    HTTPException,
 )
 
 from sqlalchemy.orm import Session
@@ -9,74 +10,83 @@ from sqlalchemy.orm import Session
 from database import SessionLocal
 
 from models.transaction import Transaction
-from models.user_model import User
 
-from utils.auth import get_current_user
+from schemas.transaction_schema import (
+    TransactionCreate,
+)
+
+from utils.auth import verify_token
 
 router = APIRouter(
     prefix="/transactions",
     tags=["Transactions"]
 )
 
-
-# DATABASE
 def get_db():
 
     db = SessionLocal()
 
     try:
+
         yield db
 
     finally:
+
         db.close()
 
-
-# GET TRANSACTIONS
-@router.get("/")
-def get_transactions(
-
-    current_user: User = Depends(get_current_user),
-
-    db: Session = Depends(get_db)
-
+def get_current_user(
+    authorization: str = Header(None)
 ):
 
-    transactions = db.query(
-        Transaction
-    ).filter(
-        Transaction.user_id == current_user.id
-    ).all()
+    if not authorization:
 
-    return transactions
+        raise HTTPException(
+            status_code=401,
+            detail="Token missing"
+        )
 
+    token = authorization.split(
+        " "
+    )[1]
 
-# ADD TRANSACTION
+    payload = verify_token(
+        token
+    )
+
+    if not payload:
+
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid token"
+        )
+
+    return payload
+
 @router.post("/")
+
 def add_transaction(
 
-    transaction: dict,
+    transaction: TransactionCreate,
 
-    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
 
-    db: Session = Depends(get_db)
+    user=Depends(get_current_user)
 
 ):
 
     new_transaction = Transaction(
 
-        title=transaction["title"],
+        title=transaction.title,
 
-        amount=float(
-            transaction["amount"]
-        ),
+        amount=transaction.amount,
 
-        category=transaction["category"],
+        category=transaction.category,
 
-        type=transaction["type"],
+        type=transaction.type,
 
-        date=transaction["date"],
+        date=transaction.date,
 
-        user_id=current_user.id
+        user_id=user["id"]
     )
 
     db.add(new_transaction)
@@ -90,86 +100,85 @@ def add_transaction(
         "Transaction Added"
     }
 
+@router.get("/")
 
-# DELETE TRANSACTION
-@router.delete("/{id}")
-def delete_transaction(
+def get_transactions(
 
-    id: int,
+    db: Session = Depends(get_db),
 
-    current_user: User = Depends(get_current_user),
-
-    db: Session = Depends(get_db)
+    user=Depends(get_current_user)
 
 ):
 
-    transaction = db.query(
+    transactions = db.query(
         Transaction
     ).filter(
-        Transaction.id == id,
-        Transaction.user_id == current_user.id
-    ).first()
+        Transaction.user_id
+        == user["id"]
+    ).all()
 
-    if not transaction:
+    return transactions
 
-        raise HTTPException(
-            status_code=404,
-            detail="Transaction not found"
-        )
+@router.put("/{transaction_id}")
 
-    db.delete(transaction)
-
-    db.commit()
-
-    return {
-        "message":
-        "Deleted Successfully"
-    }
-
-
-# UPDATE TRANSACTION
-@router.put("/{id}")
 def update_transaction(
 
-    id: int,
+    transaction_id: int,
 
-    updated_data: dict,
+    updated_transaction:
+    TransactionCreate,
 
-    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
 
-    db: Session = Depends(get_db)
+    user=Depends(get_current_user)
 
 ):
 
     transaction = db.query(
         Transaction
     ).filter(
-        Transaction.id == id,
-        Transaction.user_id == current_user.id
+
+        Transaction.id
+        == transaction_id,
+
+        Transaction.user_id
+        == user["id"]
+
     ).first()
 
     if not transaction:
 
         raise HTTPException(
+
             status_code=404,
+
             detail="Transaction not found"
         )
 
-    transaction.title = updated_data["title"]
-
-    transaction.amount = float(
-        updated_data["amount"]
+    transaction.title = (
+        updated_transaction.title
     )
 
-    transaction.category = updated_data["category"]
+    transaction.amount = (
+        updated_transaction.amount
+    )
 
-    transaction.type = updated_data["type"]
+    transaction.category = (
+        updated_transaction.category
+    )
 
-    transaction.date = updated_data["date"]
+    transaction.type = (
+        updated_transaction.type
+    )
+
+    transaction.date = (
+        updated_transaction.date
+    )
 
     db.commit()
 
     return {
+
         "message":
-        "Updated Successfully"
+        "Transaction updated"
     }
