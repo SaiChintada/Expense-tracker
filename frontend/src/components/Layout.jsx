@@ -4,6 +4,7 @@ import {
   BarChart3,
   Settings,
   LogOut,
+  FileText,
 } from "lucide-react";
 
 import {
@@ -91,6 +92,23 @@ const Layout = ({ children }) => {
             Analytics
 
           </NavLink>
+        
+          <NavLink
+  to="/reports"
+  className={({isActive}) =>
+    isActive
+      ? "nav-link active-link"
+      : "nav-link"
+  }
+>
+
+  <FileText
+    size={20}
+  />
+
+  Reports
+
+</NavLink>
 
           <NavLink
             to="/settings"

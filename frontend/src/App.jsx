@@ -20,6 +20,8 @@ import API from "./services/api";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import Reports from "./pages/Reports";
+
 function App() {
 
   const [transactions, setTransactions] =
@@ -136,6 +138,21 @@ function App() {
           </ProtectedRoute>
         }
       />
+      
+      <Route
+  path="/reports"
+  element={
+    <ProtectedRoute>
+
+      <Reports
+        transactions={
+          transactions
+        }
+      />
+
+    </ProtectedRoute>
+  }
+/>
 
       <Route
         path="/settings"
