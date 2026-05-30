@@ -38,6 +38,8 @@ def get_current_user(
     authorization: str = Header(None)
 ):
 
+    print("AUTH HEADER:", authorization)
+
     if not authorization:
 
         raise HTTPException(
@@ -52,6 +54,8 @@ def get_current_user(
     payload = verify_token(
         token
     )
+
+    print("PAYLOAD:", payload)
 
     if not payload:
 
