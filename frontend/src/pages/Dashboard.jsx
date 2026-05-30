@@ -7,6 +7,9 @@ import RecentActivity from "../components/RecentActivity";
 import AIInsights
 from "../components/AIInsights";
 
+import BudgetTracker
+from "../components/BudgetTracker";
+
 const Dashboard = ({
   transactions,
   fetchTransactions,
@@ -133,7 +136,11 @@ const Dashboard = ({
   transactions={transactions}
 />
 
-
+<BudgetTracker
+  transactions={
+    transactions
+  }
+/>
 
         <AddTransaction
           fetchTransactions={
