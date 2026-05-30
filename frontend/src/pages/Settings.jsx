@@ -1,9 +1,26 @@
+import { useState } from "react";
 import Layout from "../components/Layout";
-
-
 
 const Settings = () => {
 
+  const [budget, setBudget] =
+    useState(
+      localStorage.getItem(
+        "monthlyBudget"
+      ) || 20000
+    );
+
+  const saveBudget = () => {
+
+    localStorage.setItem(
+      "monthlyBudget",
+      budget
+    );
+
+    alert(
+      "Budget Updated Successfully"
+    );
+  };
 
   return (
 
@@ -55,23 +72,24 @@ const Settings = () => {
 
           </div>
 
-         <div className="settings-card">
+          <div className="settings-card">
 
-  <h2>
-    Theme Accent
-  </h2>
+            <h2>
+              Theme Accent
+            </h2>
 
-  <div className="theme-colors">
+            <div className="theme-colors">
 
-    <div className="theme-dot purple-theme"></div>
+              <div className="theme-dot purple-theme"></div>
 
-    <div className="theme-dot blue-theme"></div>
+              <div className="theme-dot blue-theme"></div>
 
-    <div className="theme-dot emerald-theme"></div>
+              <div className="theme-dot emerald-theme"></div>
 
-  </div>
+            </div>
 
-</div>
+          </div>
+
           <div className="settings-card">
 
             <h2>
@@ -83,6 +101,34 @@ const Settings = () => {
             >
 
               Change Password
+
+            </button>
+
+          </div>
+
+          <div className="settings-card">
+
+            <h2>
+              Monthly Budget
+            </h2>
+
+            <input
+              type="number"
+              value={budget}
+              onChange={(e) =>
+                setBudget(
+                  e.target.value
+                )
+              }
+              className="budget-input"
+            />
+
+            <button
+              className="settings-btn"
+              onClick={saveBudget}
+            >
+
+              Save Budget
 
             </button>
 
