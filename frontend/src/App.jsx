@@ -10,108 +10,71 @@ import {
 } from "react";
 
 import Transactions from "./pages/Transactions";
-
 import AnalyticsPage from "./pages/AnalyticsPage";
-
 import Dashboard from "./pages/Dashboard";
-
 import Login from "./pages/Login";
-
 import Register from "./pages/Register";
+import Settings from "./pages/Settings";
 
 import API from "./services/api";
 
-import { useAuth } from "./context/AuthContext";
-
 import ProtectedRoute from "./components/ProtectedRoute";
-
-import Settings from "./pages/Settings";
 
 function App() {
 
   const [transactions, setTransactions] =
     useState([]);
 
-  const { token } =
-    useAuth();
-const fetchTransactions =
-  async () => {
+  const fetchTransactions =
+    async () => {
 
-    try {
+      try {
 
-      const token =
-        localStorage.getItem(
-          "token"
+        const token =
+          localStorage.getItem(
+            "token"
+          );
+
+        const response =
+          await API.get(
+
+            "/transactions/",
+
+            {
+              headers: {
+                Authorization:
+                  `Bearer ${token}`,
+              },
+            }
+          );
+
+        setTransactions(
+          response.data
         );
 
-      const response =
-        await API.get(
+      } catch (error) {
 
-          "/transactions/",
+        console.log(error);
+      }
+    };
 
-          {
+  useEffect(() => {
 
-            headers: {
-
-              Authorization:
-                `Bearer ${token}`,
-            },
-          }
-        );
-
-      setTransactions(
-        response.data
+    const token =
+      localStorage.getItem(
+        "token"
       );
 
-    } catch (error) {
+    if (token) {
 
-      console.log(error);
+      fetchTransactions();
     }
-  };
-useEffect(() => {
 
-  const token =
-    localStorage.getItem(
-      "token"
-    );
-
-  if (token) {
-
-    fetchTransactions();
-  }
-
-}, []);
+  }, []);
 
   return (
 
     <Routes>
-
-      <Route
-  path="/transactions"
-  element={
-    token ? (
-      <Transactions
-        transactions={transactions}
-        fetchTransactions={fetchTransactions}
-      />
-    ) : (
-      <Navigate to="/login" />
-    )
-  }
-/>
-
-<Route
-  path="/analytics"
-  element={
-    token ? (
-      <AnalyticsPage
-        transactions={transactions}
-      />
-    ) : (
-      <Navigate to="/login" />
-    )
-  }
-/>
 
       <Route
         path="/login"
@@ -122,11 +85,6 @@ useEffect(() => {
         path="/register"
         element={<Register />}
       />
-
-      <Route
-       path="/settings"
-       element={<Settings />}
-     />
 
       <Route
         path="/dashboard"
@@ -146,10 +104,58 @@ useEffect(() => {
         }
       />
 
-     <Route
-      path="/"
-      element={<Navigate to="/login" />}
-    />
+      <Route
+        path="/transactions"
+        element={
+          <ProtectedRoute>
+
+            <Transactions
+              transactions={
+                transactions
+              }
+              fetchTransactions={
+                fetchTransactions
+              }
+            />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/analytics"
+        element={
+          <ProtectedRoute>
+
+            <AnalyticsPage
+              transactions={
+                transactions
+              }
+            />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+
+            <Settings />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/"
+        element={
+          <Navigate
+            to="/dashboard"
+          />
+        }
+      />
 
     </Routes>
 

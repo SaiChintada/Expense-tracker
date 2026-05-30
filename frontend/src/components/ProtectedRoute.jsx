@@ -5,17 +5,13 @@ const ProtectedRoute = ({
 }) => {
 
   const token =
-    localStorage.getItem("token");
-
-  if (!token) {
-
-    return (
-      <Navigate to="/login" />
+    localStorage.getItem(
+      "token"
     );
 
-  }
-
-  return children;
+  return token
+    ? children
+    : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;
