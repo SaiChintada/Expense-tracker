@@ -2739,6 +2739,28 @@ body{
   0 10px 20px rgba(139,92,246,0.25);
 }
 
+.settings-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  color:white;
+
+  font-size:22px;
+
+  font-weight:600;
+
+  margin-bottom:18px;
+}
+
+.settings-title svg{
+
+  color:#8b5cf6;
+}
+
 body{
 
   margin:0;

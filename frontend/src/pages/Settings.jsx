@@ -1,6 +1,14 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 
+import {
+  User,
+  Shield,
+  Wallet,
+  Download,
+  Info,
+} from "lucide-react";
+
 const Settings = () => {
 
   const [budget, setBudget] =
@@ -44,10 +52,13 @@ const Settings = () => {
 
           <div className="settings-card">
 
-            <h2>
-              Profile
-            </h2>
+           <h2 className="settings-title">
 
+  <User size={22} />
+
+  Profile
+
+</h2>
             <div className="profile-box">
 
               <div className="profile-avatar">
@@ -74,9 +85,13 @@ const Settings = () => {
 
          <div className="settings-card">
 
-  <h2>
-    Export Data
-  </h2>
+ <h2 className="settings-title">
+
+  <Download size={22} />
+
+  Export Data
+
+</h2>
 
   <p className="settings-desc">
     Download and backup your financial records
@@ -102,10 +117,13 @@ const Settings = () => {
 
           <div className="settings-card">
 
-            <h2>
-  Security
-</h2>
+           <h2 className="settings-title">
 
+  <Shield size={22} />
+
+  Security
+
+</h2>
 <p className="settings-desc">
   Manage your account security
 </p>
@@ -122,9 +140,13 @@ const Settings = () => {
 
           <div className="settings-card">
 
-            <h2>
-              Monthly Budget
-            </h2>
+           <h2 className="settings-title">
+
+  <Wallet size={22} />
+
+  Monthly Budget
+
+</h2>
 
             <input
               type="number"
@@ -151,9 +173,13 @@ const Settings = () => {
         </div>
         <div className="settings-card">
 
-  <h2>
-    About ExpenseFlow
-  </h2>
+  <h2 className="settings-title">
+
+  <Info size={22} />
+
+  About ExpenseFlow
+
+</h2>
 
   <div className="about-content">
 
