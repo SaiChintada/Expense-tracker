@@ -2561,9 +2561,7 @@ body{
 
   padding:30px;
 
-  max-width:900px;
-
-  margin:0 auto;
+  width:100%;
 }
 
 .settings-header{
@@ -2572,11 +2570,11 @@ body{
 
 .settings-header h1{
 
-  font-size:48px;
+  font-size:42px;
 
-  color:white;
+  font-weight:700;
 
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 
 .settings-card h2{
@@ -2603,9 +2601,7 @@ body{
 
   gap:20px;
 
-  max-width:800px;
-
-  margin:0 auto;
+  max-width:850px;
 }
 
 .settings-card{
@@ -2627,7 +2623,7 @@ body{
 
   border-radius:24px;
 
-  padding:24px;
+  padding:22px 24px;
 
   transition:0.3s ease;
 }
@@ -3821,4 +3817,19 @@ body{
   color:#94a3b8;
 
   line-height:1.7;
+}
+
+.export-actions{
+
+  display:flex;
+
+  gap:12px;
+
+  margin-top:20px;
+}
+.export-actions .settings-btn{
+
+  width:auto;
+
+  min-width:160px;
 }
