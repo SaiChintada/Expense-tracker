@@ -72,37 +72,51 @@ const Settings = () => {
 
           </div>
 
+         <div className="settings-card">
+
+  <h2>
+    Export Data
+  </h2>
+
+  <p className="settings-desc">
+    Download and backup your financial records
+  </p>
+
+  <div className="export-actions">
+
+    <button
+      className="settings-btn"
+    >
+      Export PDF
+    </button>
+
+    <button
+      className="settings-btn secondary-btn"
+    >
+      Export CSV
+    </button>
+
+  </div>
+
+</div>
+
           <div className="settings-card">
 
             <h2>
-              Theme Accent
-            </h2>
+  Security
+</h2>
 
-            <div className="theme-colors">
+<p className="settings-desc">
+  Manage your account security
+</p>
 
-              <div className="theme-dot purple-theme"></div>
+<button
+  className="settings-btn"
+>
 
-              <div className="theme-dot blue-theme"></div>
+  Update Password
 
-              <div className="theme-dot emerald-theme"></div>
-
-            </div>
-
-          </div>
-
-          <div className="settings-card">
-
-            <h2>
-              Security
-            </h2>
-
-            <button
-              className="settings-btn"
-            >
-
-              Change Password
-
-            </button>
+</button>
 
           </div>
 
@@ -135,6 +149,27 @@ const Settings = () => {
           </div>
 
         </div>
+        <div className="settings-card">
+
+  <h2>
+    About ExpenseFlow
+  </h2>
+
+  <div className="about-content">
+
+    <p>Version 1.0</p>
+
+    <p>
+      React • FastAPI • PostgreSQL
+    </p>
+
+    <p>
+      Developed by Saikiran
+    </p>
+
+  </div>
+
+</div>
 
       </div>
 
