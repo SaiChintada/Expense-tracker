@@ -171,7 +171,7 @@ const Settings = () => {
           </div>
 
         </div>
-        <div className="settings-card">
+        <div className="settings-card about-card">
 
   <h2 className="settings-title">
 
