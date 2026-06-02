@@ -16,6 +16,9 @@ from "../components/PerformanceCard";
 import TopCategoryCard
 from "../components/TopCategoryCard";
 
+import GoalTracker
+from "../components/GoalTracker";
+
 const Dashboard = ({
   transactions,
   fetchTransactions,
@@ -226,6 +229,10 @@ const savingsRate =
 />
 
 <TopCategoryCard
+  transactions={transactions}
+/>
+
+<GoalTracker
   transactions={transactions}
 />
 
