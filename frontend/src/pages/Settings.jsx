@@ -5,7 +5,6 @@ import {
   User,
   Shield,
   Wallet,
-  Download,
   Info,
 } from "lucide-react";
 
@@ -50,15 +49,18 @@ const Settings = () => {
 
         <div className="settings-grid">
 
+          {/* Profile */}
+
           <div className="settings-card">
 
-           <h2 className="settings-title">
+            <h2 className="settings-title">
 
-  <User size={22} />
+              <User size={22} />
 
-  Profile
+              Profile
 
-</h2>
+            </h2>
+
             <div className="profile-box">
 
               <div className="profile-avatar">
@@ -83,70 +85,45 @@ const Settings = () => {
 
           </div>
 
-         <div className="settings-card">
-
- <h2 className="settings-title">
-
-  <Download size={22} />
-
-  Export Data
-
-</h2>
-
-  <p className="settings-desc">
-    Download and backup your financial records
-  </p>
-
-  <div className="export-actions">
-
-    <button
-      className="settings-btn"
-    >
-      Export PDF
-    </button>
-
-    <button
-      className="settings-btn secondary-btn"
-    >
-      Export CSV
-    </button>
-
-  </div>
-
-</div>
+          {/* Security */}
 
           <div className="settings-card">
 
-           <h2 className="settings-title">
+            <h2 className="settings-title">
 
-  <Shield size={22} />
+              <Shield size={22} />
 
-  Security
+              Security
 
-</h2>
-<p className="settings-desc">
-  Manage your account security
-</p>
+            </h2>
 
-<button
-  className="settings-btn"
->
+            <p className="settings-desc">
 
-  Update Password
+              Manage your account security
 
-</button>
+            </p>
+
+            <button
+              className="settings-btn"
+            >
+
+              Update Password
+
+            </button>
 
           </div>
 
+          {/* Monthly Budget */}
+
           <div className="settings-card">
 
-           <h2 className="settings-title">
+            <h2 className="settings-title">
 
-  <Wallet size={22} />
+              <Wallet size={22} />
 
-  Monthly Budget
+              Monthly Budget
 
-</h2>
+            </h2>
 
             <input
               type="number"
@@ -171,35 +148,41 @@ const Settings = () => {
           </div>
 
         </div>
+
+        {/* About */}
+
         <div className="settings-card about-card">
 
-  <h2 className="settings-title">
+          <h2 className="settings-title">
 
-  <Info size={22} />
+            <Info size={22} />
 
-  About ExpenseFlow
+            About ExpenseFlow
 
-</h2>
+          </h2>
 
-  <div className="about-content">
+          <div className="about-content">
 
-    <p>Version 1.0</p>
+            <p>
+              Version 1.0
+            </p>
 
-    <p>
-      React • FastAPI • PostgreSQL
-    </p>
+            <p>
+              React • FastAPI • PostgreSQL
+            </p>
 
-    <p>
-      Developed by Saikiran
-    </p>
+            <p>
+              Developed by Saikiran
+            </p>
 
-  </div>
+          </div>
 
-</div>
+        </div>
 
       </div>
 
     </Layout>
+
   );
 };
 

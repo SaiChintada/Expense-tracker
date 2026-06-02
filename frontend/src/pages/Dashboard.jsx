@@ -46,6 +46,51 @@ const Dashboard = ({
   const balance =
     income - expense;
 
+    const monthlyBudget =
+  Number(
+    localStorage.getItem(
+      "monthlyBudget"
+    )
+  ) || 0;
+
+const budgetUsed =
+  monthlyBudget
+    ? (
+        (expense /
+          monthlyBudget) *
+        100
+      ).toFixed(0)
+    : 0;
+
+    const highestExpense =
+  transactions
+    .filter(
+      (t) => t.type === "expense"
+    )
+    .sort(
+      (a, b) =>
+        b.amount - a.amount
+    )[0];
+
+const highestIncome =
+  transactions
+    .filter(
+      (t) => t.type === "income"
+    )
+    .sort(
+      (a, b) =>
+        b.amount - a.amount
+    )[0];
+
+const savingsRate =
+  income > 0
+    ? (
+        ((income - expense) /
+          income) *
+        100
+      ).toFixed(1)
+    : 0;
+
   return (
 
     <Layout>
@@ -109,6 +154,38 @@ const Dashboard = ({
         </div>
 
        <div className="insight-box">
+        {monthlyBudget > 0 && (
+
+  <div
+    className="budget-alert"
+  >
+
+    {expense >
+    monthlyBudget ? (
+
+      <p>
+        🚨 Budget Exceeded
+      </p>
+
+    ) : budgetUsed >=
+      80 ? (
+
+      <p>
+        ⚠️ {budgetUsed}%
+        of budget used
+      </p>
+
+    ) : (
+
+      <p>
+        ✅ Budget healthy
+      </p>
+
+    )}
+
+  </div>
+
+)}
 
   {balance > 0 ? (
 
@@ -135,6 +212,70 @@ const Dashboard = ({
 <AIInsights
   transactions={transactions}
 />
+
+<div className="financial-insights">
+
+  <div className="insight-card">
+
+    <h3>
+      Biggest Expense
+    </h3>
+
+    <p>
+      {
+        highestExpense
+          ?.title ||
+        "No Expense"
+      }
+    </p>
+
+    <span>
+      ₹
+      {
+        highestExpense
+          ?.amount || 0
+      }
+    </span>
+
+  </div>
+
+  <div className="insight-card">
+
+    <h3>
+      Biggest Income
+    </h3>
+
+    <p>
+      {
+        highestIncome
+          ?.title ||
+        "No Income"
+      }
+    </p>
+
+    <span>
+      ₹
+      {
+        highestIncome
+          ?.amount || 0
+      }
+    </span>
+
+  </div>
+
+  <div className="insight-card">
+
+    <h3>
+      Savings Rate
+    </h3>
+
+    <span>
+      {savingsRate}%
+    </span>
+
+  </div>
+
+</div>
 
 <BudgetTracker
   transactions={
