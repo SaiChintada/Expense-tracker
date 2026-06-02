@@ -186,3 +186,39 @@ def update_transaction(
         "message":
         "Transaction updated"
     }
+
+@router.delete("/{transaction_id}")
+def delete_transaction(
+
+    transaction_id: int,
+
+    db: Session = Depends(get_db),
+
+    user=Depends(get_current_user)
+
+):
+
+    transaction = db.query(
+        Transaction
+    ).filter(
+
+        Transaction.id == transaction_id,
+
+        Transaction.user_id == user["id"]
+
+    ).first()
+
+    if not transaction:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Transaction not found"
+        )
+
+    db.delete(transaction)
+
+    db.commit()
+
+    return {
+        "message": "Transaction deleted"
+    }
