@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
+import ExportCSV from "../components/ExportCSV";
 
 import {
   User,
@@ -8,7 +9,9 @@ import {
   Info,
 } from "lucide-react";
 
-const Settings = () => {
+const Settings = ({
+  transactions,
+}) => {
 
   const [budget, setBudget] =
     useState(
@@ -110,6 +113,10 @@ const Settings = () => {
               Update Password
 
             </button>
+
+            <ExportCSV
+  transactions={transactions}
+/>
 
           </div>
 

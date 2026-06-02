@@ -155,15 +155,19 @@ function App() {
 />
 
       <Route
-        path="/settings"
-        element={
-          <ProtectedRoute>
+  path="/settings"
+  element={
+    <ProtectedRoute>
 
-            <Settings />
-
-          </ProtectedRoute>
+      <Settings
+        transactions={
+          transactions
         }
       />
+
+    </ProtectedRoute>
+  }
+/>
 
       <Route
         path="/"
