@@ -19,6 +19,9 @@ from "../components/TopCategoryCard";
 import GoalTracker
 from "../components/GoalTracker";
 
+import FinancialHealthCard
+from "../components/FinancialHealthCard";
+
 const Dashboard = ({
   transactions,
   fetchTransactions,
@@ -106,21 +109,42 @@ const savingsRate =
 
       <div className="dashboard-page">
 
-        <div className="dashboard-header">
+        <div className="welcome-banner">
 
-          <div>
+  <div>
 
-            <h1>
-              Dashboard
-            </h1>
+    <h1>
 
-            <p>
-              Manage your finances smartly
-            </p>
+      Welcome Back, Saikiran 👋
 
-          </div>
+    </h1>
 
-        </div>
+    <p>
+
+      Here's your financial overview today
+
+    </p>
+
+  </div>
+
+  <div className="welcome-balance">
+
+    <span>
+
+      Current Balance
+
+    </span>
+
+    <h2>
+
+      ₹ {balance}
+
+    </h2>
+
+  </div>
+
+</div>
+
 
         <div className="dashboard-cards">
 
@@ -218,23 +242,33 @@ const savingsRate =
 
 </div>
 
-<AIInsights
-  transactions={transactions}
-/>
+<div className="dashboard-grid">
 
-<PerformanceCard
-  transactions={
-    transactions
-  }
-/>
+  <FinancialHealthCard
+    transactions={transactions}
+  />
 
-<TopCategoryCard
-  transactions={transactions}
-/>
+  <GoalTracker
+    transactions={transactions}
+  />
 
-<GoalTracker
-  transactions={transactions}
-/>
+  <PerformanceCard
+    transactions={transactions}
+  />
+
+  <TopCategoryCard
+    transactions={transactions}
+  />
+
+  <BudgetTracker
+    transactions={transactions}
+  />
+
+  <AIInsights
+    transactions={transactions}
+  />
+
+</div>
 
 <div className="financial-insights">
 
@@ -300,11 +334,7 @@ const savingsRate =
 
 </div>
 
-<BudgetTracker
-  transactions={
-    transactions
-  }
-/>
+
 
         <AddTransaction
           fetchTransactions={
