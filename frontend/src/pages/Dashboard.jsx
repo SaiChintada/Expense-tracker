@@ -13,6 +13,9 @@ from "../components/BudgetTracker";
 import PerformanceCard
 from "../components/PerformanceCard";
 
+import TopCategoryCard
+from "../components/TopCategoryCard";
+
 const Dashboard = ({
   transactions,
   fetchTransactions,
@@ -220,6 +223,10 @@ const savingsRate =
   transactions={
     transactions
   }
+/>
+
+<TopCategoryCard
+  transactions={transactions}
 />
 
 <div className="financial-insights">
