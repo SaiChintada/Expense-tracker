@@ -10,6 +10,9 @@ from "../components/AIInsights";
 import BudgetTracker
 from "../components/BudgetTracker";
 
+import PerformanceCard
+from "../components/PerformanceCard";
+
 const Dashboard = ({
   transactions,
   fetchTransactions,
@@ -211,6 +214,12 @@ const savingsRate =
 
 <AIInsights
   transactions={transactions}
+/>
+
+<PerformanceCard
+  transactions={
+    transactions
+  }
 />
 
 <div className="financial-insights">
