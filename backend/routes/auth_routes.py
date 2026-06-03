@@ -4,6 +4,9 @@ from fastapi import (
     HTTPException
 )
 
+from fastapi import Header
+from utils.auth import verify_token
+
 from sqlalchemy.orm import Session
 
 from database import SessionLocal
@@ -112,3 +115,70 @@ def login(
     "access_token": token,
     "token_type": "bearer"
 }
+def get_current_user(
+    authorization: str = Header(None)
+):
+
+    if not authorization:
+
+        raise HTTPException(
+            status_code=401,
+            detail="Token missing"
+        )
+
+    token = authorization.split(
+        " "
+    )[1]
+
+    payload = verify_token(
+        token
+    )
+
+    if not payload:
+
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid token"
+        )
+
+    return payload
+
+@router.get("/profile")
+def get_profile(
+
+    user=Depends(
+        get_current_user
+    ),
+
+    db: Session = Depends(
+        get_db
+    )
+
+):
+    
+    print("PROFILE ROUTE HIT")
+
+    db_user = db.query(
+        User
+    ).filter(
+
+        User.id ==
+        user["id"]
+
+    ).first()
+
+    if not db_user:
+
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+
+    return {
+
+        "username":
+        db_user.username,
+
+        "email":
+        db_user.email
+    }
