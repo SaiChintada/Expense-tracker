@@ -4337,26 +4337,73 @@ body{
 
   color:#cbd5e1;
 }
+
 .dashboard-grid{
 
   display:grid;
 
   grid-template-columns:
-  repeat(
-    auto-fit,
-    minmax(380px,1fr)
-  );
+  repeat(3,1fr);
 
   gap:24px;
 
-  align-items:start;
+  margin-top:24px;
 }
 
 .health-card,
 .goal-card,
 .performance-card,
 .top-category-card,
-.budget-tracker,
+.budget-card,
 .ai-insights{
+
   height:auto;
+}
+
+.ai-insights{
+
+  padding:24px;
+
+  border-radius:24px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(15,23,42,0.95),
+    rgba(30,41,59,0.95)
+  );
+}
+
+.insight-item{
+
+  padding:14px 18px;
+
+  margin-bottom:14px;
+
+  min-height:90px;
+}
+
+.budget-card,
+.ai-insights{
+
+  min-height:420px;
+
+  display:flex;
+
+  flex-direction:column;
+}
+
+.budget-card h2{
+
+  font-size:42px;
+
+  margin:15px 0;
+}
+
+.budget-stats{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-top:20px;
 }

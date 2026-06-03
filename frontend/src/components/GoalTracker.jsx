@@ -4,12 +4,21 @@ const GoalTracker = ({
   transactions,
 }) => {
 
-  const [goal, setGoal] =
-    useState(
-      localStorage.getItem(
-        "savingsGoal"
-      ) || 50000
+const [goal, setGoal] =
+  useState(() => {
+
+    const savedGoal =
+      Number(
+        localStorage.getItem(
+          "savingsGoal"
+        )
+      ) || 50000;
+
+    return Math.min(
+      savedGoal,
+      1000000
     );
+  });
 
   useEffect(() => {
 
@@ -49,17 +58,20 @@ const GoalTracker = ({
 
   const progress =
 
-    goal > 0
+  goal > 0
 
-      ? Math.min(
-          (
+    ? Math.max(
+        0,
+        Math.min(
+          Math.round(
             (savings / goal) *
             100
-          ).toFixed(0),
+          ),
           100
         )
+      )
 
-      : 0;
+    : 0;
 
   return (
 
@@ -69,16 +81,27 @@ const GoalTracker = ({
         Savings Goal
       </h2>
 
-      <input
-        type="number"
-        value={goal}
-        onChange={(e) =>
-          setGoal(
-            e.target.value
-          )
-        }
-        className="goal-input"
-      />
+     <input
+  type="number"
+  value={goal}
+  max="1000000"
+  min="0"
+  onChange={(e) => {
+
+    const value =
+      Number(e.target.value);
+
+    if (value > 1000000) {
+
+      setGoal(1000000);
+
+      return;
+    }
+
+    setGoal(value);
+  }}
+  className="goal-input"
+/>
 
       <div className="goal-stats">
 
