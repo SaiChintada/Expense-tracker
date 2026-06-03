@@ -1,107 +1,75 @@
 import Layout from "../components/Layout";
 
 import AddTransaction from "../components/AddTransaction";
-
 import RecentActivity from "../components/RecentActivity";
 
-import AIInsights
-from "../components/AIInsights";
-
-import BudgetTracker
-from "../components/BudgetTracker";
-
-import PerformanceCard
-from "../components/PerformanceCard";
-
-import TopCategoryCard
-from "../components/TopCategoryCard";
-
-import GoalTracker
-from "../components/GoalTracker";
-
-import FinancialHealthCard
-from "../components/FinancialHealthCard";
+import AIInsights from "../components/AIInsights";
+import BudgetTracker from "../components/BudgetTracker";
+import PerformanceCard from "../components/PerformanceCard";
+import GoalTracker from "../components/GoalTracker";
+import FinancialHealthCard from "../components/FinancialHealthCard";
 
 const Dashboard = ({
   transactions,
   fetchTransactions,
 }) => {
 
-  const income =
-    transactions
+  const income = transactions
+    .filter((t) => t.type === "income")
+    .reduce((acc, item) => acc + item.amount, 0);
 
-      .filter(
-        (t) =>
-          t.type === "income"
+  const expense = transactions
+    .filter((t) => t.type === "expense")
+    .reduce((acc, item) => acc + item.amount, 0);
+
+  const balance = income - expense;
+
+  const monthlyBudget =
+    Number(
+      localStorage.getItem(
+        "monthlyBudget"
       )
+    ) || 0;
 
-      .reduce(
-        (acc, item) =>
-          acc + item.amount,
-        0
-      );
+  const budgetUsed =
+    monthlyBudget > 0
+      ? (
+          (expense /
+            monthlyBudget) *
+          100
+        ).toFixed(0)
+      : 0;
 
-  const expense =
+  const highestExpense =
     transactions
-
       .filter(
         (t) =>
           t.type === "expense"
       )
+      .sort(
+        (a, b) =>
+          b.amount - a.amount
+      )[0];
 
-      .reduce(
-        (acc, item) =>
-          acc + item.amount,
-        0
-      );
+  const highestIncome =
+    transactions
+      .filter(
+        (t) =>
+          t.type === "income"
+      )
+      .sort(
+        (a, b) =>
+          b.amount - a.amount
+      )[0];
 
-  const balance =
-    income - expense;
-
-    const monthlyBudget =
-  Number(
-    localStorage.getItem(
-      "monthlyBudget"
-    )
-  ) || 0;
-
-const budgetUsed =
-  monthlyBudget
-    ? (
-        (expense /
-          monthlyBudget) *
-        100
-      ).toFixed(0)
-    : 0;
-
-    const highestExpense =
-  transactions
-    .filter(
-      (t) => t.type === "expense"
-    )
-    .sort(
-      (a, b) =>
-        b.amount - a.amount
-    )[0];
-
-const highestIncome =
-  transactions
-    .filter(
-      (t) => t.type === "income"
-    )
-    .sort(
-      (a, b) =>
-        b.amount - a.amount
-    )[0];
-
-const savingsRate =
-  income > 0
-    ? (
-        ((income - expense) /
-          income) *
-        100
-      ).toFixed(1)
-    : 0;
+  const savingsRate =
+    income > 0
+      ? (
+          ((income - expense) /
+            income) *
+          100
+        ).toFixed(1)
+      : 0;
 
   return (
 
@@ -109,42 +77,39 @@ const savingsRate =
 
       <div className="dashboard-page">
 
+        {/* Welcome Banner */}
+
         <div className="welcome-banner">
 
-  <div>
+          <div>
 
-    <h1>
+            <h1>
+              Welcome Back,
+              Saikiran 👋
+            </h1>
 
-      Welcome Back, Saikiran 👋
+            <p>
+              Here's your financial
+              overview today
+            </p>
 
-    </h1>
+          </div>
 
-    <p>
+          <div className="welcome-balance">
 
-      Here's your financial overview today
+            <span>
+              Current Balance
+            </span>
 
-    </p>
+            <h2>
+              ₹ {balance}
+            </h2>
 
-  </div>
+          </div>
 
-  <div className="welcome-balance">
+        </div>
 
-    <span>
-
-      Current Balance
-
-    </span>
-
-    <h2>
-
-      ₹ {balance}
-
-    </h2>
-
-  </div>
-
-</div>
-
+        {/* Summary Cards */}
 
         <div className="dashboard-cards">
 
@@ -186,169 +151,168 @@ const savingsRate =
 
         </div>
 
-       <div className="insight-box">
-        {monthlyBudget > 0 && (
+        {/* Budget Alert */}
 
-  <div
-    className="budget-alert"
-  >
+        <div className="insight-box">
 
-    {expense >
-    monthlyBudget ? (
+          {monthlyBudget > 0 && (
 
-      <p>
-        🚨 Budget Exceeded
-      </p>
+            <div className="budget-alert">
 
-    ) : budgetUsed >=
-      80 ? (
+              {expense >
+              monthlyBudget ? (
 
-      <p>
-        ⚠️ {budgetUsed}%
-        of budget used
-      </p>
+                <p>
+                  🚨 Budget Exceeded
+                </p>
 
-    ) : (
+              ) : budgetUsed >=
+                80 ? (
 
-      <p>
-        ✅ Budget healthy
-      </p>
+                <p>
+                  ⚠️ {budgetUsed}%
+                  of budget used
+                </p>
 
-    )}
+              ) : (
 
-  </div>
+                <p>
+                  ✅ Budget healthy
+                </p>
 
-)}
+              )}
 
-  {balance > 0 ? (
+            </div>
 
-    <p>
+          )}
 
-      Great job 🎉
-      Your balance is positive.
+          {balance > 0 ? (
 
-    </p>
+            <p>
+              Great job 🎉
+              Your balance is positive.
+            </p>
 
-  ) : (
+          ) : (
 
-    <p>
+            <p>
+              Your expenses are higher
+              than income this month.
+            </p>
 
-      Your expenses are higher
-      than income this month.
+          )}
 
-    </p>
+        </div>
 
-  )}
+        {/* Health + Goal */}
 
-</div>
+        <div className="dashboard-row">
 
-<div className="dashboard-row">
+          <FinancialHealthCard
+            transactions={transactions}
+          />
 
-  <FinancialHealthCard
-    transactions={transactions}
-  />
+          <GoalTracker
+            transactions={transactions}
+          />
 
-  <GoalTracker
-    transactions={transactions}
-  />
+        </div>
 
-</div>
+        {/* Budget + Performance */}
 
-<div className="dashboard-row">
+        <div className="dashboard-row">
 
-  <BudgetTracker
-    transactions={transactions}
-  />
+          <BudgetTracker
+            transactions={transactions}
+          />
 
-  <AIInsights
-    transactions={transactions}
-  />
+          <PerformanceCard
+            transactions={transactions}
+          />
 
-</div>
+        </div>
 
-<div className="dashboard-row">
+        {/* AI Insights Full Width */}
 
-  <PerformanceCard
-    transactions={transactions}
-  />
+        <div className="dashboard-full">
 
-  <TopCategoryCard
-    transactions={transactions}
-  />
+          <AIInsights
+            transactions={transactions}
+          />
 
-</div>
+        </div>
 
-<div className="financial-insights">
+        {/* Extra Insights */}
 
-  <div className="insight-card">
+        <div className="financial-insights">
 
-    <h3>
-      Biggest Expense
-    </h3>
+          <div className="insight-card">
 
-    <p>
-      {
-        highestExpense
-          ?.title ||
-        "No Expense"
-      }
-    </p>
+            <h3>
+              Biggest Expense
+            </h3>
 
-    <span>
-      ₹
-      {
-        highestExpense
-          ?.amount || 0
-      }
-    </span>
+            <p>
+              {
+                highestExpense?.title ||
+                "No Expense"
+              }
+            </p>
 
-  </div>
+            <span>
+              ₹ {
+                highestExpense?.amount ||
+                0
+              }
+            </span>
 
-  <div className="insight-card">
+          </div>
 
-    <h3>
-      Biggest Income
-    </h3>
+          <div className="insight-card">
 
-    <p>
-      {
-        highestIncome
-          ?.title ||
-        "No Income"
-      }
-    </p>
+            <h3>
+              Biggest Income
+            </h3>
 
-    <span>
-      ₹
-      {
-        highestIncome
-          ?.amount || 0
-      }
-    </span>
+            <p>
+              {
+                highestIncome?.title ||
+                "No Income"
+              }
+            </p>
 
-  </div>
+            <span>
+              ₹ {
+                highestIncome?.amount ||
+                0
+              }
+            </span>
 
-  <div className="insight-card">
+          </div>
 
-    <h3>
-      Savings Rate
-    </h3>
+          <div className="insight-card">
 
-    <span>
-      {savingsRate}%
-    </span>
+            <h3>
+              Savings Rate
+            </h3>
 
-  </div>
+            <span>
+              {savingsRate}%
+            </span>
 
-</div>
+          </div>
 
+        </div>
 
+        {/* Add Transaction */}
 
         <AddTransaction
           fetchTransactions={
             fetchTransactions
           }
         />
+
+        {/* Recent Activity */}
 
         <RecentActivity
           transactions={transactions}
@@ -360,6 +324,7 @@ const savingsRate =
       </div>
 
     </Layout>
+
   );
 };
 
