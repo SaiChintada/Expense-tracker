@@ -3669,9 +3669,13 @@ body{
 
 .budget-card h1{
 
-  color:white;
+  font-size:42px;
 
-  margin:12px 0;
+  font-weight:700;
+
+  margin-bottom:20px;
+
+  color:white;
 }
 
 .budget-bar{
@@ -4393,9 +4397,11 @@ body{
 
 .budget-card h2{
 
-  font-size:42px;
+  font-size:32px;
 
-  margin:15px 0;
+  font-weight:700;
+
+  margin-bottom:12px;
 }
 
 .budget-stats{
