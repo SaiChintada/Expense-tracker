@@ -4407,3 +4407,28 @@ body{
 
   margin-top:20px;
 }
+
+.dashboard-row{
+
+  display:grid;
+
+  grid-template-columns:
+  1fr 1fr;
+
+  gap:24px;
+
+  margin-bottom:24px;
+}
+.dashboard-row > *{
+
+  height:100%;
+}
+
+@media(max-width:900px){
+
+  .dashboard-row{
+
+    grid-template-columns:
+    1fr;
+  }
+}

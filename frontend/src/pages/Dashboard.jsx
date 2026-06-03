@@ -242,7 +242,7 @@ const savingsRate =
 
 </div>
 
-<div className="dashboard-grid">
+<div className="dashboard-row">
 
   <FinancialHealthCard
     transactions={transactions}
@@ -252,19 +252,27 @@ const savingsRate =
     transactions={transactions}
   />
 
-  <PerformanceCard
-    transactions={transactions}
-  />
+</div>
 
-  <TopCategoryCard
-    transactions={transactions}
-  />
+<div className="dashboard-row">
 
   <BudgetTracker
     transactions={transactions}
   />
 
   <AIInsights
+    transactions={transactions}
+  />
+
+</div>
+
+<div className="dashboard-row">
+
+  <PerformanceCard
+    transactions={transactions}
+  />
+
+  <TopCategoryCard
     transactions={transactions}
   />
 
