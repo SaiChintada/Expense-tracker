@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 import ExportCSV from "../components/ExportCSV";
+import ProfileCard
+from "../components/ProfileCard";
 
 import {
   User,
@@ -54,39 +56,7 @@ const Settings = ({
 
           {/* Profile */}
 
-          <div className="settings-card">
-
-            <h2 className="settings-title">
-
-              <User size={22} />
-
-              Profile
-
-            </h2>
-
-            <div className="profile-box">
-
-              <div className="profile-avatar">
-
-                S
-
-              </div>
-
-              <div>
-
-                <h3>
-                  Saikiran
-                </h3>
-
-                <p>
-                  ExpenseFlow User
-                </p>
-
-              </div>
-
-            </div>
-
-          </div>
+          <ProfileCard />
 
           {/* Security */}
 
