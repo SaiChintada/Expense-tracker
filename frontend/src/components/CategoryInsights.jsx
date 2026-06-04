@@ -90,20 +90,16 @@ const CategoryInsights = ({
                   ₹ {amount}
                 </h1>
 
-                <div className="progress-bar">
+              <div className="category-progress-bar">
 
-                  <div
+  <div
+    className="category-progress-fill"
+    style={{
+      width: `${percentage}%`,
+    }}
+  ></div>
 
-                    className="progress-fill"
-
-                    style={{
-
-                      width:
-                        `${percentage}%`,
-                    }}
-                  ></div>
-
-                </div>
+</div>
 
               </div>
             );
