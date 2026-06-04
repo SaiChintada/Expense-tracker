@@ -112,4 +112,4 @@ const CategoryInsights = ({
   );
 };
 
-export default CategoryInsights;
+export default 
