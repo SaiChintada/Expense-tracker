@@ -4524,3 +4524,93 @@ body{
 
   border-radius:20px;
 }
+
+.settings-page{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:24px;
+}
+
+.settings-card{
+
+  background:
+  linear-gradient(
+    135deg,
+    #111827,
+    #1e293b
+  );
+
+  padding:24px;
+
+  border-radius:24px;
+}
+
+.settings-card form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+}
+
+.settings-card input{
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#0f172a;
+
+  color:white;
+}
+
+.settings-card button{
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:12px;
+
+  cursor:pointer;
+}
+
+.password-field {
+
+  position: relative;
+
+  width: 100%;
+}
+
+.password-field input {
+
+  width: 100%;
+
+  padding-right: 50px;
+}
+
+.eye-btn {
+
+  position: absolute;
+
+  right: 12px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  background: transparent;
+
+  border: none;
+
+  color: #94a3b8;
+
+  cursor: pointer;
+}

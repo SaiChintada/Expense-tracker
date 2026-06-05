@@ -27,11 +27,15 @@ const ProfileCard = () => {
 
         setUser(res.data);
 
-      } catch (err) {
+      }catch (err) {
 
-        console.log(err);
+  console.log(err);
 
-      }
+  console.log(
+    err.response?.data
+  );
+
+}
     };
 
     fetchProfile();
@@ -48,6 +52,8 @@ const ProfileCard = () => {
   }
 
   return (
+
+    
 
     <div className="settings-card">
 

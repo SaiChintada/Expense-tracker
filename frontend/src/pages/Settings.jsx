@@ -3,6 +3,8 @@ import Layout from "../components/Layout";
 import ExportCSV from "../components/ExportCSV";
 import ProfileCard
 from "../components/ProfileCard";
+import ChangePassword
+from "../components/ChangePassword";
 
 import {
   User,
@@ -57,6 +59,9 @@ const Settings = ({
           {/* Profile */}
 
           <ProfileCard />
+           
+
+    <ChangePassword />
 
           {/* Security */}
 
