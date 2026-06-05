@@ -119,23 +119,23 @@ def get_current_user(
     authorization: str = Header(None)
 ):
 
-    if not authorization:
+    print("AUTH HEADER:", authorization)
 
+    if not authorization:
         raise HTTPException(
             status_code=401,
             detail="Token missing"
         )
 
-    token = authorization.split(
-        " "
-    )[1]
+    token = authorization.split(" ")[1]
 
-    payload = verify_token(
-        token
-    )
+    print("TOKEN:", token)
+
+    payload = verify_token(token)
+
+    print("PAYLOAD:", payload)
 
     if not payload:
-
         raise HTTPException(
             status_code=401,
             detail="Invalid token"
