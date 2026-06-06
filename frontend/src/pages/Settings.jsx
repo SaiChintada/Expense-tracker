@@ -81,13 +81,7 @@ const Settings = ({
 
             </p>
 
-            <button
-              className="settings-btn"
-            >
-
-              Update Password
-
-            </button>
+          
 
             <ExportCSV
   transactions={transactions}
