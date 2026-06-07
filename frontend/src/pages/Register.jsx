@@ -43,7 +43,7 @@ const Register = () => {
       response.data
     );
 
-    alert(
+    toast.success(
       "Register Successful"
     );
 
@@ -51,7 +51,7 @@ const Register = () => {
 
     console.log(error);
 
-    alert(
+   toast.error(
       "Registration Failed"
     );
   }

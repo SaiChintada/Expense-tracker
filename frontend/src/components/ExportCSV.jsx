@@ -1,3 +1,6 @@
+
+import toast from "react-hot-toast";
+
 const ExportCSV = ({
   transactions,
 }) => {
@@ -9,11 +12,11 @@ const ExportCSV = ({
       transactions.length === 0
     ) {
 
-      alert(
-        "No transactions found"
-      );
+     toast.error(
+  "No transactions available to export"
+);
 
-      return;
+return;
     }
 
     const headers =

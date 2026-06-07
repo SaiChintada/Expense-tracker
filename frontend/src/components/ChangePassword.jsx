@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../services/api";
 import { Eye, EyeOff } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ChangePassword = () => {
   const [formData, setFormData] = useState({
@@ -33,13 +34,13 @@ const ChangePassword = () => {
         }
       );
 
-      alert(res.data.message);
+     toast.success(res.data.message);
       setFormData({
         current_password: "",
         new_password: "",
       });
     } catch (err) {
-      alert(err.response?.data?.detail || "Something went wrong");
+     toast.error(err.response?.data?.detail || "Something went wrong");
     }
   };
 

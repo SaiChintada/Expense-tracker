@@ -6,6 +6,7 @@ import API from "../services/api";
 
 import toast from "react-hot-toast";
 
+
 const Login = () => {
 
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const Login = () => {
       response.data.access_token
     );
 
-    alert("Login Successful");
+    toast.success("Login Successful");
 
     navigate("/dashboard");
 
@@ -56,7 +57,7 @@ const Login = () => {
 
     console.log(error);
 
-    alert("Login Failed");
+    toast.error("Login Failed");
   }
 };
   return (

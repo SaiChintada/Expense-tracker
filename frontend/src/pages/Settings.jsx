@@ -31,7 +31,7 @@ const Settings = ({
       budget
     );
 
-    alert(
+toast.success(
       "Budget Updated Successfully"
     );
   };
