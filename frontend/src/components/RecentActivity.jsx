@@ -4,15 +4,27 @@ import {
 } from "lucide-react";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const RecentActivity = ({
   transactions,
 }) => {
 
+  const [filter, setFilter] =
+    useState("all");
+
   const recentTransactions =
     [...transactions]
       .reverse()
       .slice(0, 5);
+
+  const filteredTransactions =
+    filter === "all"
+      ? recentTransactions
+      : recentTransactions.filter(
+          (item) =>
+            item.type === filter
+        );
 
   return (
 
@@ -30,11 +42,76 @@ const RecentActivity = ({
 
       </div>
 
+      {/* Filter Buttons */}
+
+      <div className="activity-filters">
+
+        <button
+          className={
+            filter === "all"
+              ? "active-filter"
+              : ""
+          }
+          onClick={() =>
+            setFilter("all")
+          }
+        >
+          All (
+          {
+            recentTransactions.length
+          }
+          )
+        </button>
+
+        <button
+          className={
+            filter === "income"
+              ? "active-filter"
+              : ""
+          }
+          onClick={() =>
+            setFilter("income")
+          }
+        >
+          Income (
+          {
+            recentTransactions.filter(
+              (t) =>
+                t.type ===
+                "income"
+            ).length
+          }
+          )
+        </button>
+
+        <button
+          className={
+            filter === "expense"
+              ? "active-filter"
+              : ""
+          }
+          onClick={() =>
+            setFilter("expense")
+          }
+        >
+          Expense (
+          {
+            recentTransactions.filter(
+              (t) =>
+                t.type ===
+                "expense"
+            ).length
+          }
+          )
+        </button>
+
+      </div>
+
       <div className="recent-list">
 
-        {recentTransactions.length > 0 ? (
+        {filteredTransactions.length > 0 ? (
 
-          recentTransactions.map(
+          filteredTransactions.map(
             (item) => (
 
               <motion.div
@@ -42,24 +119,28 @@ const RecentActivity = ({
                 key={item.id}
 
                 initial={{
-  opacity: 0,
-  y: 10,
-}}
+                  opacity: 0,
+                  y: 10,
+                }}
 
-animate={{
-  opacity: 1,
-  y: 0,
-}}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
 
-transition={{
-  duration: 0.35,
-  ease:
-    [0.22,1,0.36,1],
-}}
+                transition={{
+                  duration: 0.35,
+                  ease: [
+                    0.22,
+                    1,
+                    0.36,
+                    1,
+                  ],
+                }}
 
-whileHover={{
-  y: -3,
-}}
+                whileHover={{
+                  y: -3,
+                }}
 
                 className="recent-item"
               >
