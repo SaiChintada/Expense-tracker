@@ -4614,3 +4614,48 @@ body{
 
   cursor: pointer;
 }
+
+.activity-filters {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin: 16px 0 20px;
+
+  flex-wrap: wrap;
+}
+
+.activity-filters button {
+
+  border: none;
+
+  cursor: pointer;
+
+  padding: 10px 16px;
+
+  border-radius: 12px;
+
+  background: #1e293b;
+
+  color: white;
+
+  transition: 0.3s ease;
+}
+
+.activity-filters button:hover {
+
+  transform: translateY(-2px);
+}
+
+.active-filter {
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #6366f1
+    ) !important;
+
+  color: white;
+}
