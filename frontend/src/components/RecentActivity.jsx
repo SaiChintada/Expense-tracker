@@ -220,11 +220,18 @@ const RecentActivity = ({
 
         ) : (
 
-          <p className="no-transactions">
+         <div className="empty-state">
 
-            No recent transactions
+  <h3>
+    📊 No Recent Transactions
+  </h3>
 
-          </p>
+  <p>
+    Start by adding your first income
+    or expense transaction.
+  </p>
+
+</div>
 
         )}
 
