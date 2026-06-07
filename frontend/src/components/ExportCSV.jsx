@@ -58,14 +58,12 @@ const ExportCSV = ({
 
   return (
 
-    <button
-      className="settings-btn secondary-btn"
-      onClick={exportCSV}
-    >
-
-      Export CSV
-
-    </button>
+   <button
+  className="settings-btn"
+  onClick={exportCSV}
+>
+  Export CSV
+</button>
 
   );
 };

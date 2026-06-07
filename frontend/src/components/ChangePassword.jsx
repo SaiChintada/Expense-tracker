@@ -81,7 +81,12 @@ const ChangePassword = () => {
           </button>
         </div>
 
-        <button type="submit">Update Password</button>
+       <button
+  type="submit"
+  className="settings-btn"
+>
+  Update Password
+</button>
       </form>
     </div>
   );
