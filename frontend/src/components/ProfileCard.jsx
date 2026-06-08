@@ -27,6 +27,11 @@ const ProfileCard = () => {
 
         setUser(res.data);
 
+localStorage.setItem(
+  "username",
+  res.data.username
+);
+
       }catch (err) {
 
   console.log(err);
@@ -80,6 +85,18 @@ const ProfileCard = () => {
           <span className="profile-tag">
             ExpenseFlow User
           </span>
+
+          <p className="last-login">
+
+  Last Login:
+
+  {
+    localStorage.getItem(
+      "lastLogin"
+    )
+  }
+
+</p>
 
         </div>
 

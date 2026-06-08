@@ -83,11 +83,10 @@ const Dashboard = ({
 
           <div>
 
-            <h1>
-              Welcome Back,
-              Saikiran 👋
-            </h1>
-
+           <h1>
+  Welcome Back,
+  {localStorage.getItem("username") || "User"} 👋
+</h1>
             <p>
               Here's your financial
               overview today

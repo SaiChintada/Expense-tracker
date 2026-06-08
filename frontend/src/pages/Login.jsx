@@ -49,6 +49,11 @@ const Login = () => {
       response.data.access_token
     );
 
+    localStorage.setItem(
+  "lastLogin",
+  new Date().toLocaleString()
+);
+
     toast.success("Login Successful");
 
     navigate("/dashboard");
