@@ -67,6 +67,30 @@ const CategoryInsights = ({
                 100
               ).toFixed(1);
 
+              if (expenses.length === 0) {
+
+  return (
+
+    <div className="category-section">
+
+      <div className="empty-state">
+
+        <h3>
+          📊 No Category Insights
+        </h3>
+
+        <p>
+          Add expense transactions
+          to generate spending insights.
+        </p>
+
+      </div>
+
+    </div>
+
+  );
+}
+
             return (
 
               <div
