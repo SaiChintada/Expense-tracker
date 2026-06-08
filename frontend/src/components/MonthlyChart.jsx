@@ -83,6 +83,29 @@ const MonthlyChart = ({
     };
   });
 
+  if (transactions.length === 0) {
+
+  return (
+
+    <div className="monthly-chart-card">
+
+      <div className="empty-state">
+
+        <h3>
+          📈 No Analytics Yet
+        </h3>
+
+        <p>
+          Add transactions to see
+          monthly trends.
+        </p>
+
+      </div>
+
+    </div>
+
+  );
+} 
   return (
 
     <div className="monthly-chart-card">

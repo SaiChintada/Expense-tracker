@@ -62,6 +62,30 @@ const CategoryPieChart = ({
       []
     );
 
+    if (groupedData.length === 0) {
+
+  return (
+
+    <div className="pie-chart-card">
+
+      <div className="empty-state">
+
+        <h3>
+          🥧 No Expense Data
+        </h3>
+
+        <p>
+          Add expense transactions
+          to view category insights.
+        </p>
+
+      </div>
+
+    </div>
+
+  );
+}
+
   return (
 
     <div className="pie-chart-card">
