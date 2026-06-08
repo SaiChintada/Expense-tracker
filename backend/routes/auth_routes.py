@@ -182,3 +182,44 @@ def get_profile(
         "email":
         db_user.email
     }
+
+@router.put("/change-password")
+def change_password(
+    data: dict,
+    user=Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+
+    db_user = db.query(User).filter(
+        User.id == user["id"]
+    ).first()
+
+    if not db_user:
+
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+
+    valid_password = verify_password(
+        data["current_password"],
+        db_user.password
+    )
+
+    if not valid_password:
+
+        raise HTTPException(
+            status_code=400,
+            detail="Current password incorrect"
+        )
+
+    db_user.password = hash_password(
+        data["new_password"]
+    )
+
+    db.commit()
+
+    return {
+        "message":
+        "Password updated successfully"
+    }

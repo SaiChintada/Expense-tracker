@@ -1,60 +1,117 @@
-# FastAPI CRUD Application
+# ExpenseFlow 💰
 
-##  Description
-This is a simple FastAPI application that implements basic Create and Read (CRUD) operations using a SQLite database. The API is built using FastAPI and SQLAlchemy.
+A modern Full Stack Expense Management Application built using React, FastAPI, PostgreSQL, and JWT Authentication.
 
----
+## Features
 
-##  Features
-- Create Items (POST)
-- Read Items (GET)
-- SQLite Database Integration
-- FastAPI Interactive Swagger UI
+### Authentication
 
----
+* User Registration
+* User Login
+* JWT Authentication
+* Protected Routes
+* User Profile
+* Change Password
+
+### Transaction Management
+
+* Add Transactions
+* Update Transactions
+* Delete Transactions
+* Search Transactions
+* Filter Transactions (All / Income / Expense)
+
+### Dashboard
+
+* Financial Overview
+* Total Income
+* Total Expenses
+* Current Balance
+* Budget Monitoring
+* Recent Activity
+
+### Analytics
+
+* Monthly Income vs Expense Chart
+* Expense Category Pie Chart
+* Category Insights
+* Financial Health Metrics
+* Savings Rate Analysis
+
+### Additional Features
+
+* CSV Export
+* Dynamic User Dashboard
+* Last Login Tracking
+* Toast Notifications
+* Responsive Design
+* Empty States Handling
 
 ## Tech Stack
-- FastAPI
-- SQLAlchemy
-- SQLite
-- Uvicorn
 
----
+### Frontend
 
-## ▶️ Run Locally
+* React.js
+* Vite
+* Axios
+* Recharts
+* Framer Motion
+* Lucide React
+* React Hot Toast
 
-### 1. Install dependencies
+### Backend
+
+* FastAPI
+* SQLAlchemy
+* PostgreSQL
+* JWT Authentication
+* Passlib (Bcrypt)
+
+## Project Structure
+
+### Frontend
+
+* Components
+* Pages
+* Services
+* Context API
+
+### Backend
+
+* Routes
+* Models
+* Database
+* Authentication Utilities
+
+## Installation
+
+### Backend
+
+```bash
+cd backend
 pip install -r requirements.txt
-
-### 2. Run the server
 uvicorn main:app --reload
+```
 
-### 3. Open in browser
-http://127.0.0.1:8000/docs
+### Frontend
 
----
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-##  API Endpoints
+## Future Improvements
 
-- GET / → Check API status  
-- GET /health → Health check  
-- POST /items/ → Create item  
-- GET /items/ → Get all items  
+* Cloud Deployment
+* Email Verification
+* Password Reset
+* Recurring Transactions
+* Multi-Currency Support
+* Advanced Financial Reports
 
----
+## Developer
 
-##  Example Request (POST /items/)
+**Saikiran**
 
-{
-  "name": "Laptop",
-  "description": "Electronics"
-}
-
----
-##  Live Deployment
-https://fastapi-crud-3deh.onrender.com/docs
-
----
-
-##  Author
-Sai Kiran
+Built using React, FastAPI, PostgreSQL, SQLAlchemy, JWT Authentication, Recharts, and Framer Motion.
