@@ -85,6 +85,51 @@ localStorage.setItem(
           <span className="profile-tag">
             ExpenseFlow User
           </span>
+          <div className="profile-stats">
+
+  <div>
+
+    <span>
+      Member Since
+    </span>
+
+    <h4>
+      Jun 2025
+    </h4>
+
+  </div>
+
+  <div>
+
+    <span>
+      Last Login
+    </span>
+
+    <h4>
+      {
+        localStorage.getItem(
+          "lastLogin"
+        )
+      }
+    </h4>
+
+  </div>
+
+  <div>
+
+    <span>
+      Status
+    </span>
+
+    <h4 className="active-status">
+
+      ● Active
+
+    </h4>
+
+  </div>
+
+</div>
 
           <p className="last-login">
 
