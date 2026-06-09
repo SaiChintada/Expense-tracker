@@ -330,57 +330,73 @@ return (
         </h2>
 
       </div>
+      <div className="report-card">
 
+  <h3>
+    Best Month
+  </h3>
+
+  <h2>
+    {bestMonth.month}
+  </h2>
+
+</div>
     </div>
 
     <div className="reports-grid">
 
-      <div className="report-card">
-
-        <h3>
-          🏆 Best Month
-        </h3>
-
-        <h2>
-          {bestMonth.month}
-        </h2>
-
-        <p>
-          Savings:
-          ₹
-          {
-            bestMonth.savings
-          }
-        </p>
-
-      </div>
+      
 
       <div className="report-card">
 
-        <h3>
-          💡 Insights
-        </h3>
+  <h3>
+    💡 Insights
+  </h3>
 
-        <p>
-          Top Category:
-          {topCategory}
-        </p>
+  <div className="insight-item">
 
-        <p>
-          Highest Expense:
-          {
-            highestExpense
-              ?.title ||
-            "N/A"
-          }
-        </p>
+    <span>
+      Top Category
+    </span>
 
-        <p>
-          Savings Rate:
-          {savingsRate}%
-        </p>
+    <strong>
+      {topCategory}
+    </strong>
 
-      </div>
+  </div>
+
+  <div className="insight-item">
+
+    <span>
+      Highest Expense
+    </span>
+
+    <strong>
+
+      {
+        highestExpense?.title ||
+        "N/A"
+      }
+
+    </strong>
+
+  </div>
+
+  <div className="insight-item">
+
+    <span>
+      Savings Rate
+    </span>
+
+    <strong>
+
+      {savingsRate}%
+
+    </strong>
+
+  </div>
+
+</div>
 
     </div>
 
