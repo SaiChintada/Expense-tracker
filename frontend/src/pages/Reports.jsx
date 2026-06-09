@@ -341,6 +341,111 @@ return (
   </h2>
 
 </div>
+
+<div className="performance-card">
+
+  <h2>
+
+    📊 Monthly Performance
+
+  </h2>
+
+  <div className="progress-item">
+
+    <span>
+
+      Income
+
+    </span>
+
+    <div className="progress-bar">
+
+      <div
+        className="progress-fill income-fill"
+        style={{
+          width: "100%",
+        }}
+      />
+
+    </div>
+
+    <strong>
+
+      ₹ {income}
+
+    </strong>
+
+  </div>
+
+  <div className="progress-item">
+
+    <span>
+
+      Expense
+
+    </span>
+
+    <div className="progress-bar">
+
+      <div
+        className="progress-fill expense-fill"
+        style={{
+          width:
+            income > 0
+              ? `${
+                  (expenses /
+                    income) *
+                  100
+                }%`
+              : "0%",
+        }}
+      />
+
+    </div>
+
+    <strong>
+
+      ₹ {expenses}
+
+    </strong>
+
+  </div>
+
+  <div className="progress-item">
+
+    <span>
+
+      Savings
+
+    </span>
+
+    <div className="progress-bar">
+
+      <div
+        className="progress-fill savings-fill"
+        style={{
+          width:
+            income > 0
+              ? `${
+                  (savings /
+                    income) *
+                  100
+                }%`
+              : "0%",
+        }}
+      />
+
+    </div>
+
+    <strong>
+
+      ₹ {savings}
+
+    </strong>
+
+  </div>
+
+</div>
     </div>
 
     <div className="reports-grid">
