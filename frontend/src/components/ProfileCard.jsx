@@ -1,9 +1,47 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 
-const ProfileCard = () => {
+const ProfileCard = ({
+  transactions,
+}) => {
 
   const [user, setUser] = useState(null);
+
+  const totalTransactions =
+  transactions.length;
+
+const totalIncome =
+  transactions
+
+    .filter(
+      (t) =>
+        t.type === "income"
+    )
+
+    .reduce(
+      (acc, item) =>
+        acc + item.amount,
+      0
+    );
+
+const totalExpense =
+  transactions
+
+    .filter(
+      (t) =>
+        t.type === "expense"
+    )
+
+    .reduce(
+      (acc, item) =>
+        acc + item.amount,
+      0
+    );
+
+const balance =
+  totalIncome -
+  totalExpense;
+  
 
   useEffect(() => {
 
@@ -60,94 +98,92 @@ localStorage.setItem(
 
     
 
-    <div className="settings-card">
+    <div className="settings-card profile-premium-card">
 
-      <div className="profile-box">
+  <div className="profile-top">
 
-        <div className="profile-avatar">
+    <div className="profile-avatar">
 
-          {user.username
-            ?.charAt(0)
-            .toUpperCase()}
+      {user.username
+        ?.charAt(0)
+        .toUpperCase()}
 
-        </div>
+    </div>
 
-        <div>
+    <div>
 
-          <h3>
-            {user.username}
-          </h3>
+      <h2>
+        {user.username}
+      </h2>
 
-          <p>
-            {user.email}
-          </p>
+      <p>
+        {user.email}
+      </p>
 
-          <span className="profile-tag">
-            ExpenseFlow User
-          </span>
-          <div className="profile-stats">
+      <span className="profile-tag">
 
-  <div>
+        ExpenseFlow Premium Dashboard User
 
-    <span>
-      Member Since
-    </span>
+      </span>
 
-    <h4>
-      Jun 2025
-    </h4>
+    </div>
 
   </div>
 
-  <div>
+  <div className="profile-finance-grid">
 
-    <span>
-      Last Login
-    </span>
+    <div className="finance-stat">
 
-    <h4>
-      {
-        localStorage.getItem(
-          "lastLogin"
-        )
-      }
-    </h4>
+      <span>
+        Total Transactions
+      </span>
 
-  </div>
+      <h3>
+        {totalTransactions}
+      </h3>
 
-  <div>
+    </div>
 
-    <span>
-      Status
-    </span>
+    <div className="finance-stat">
 
-    <h4 className="active-status">
+      <span>
+        Total Income
+      </span>
 
-      ● Active
+      <h3>
+        ₹ {totalIncome}
+      </h3>
 
-    </h4>
+    </div>
+
+    <div className="finance-stat">
+
+      <span>
+        Total Expenses
+      </span>
+
+      <h3>
+        ₹ {totalExpense}
+      </h3>
+
+    </div>
+
+    <div className="finance-stat">
+
+      <span>
+        Current Balance
+      </span>
+
+      <h3>
+        ₹ {balance}
+      </h3>
+
+    </div>
 
   </div>
 
 </div>
 
-          <p className="last-login">
-
-  Last Login:
-
-  {
-    localStorage.getItem(
-      "lastLogin"
-    )
-  }
-
-</p>
-
-        </div>
-
-      </div>
-
-    </div>
   );
 };
 

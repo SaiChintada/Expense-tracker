@@ -58,7 +58,9 @@ toast.success(
 
           {/* Profile */}
 
-          <ProfileCard />
+         <ProfileCard
+  transactions={transactions}
+/>
            
 
     <ChangePassword />

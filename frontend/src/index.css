@@ -4746,4 +4746,119 @@ body{
 
   border-color:
   rgba(139,92,246,.4);
+} 
+
+.profile-premium-card{
+
+  padding:32px;
+}
+
+.profile-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:24px;
+
+  margin-bottom:30px;
+}
+
+.profile-avatar{
+
+  width:90px;
+
+  height:90px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:36px;
+
+  font-weight:700;
+
+  color:white;
+
+  background:
+  linear-gradient(
+    135deg,
+    #8b5cf6,
+    #6366f1
+  );
+}
+
+.profile-finance-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(
+    4,
+    1fr
+  );
+
+  gap:20px;
+}
+
+.finance-stat{
+
+  background:
+  rgba(
+    255,
+    255,
+    255,
+    0.03
+  );
+
+  border:
+  1px solid
+  rgba(
+    255,
+    255,
+    255,
+    0.05
+  );
+
+  border-radius:18px;
+
+  padding:18px;
+}
+
+.finance-stat span{
+
+  color:#94a3b8;
+
+  font-size:13px;
+}
+
+.finance-stat h3{
+
+  margin-top:10px;
+
+  color:white;
+
+  font-size:22px;
+
+  font-weight:700;
+}
+
+.finance-stat:hover{
+
+  transform:
+  translateY(-3px);
+
+  transition:0.3s ease;
+
+  border-color:
+  rgba(
+    139,
+    92,
+    246,
+    0.4
+  );
 }
