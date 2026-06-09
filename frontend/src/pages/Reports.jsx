@@ -1,160 +1,394 @@
 import Layout from "../components/Layout";
+import { useState } from "react";
 
 const Reports = ({
-  transactions,
+transactions,
 }) => {
 
-  const income =
-    transactions
-      .filter(
-        (t) =>
-          t.type ===
-          "income"
-      )
-      .reduce(
-        (sum, t) =>
-          sum +
-          Number(
-            t.amount
-          ),
-        0
-      );
+const [selectedMonth, setSelectedMonth] =
+useState(
+new Date().getMonth()
+);
 
-  const expenses =
-    transactions
-      .filter(
-        (t) =>
-          t.type ===
-          "expense"
-      )
-      .reduce(
-        (sum, t) =>
-          sum +
-          Number(
-            t.amount
-          ),
-        0
-      );
+const months = [
 
-  const savings =
-    income - expenses;
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
 
-  const categories = {};
+"July",
+"August",
+"September",
+"October",
+"November",
+"December",
 
-  transactions
-    .filter(
-      (t) =>
-        t.type ===
-        "expense"
-    )
-    .forEach((t) => {
+];
 
-      categories[
-        t.category
-      ] =
-        (categories[
-          t.category
-        ] || 0) +
-        Number(
-          t.amount
-        );
-    });
+const filteredTransactions =
+transactions.filter((t) => {
 
-  const topCategory =
-    Object.keys(
-      categories
-    ).length
-      ? Object.keys(
-          categories
-        ).reduce(
-          (a, b) =>
-            categories[a] >
-            categories[b]
-              ? a
-              : b
-        )
-      : "N/A";
+  const date =
+    new Date(t.date);
 
   return (
+    date.getMonth() ===
+    selectedMonth
+  );
 
-    <Layout>
+});
 
-      <div className="reports-page">
+const income =
+filteredTransactions
 
-        <h1>
-          Monthly Report
-        </h1>
+  .filter(
+    (t) =>
+      t.type === "income"
+  )
 
-        <div className="reports-grid">
+  .reduce(
+    (sum, t) =>
+      sum +
+      Number(
+        t.amount
+      ),
+    0
+  );
 
-          <div className="report-card">
+const expenses =
+filteredTransactions
 
-            <h3>
-              Income
-            </h3>
+  .filter(
+    (t) =>
+      t.type === "expense"
+  )
 
-            <h2>
-              ₹ {income}
-            </h2>
+  .reduce(
+    (sum, t) =>
+      sum +
+      Number(
+        t.amount
+      ),
+    0
+  );
 
-          </div>
+const savings =
+income - expenses;
 
-          <div className="report-card">
+const categories = {};
 
-            <h3>
-              Expenses
-            </h3>
+filteredTransactions
 
-            <h2>
-              ₹ {expenses}
-            </h2>
+.filter(
+  (t) =>
+    t.type === "expense"
+)
 
-          </div>
+.forEach((t) => {
 
-          <div className="report-card">
+  categories[
+    t.category
+  ] =
 
-            <h3>
-              Savings
-            </h3>
+    (
+      categories[
+        t.category
+      ] || 0
+    ) +
 
-            <h2>
-              ₹ {savings}
-            </h2>
+    Number(
+      t.amount
+    );
 
-          </div>
+});
 
-          <div className="report-card">
+const topCategory =
 
-            <h3>
-              Top Category
-            </h3>
+Object.keys(
+  categories
+).length
 
-            <h2>
-              {topCategory}
-            </h2>
+  ? Object.keys(
+      categories
+    ).reduce(
+      (a, b) =>
+        categories[a] >
+        categories[b]
+          ? a
+          : b
+    )
 
-          </div>
+  : "N/A";
 
-          <div className="report-card">
+const highestExpense =
 
-            <h3>
-              Transactions
-            </h3>
+filteredTransactions
 
-            <h2>
-              {
-                transactions.length
-              }
-            </h2>
+  .filter(
+    (t) =>
+      t.type === "expense"
+  )
 
-          </div>
+  .sort(
+    (a, b) =>
+      b.amount -
+      a.amount
+  )[0];
 
-        </div>
+const savingsRate =
+
+income > 0
+
+  ? (
+      (
+        savings /
+        income
+      ) *
+      100
+    ).toFixed(1)
+
+  : 0;
+
+const monthStats =
+
+months.map(
+  (
+    month,
+    index
+  ) => {
+
+    const monthIncome =
+
+      transactions
+
+        .filter(
+          (t) =>
+            new Date(
+              t.date
+            ).getMonth() ===
+              index &&
+            t.type ===
+              "income"
+        )
+
+        .reduce(
+          (
+            acc,
+            item
+          ) =>
+            acc +
+            item.amount,
+          0
+        );
+
+    const monthExpense =
+
+      transactions
+
+        .filter(
+          (t) =>
+            new Date(
+              t.date
+            ).getMonth() ===
+              index &&
+            t.type ===
+              "expense"
+        )
+
+        .reduce(
+          (
+            acc,
+            item
+          ) =>
+            acc +
+            item.amount,
+          0
+        );
+
+    return {
+
+      month,
+
+      savings:
+        monthIncome -
+        monthExpense,
+
+    };
+  }
+);
+
+
+const bestMonth =
+
+monthStats.sort(
+  (a, b) =>
+    b.savings -
+    a.savings
+)[0];
+
+return (
+
+<Layout>
+
+  <div className="reports-page">
+
+    <h1>
+      Reports
+    </h1>
+
+    <div className="report-filter">
+
+      <select
+
+        value={
+          selectedMonth
+        }
+
+        onChange={(e) =>
+          setSelectedMonth(
+            Number(
+              e.target.value
+            )
+          )
+        }
+
+      >
+
+        {months.map(
+          (
+            month,
+            index
+          ) => (
+
+            <option
+              key={index}
+              value={index}
+            >
+
+              {month}
+
+            </option>
+
+          )
+        )}
+
+      </select>
+
+    </div>
+
+    <div className="reports-grid">
+
+      <div className="report-card">
+
+        <h3>
+          Income
+        </h3>
+
+        <h2>
+          ₹ {income}
+        </h2>
 
       </div>
 
-    </Layout>
-  );
+      <div className="report-card">
+
+        <h3>
+          Expenses
+        </h3>
+
+        <h2>
+          ₹ {expenses}
+        </h2>
+
+      </div>
+
+      <div className="report-card">
+
+        <h3>
+          Savings
+        </h3>
+
+        <h2>
+          ₹ {savings}
+        </h2>
+
+      </div>
+
+      <div className="report-card">
+
+        <h3>
+          Transactions
+        </h3>
+
+        <h2>
+          {
+            filteredTransactions.length
+          }
+        </h2>
+
+      </div>
+
+    </div>
+
+    <div className="reports-grid">
+
+      <div className="report-card">
+
+        <h3>
+          🏆 Best Month
+        </h3>
+
+        <h2>
+          {bestMonth.month}
+        </h2>
+
+        <p>
+          Savings:
+          ₹
+          {
+            bestMonth.savings
+          }
+        </p>
+
+      </div>
+
+      <div className="report-card">
+
+        <h3>
+          💡 Insights
+        </h3>
+
+        <p>
+          Top Category:
+          {topCategory}
+        </p>
+
+        <p>
+          Highest Expense:
+          {
+            highestExpense
+              ?.title ||
+            "N/A"
+          }
+        </p>
+
+        <p>
+          Savings Rate:
+          {savingsRate}%
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</Layout>
+
+);
 };
 
 export default Reports;
