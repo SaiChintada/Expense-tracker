@@ -5091,3 +5091,53 @@ body{
 
   color: #8b5cf6;
 }
+
+.health-card {
+  margin-top: 25px;
+}
+
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.health-item {
+  background: rgba(255,255,255,0.04);
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.health-item span {
+  display: block;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.health-item strong {
+  font-size: 1.2rem;
+}
+
+.trend-card {
+  margin-top: 25px;
+}
+
+.trend-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.trend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 18px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.03);
+}

@@ -166,55 +166,65 @@ return ( <Layout> <div className="reports-page"> <h1>Reports</h1>
       </div>
     </div>
 
-    <div className="report-card financial-summary">
-      <h3>📈 Financial Summary</h3>
+    <div className="report-card health-card">
 
-      <div className="insight-item">
-        <span>Best Month</span>
-        <strong>
-          {bestMonth?.month || "N/A"}
-        </strong>
-      </div>
+  <h2>📊 Financial Health</h2>
 
-      <div className="insight-item">
-        <span>Top Category</span>
-        <strong>
-          {topCategory}
-        </strong>
-      </div>
+  <div className="health-grid">
 
-      <div className="insight-item">
-        <span>Highest Expense</span>
-        <strong>
-          {highestExpense?.title ||
-            "N/A"}
-        </strong>
-      </div>
-
-      <div className="insight-item">
-        <span>Savings Rate</span>
-        <strong>
-          {savingsRate}%
-        </strong>
-      </div>
-
-      <div className="insight-item">
-        <span>Financial Score</span>
-        <strong className="score-good">
-          {financialScore}
-        </strong>
-      </div>
-
-      <div className="insight-item">
-        <span>Budget Status</span>
-        <strong className="status-good">
-          {budgetStatus}
-        </strong>
-      </div>
+    <div className="health-item">
+      <span>Savings Rate</span>
+      <strong>{savingsRate}%</strong>
     </div>
-  </div>
-</Layout>
 
+    <div className="health-item">
+      <span>Top Category</span>
+      <strong>{topCategory}</strong>
+    </div>
+
+    <div className="health-item">
+      <span>Best Month</span>
+      <strong>{bestMonth?.month || "N/A"}</strong>
+    </div>
+
+    <div className="health-item">
+      <span>Highest Expense</span>
+      <strong>{highestExpense?.title || "N/A"}</strong>
+    </div>
+
+  </div>
+
+</div>
+
+<div className="report-card trend-card">
+
+  <h2>📈 Monthly Trend</h2>
+
+  <div className="trend-list">
+
+    {monthStats.map((item) => (
+
+      <div
+        key={item.month}
+        className="trend-item"
+      >
+
+        <span>{item.month}</span>
+
+        <strong>
+          ₹ {item.savings}
+          {item.month === bestMonth?.month && " ⭐"}
+        </strong>
+
+      </div>
+
+    ))}
+
+  </div>
+
+</div>
+    </div>
+  </Layout>
 );
 };
 
