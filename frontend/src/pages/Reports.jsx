@@ -75,7 +75,7 @@ acc + Number(item.amount),
 0
 );
 
-```
+
 const monthExpense = transactions
   .filter(
     (t) =>
@@ -92,7 +92,7 @@ return {
   month,
   savings: monthIncome - monthExpense,
 };
-```
+
 
 });
 
@@ -121,7 +121,7 @@ savingsRate >= 50
 
 return ( <Layout> <div className="reports-page"> <h1>Reports</h1>
 
-```
+
     <div className="report-filter">
       <select
         value={selectedMonth}
