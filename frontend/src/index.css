@@ -5105,3 +5105,65 @@ body{
 
   background: #8b5cf6;
 }
+
+/* =====================================
+   FINANCIAL SUMMARY
+===================================== */
+
+.financial-summary {
+
+  margin-top: 25px;
+
+  padding: 30px;
+}
+
+.financial-summary h3 {
+
+  margin-bottom: 20px;
+
+  font-size: 24px;
+
+  font-weight: 700;
+}
+
+.insight-item {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.insight-item:last-child {
+
+  border-bottom: none;
+}
+
+.insight-item span {
+
+  color: #94a3b8;
+
+  font-size: 15px;
+}
+
+.insight-item strong {
+
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+.score-good {
+
+  color: #22c55e;
+}
+
+.status-good {
+
+  color: #8b5cf6;
+}

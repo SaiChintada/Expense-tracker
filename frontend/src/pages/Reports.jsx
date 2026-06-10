@@ -1,79 +1,55 @@
 import Layout from "../components/Layout";
 import { useState } from "react";
 
-const Reports = ({
-transactions,
-}) => {
+const Reports = ({ transactions }) => {
 
 const [selectedMonth, setSelectedMonth] =
-useState(
-new Date().getMonth()
-);
+useState(new Date().getMonth());
 
 const months = [
-
 "January",
 "February",
 "March",
 "April",
 "May",
 "June",
-
 "July",
 "August",
 "September",
 "October",
 "November",
 "December",
-
 ];
 
 const filteredTransactions =
 transactions.filter((t) => {
-
-  const date =
-    new Date(t.date);
-
-  return (
-    date.getMonth() ===
-    selectedMonth
-  );
-
+  const date = new Date(t.date);
+  return date.getMonth() === selectedMonth;
 });
 
 const income =
 filteredTransactions
-
-  .filter(
-    (t) =>
-      t.type === "income"
-  )
-
-  .reduce(
-    (sum, t) =>
-      sum +
-      Number(
-        t.amount
-      ),
-    0
-  );
+.filter(
+(t) =>
+t.type === "income"
+)
+.reduce(
+(sum, t) =>
+sum + Number(t.amount),
+0
+);
 
 const expenses =
 filteredTransactions
-
-  .filter(
-    (t) =>
-      t.type === "expense"
-  )
-
-  .reduce(
-    (sum, t) =>
-      sum +
-      Number(
-        t.amount
-      ),
-    0
-  );
+.filter(
+(t) =>
+t.type === "expense"
+)
+.reduce(
+(sum, t) =>
+sum + Number(t.amount),
+0
+);
 
 const savings =
 income - expenses;
@@ -81,156 +57,108 @@ income - expenses;
 const categories = {};
 
 filteredTransactions
-
 .filter(
-  (t) =>
-    t.type === "expense"
+(t) =>
+t.type === "expense"
 )
-
 .forEach((t) => {
-
-  categories[
-    t.category
-  ] =
-
-    (
-      categories[
-        t.category
-      ] || 0
-    ) +
-
-    Number(
-      t.amount
-    );
-
+  categories[t.category] =
+    (categories[t.category] || 0) + Number(t.amount);
 });
+```
 
 const topCategory =
-
-Object.keys(
-  categories
-).length
-
-  ? Object.keys(
-      categories
-    ).reduce(
-      (a, b) =>
-        categories[a] >
-        categories[b]
-          ? a
-          : b
-    )
-
-  : "N/A";
+Object.keys(categories).length
+? Object.keys(categories).reduce(
+(a, b) =>
+categories[a] >
+categories[b]
+? a
+: b
+)
+: "N/A";
 
 const highestExpense =
-
 filteredTransactions
-
-  .filter(
-    (t) =>
-      t.type === "expense"
-  )
-
-  .sort(
-    (a, b) =>
-      b.amount -
-      a.amount
-  )[0];
+.filter(
+(t) =>
+t.type === "expense"
+)
+.sort(
+(a, b) =>
+b.amount - a.amount
+)[0];
 
 const savingsRate =
-
 income > 0
-
-  ? (
-      (
-        savings /
-        income
-      ) *
-      100
-    ).toFixed(1)
-
-  : 0;
+? (
+(savings / income)
+* 100
+).toFixed(1)
+: 0;
 
 const monthStats =
-
 months.map(
-  (
-    month,
-    index
-  ) => {
-
+  (month, index) => {
     const monthIncome =
-
       transactions
-
         .filter(
           (t) =>
-            new Date(
-              t.date
-            ).getMonth() ===
-              index &&
-            t.type ===
-              "income"
+            new Date(t.date).getMonth() === index &&
+            t.type === "income"
         )
-
         .reduce(
-          (
-            acc,
-            item
-          ) =>
-            acc +
-            item.amount,
+          (acc, item) => acc + Number(item.amount),
           0
         );
 
     const monthExpense =
-
       transactions
-
         .filter(
           (t) =>
-            new Date(
-              t.date
-            ).getMonth() ===
-              index &&
-            t.type ===
-              "expense"
+            new Date(t.date).getMonth() === index &&
+            t.type === "expense"
         )
-
         .reduce(
-          (
-            acc,
-            item
-          ) =>
-            acc +
-            item.amount,
+          (acc, item) => acc + Number(item.amount),
           0
         );
 
     return {
-
       month,
-
-      savings:
-        monthIncome -
-        monthExpense,
-
+      savings: monthIncome - monthExpense,
     };
   }
 );
-
+```
 
 const bestMonth =
-
-monthStats.sort(
-  (a, b) =>
-    b.savings -
-    a.savings
+[...monthStats].sort(
+(a, b) =>
+b.savings - a.savings
 )[0];
+
+const financialScore =
+savingsRate >= 80
+? "10/10"
+: savingsRate >= 60
+? "9/10"
+: savingsRate >= 40
+? "8/10"
+: savingsRate >= 20
+? "7/10"
+: "5/10";
+
+const budgetStatus =
+savingsRate >= 50
+? "Excellent"
+: savingsRate >= 25
+? "Good"
+: "Needs Improvement";
 
 return (
 
+```
 <Layout>
 
   <div className="reports-page">
@@ -242,11 +170,7 @@ return (
     <div className="report-filter">
 
       <select
-
-        value={
-          selectedMonth
-        }
-
+        value={selectedMonth}
         onChange={(e) =>
           setSelectedMonth(
             Number(
@@ -254,14 +178,10 @@ return (
             )
           )
         }
-
       >
 
         {months.map(
-          (
-            month,
-            index
-          ) => (
+          (month, index) => (
 
             <option
               key={index}
@@ -283,9 +203,7 @@ return (
 
       <div className="report-card">
 
-        <h3>
-          Income
-        </h3>
+        <h3>Income</h3>
 
         <h2>
           ₹ {income}
@@ -295,9 +213,7 @@ return (
 
       <div className="report-card">
 
-        <h3>
-          Expenses
-        </h3>
+        <h3>Expenses</h3>
 
         <h2>
           ₹ {expenses}
@@ -307,9 +223,7 @@ return (
 
       <div className="report-card">
 
-        <h3>
-          Savings
-        </h3>
+        <h3>Savings</h3>
 
         <h2>
           ₹ {savings}
@@ -319,9 +233,7 @@ return (
 
       <div className="report-card">
 
-        <h3>
-          Transactions
-        </h3>
+        <h3>Transactions</h3>
 
         <h2>
           {
@@ -330,184 +242,98 @@ return (
         </h2>
 
       </div>
-      <div className="report-card">
-
-  <h3>
-    Best Month
-  </h3>
-
-  <h2>
-    {bestMonth.month}
-  </h2>
-
-</div>
-
-<div className="performance-card">
-
-  <h2>
-
-    📊 Monthly Performance
-
-  </h2>
-
-  <div className="progress-item">
-
-    <span>
-
-      Income
-
-    </span>
-
-    <div className="progress-bar">
-
-      <div
-        className="progress-fill income-fill"
-        style={{
-          width: "100%",
-        }}
-      />
 
     </div>
 
-    <strong>
+    <div className="report-card financial-summary">
 
-      ₹ {income}
+      <h3>
+        📈 Financial Summary
+      </h3>
 
-    </strong>
+      <div className="insight-item">
 
-  </div>
+        <span>
+          Best Month
+        </span>
 
-  <div className="progress-item">
+        <strong>
+          {bestMonth.month}
+        </strong>
 
-    <span>
+      </div>
 
-      Expense
+      <div className="insight-item">
 
-    </span>
+        <span>
+          Top Category
+        </span>
 
-    <div className="progress-bar">
+        <strong>
+          {topCategory}
+        </strong>
 
-      <div
-        className="progress-fill expense-fill"
-        style={{
-          width:
-            income > 0
-              ? `${
-                  (expenses /
-                    income) *
-                  100
-                }%`
-              : "0%",
-        }}
-      />
+      </div>
 
-    </div>
+      <div className="insight-item">
 
-    <strong>
+        <span>
+          Highest Expense
+        </span>
 
-      ₹ {expenses}
+        <strong>
 
-    </strong>
+          {
+            highestExpense?.title ||
+            "N/A"
+          }
 
-  </div>
+        </strong>
 
-  <div className="progress-item">
+      </div>
 
-    <span>
+      <div className="insight-item">
 
-      Savings
+        <span>
+          Savings Rate
+        </span>
 
-    </span>
+        <strong>
+          {savingsRate}%
+        </strong>
 
-    <div className="progress-bar">
+      </div>
 
-      <div
-        className="progress-fill savings-fill"
-        style={{
-          width:
-            income > 0
-              ? `${
-                  (savings /
-                    income) *
-                  100
-                }%`
-              : "0%",
-        }}
-      />
+      <div className="insight-item">
 
-    </div>
+        <span>
+          Financial Score
+        </span>
 
-    <strong>
+        <strong>
+          {financialScore}
+        </strong>
 
-      ₹ {savings}
+      </div>
 
-    </strong>
+      <div className="insight-item">
 
-  </div>
+        <span>
+          Budget Status
+        </span>
 
-</div>
-    </div>
+        <strong>
+          {budgetStatus}
+        </strong>
 
-    <div className="reports-grid">
-
-      
-
-      <div className="report-card">
-
-  <h3>
-    💡 Insights
-  </h3>
-
-  <div className="insight-item">
-
-    <span>
-      Top Category
-    </span>
-
-    <strong>
-      {topCategory}
-    </strong>
-
-  </div>
-
-  <div className="insight-item">
-
-    <span>
-      Highest Expense
-    </span>
-
-    <strong>
-
-      {
-        highestExpense?.title ||
-        "N/A"
-      }
-
-    </strong>
-
-  </div>
-
-  <div className="insight-item">
-
-    <span>
-      Savings Rate
-    </span>
-
-    <strong>
-
-      {savingsRate}%
-
-    </strong>
-
-  </div>
-
-</div>
+      </div>
 
     </div>
 
   </div>
 
 </Layout>
+```
 
 );
 };
