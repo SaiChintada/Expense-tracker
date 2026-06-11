@@ -2506,6 +2506,12 @@ body{
 
   box-shadow:
   0 10px 30px rgba(0,0,0,0.25);
+
+  min-height:320px;
+
+  display:flex;
+
+  flex-direction:column;
 }
 
 .dashboard-card:hover{
@@ -4075,6 +4081,15 @@ body{
   font-weight:600;
 }
 
+.performance-card{
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+}
+
 
 .performance-card h2{
 
@@ -4434,11 +4449,13 @@ body{
   display:grid;
 
   grid-template-columns:
-  repeat(3,1fr);
+  repeat(2,1fr);
 
   gap:24px;
 
   margin-top:24px;
+
+  align-items:stretch;
 }
 
 .health-card,
@@ -5140,4 +5157,40 @@ body{
   border-radius: 12px;
 
   background: rgba(255,255,255,0.03);
+}
+
+.financial-health-card,
+.savings-goal-card,
+.monthly-budget-card,
+.performance-card{
+
+  min-height:320px;
+}
+
+.financial-health-card{
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+}
+
+.over-budget{
+
+  color:#ef4444;
+
+  font-weight:700;
+}
+
+@media (max-width: 900px){
+
+  .dashboard-grid{
+
+    grid-template-columns:1fr;
+  }
 }

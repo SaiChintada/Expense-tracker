@@ -86,7 +86,7 @@ const Dashboard = ({
            <h1>
   Welcome Back,
   {localStorage.getItem("username") || "User"} 👋
-</h1>
+</h1> 
             <p>
               Here's your financial
               overview today

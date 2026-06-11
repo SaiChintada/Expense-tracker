@@ -36,6 +36,8 @@ const BudgetTracker = ({
   const remaining =
     budget - expenses;
 
+    
+
   return (
 
     <div className="budget-card">
@@ -71,8 +73,22 @@ const BudgetTracker = ({
           Remaining:
           ₹ {remaining}
         </p>
-
+ 
       </div>
+
+      <span
+  className={
+    remaining < 0
+      ? "over-budget"
+      : ""
+  }
+>
+
+  {remaining < 0
+    ? `Over Budget ₹${Math.abs(remaining)}`
+    : `Remaining ₹${remaining}`}
+
+</span>
 
     </div>
 
