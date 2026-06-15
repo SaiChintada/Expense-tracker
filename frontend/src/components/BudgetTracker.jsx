@@ -1,42 +1,26 @@
-const BudgetTracker = ({
-  transactions,
-}) => {
+import React from "react";
+
+const BudgetTracker = ({ transactions }) => {
 
   const budget =
     Number(
-      localStorage.getItem(
-        "monthlyBudget"
-      )
+      localStorage.getItem("monthlyBudget")
     ) || 20000;
 
-  const expenses =
-    transactions
-      .filter(
-        (t) =>
-          t.type ===
-          "expense"
-      )
-      .reduce(
-        (acc, curr) =>
-          acc +
-          Number(
-            curr.amount
-          ),
-        0
-      );
-
-  const percentage =
-    Math.min(
-      (expenses /
-        budget) *
-        100,
-      100
+  const expenses = transactions
+    .filter((t) => t.type === "expense")
+    .reduce(
+      (acc, curr) =>
+        acc + Number(curr.amount),
+      0
     );
 
-  const remaining =
-    budget - expenses;
+  const percentage = Math.min(
+    (expenses / budget) * 100,
+    100
+  );
 
-    
+  const remaining = budget - expenses;
 
   return (
 
@@ -47,7 +31,7 @@ const BudgetTracker = ({
       </h2>
 
       <h1>
-        ₹ {budget}
+        ₹ {budget.toLocaleString()}
       </h1>
 
       <div className="budget-bar">
@@ -55,44 +39,63 @@ const BudgetTracker = ({
         <div
           className="budget-fill"
           style={{
-            width:
-              `${percentage}%`,
+            width: `${percentage}%`,
           }}
         />
 
       </div>
 
-      <div className="budget-stats">
+      <div className="budget-footer">
 
-        <p>
-          Spent:
-          ₹ {expenses}
-        </p>
+        <div>
 
-        <p>
-          Remaining:
-          ₹ {remaining}
-        </p>
- 
+          <p className="budget-label">
+            Spent
+          </p>
+
+          <h4>
+            ₹ {expenses.toLocaleString()}
+          </h4>
+
+        </div>
+
+        <div>
+
+          <p className="budget-label">
+            Remaining
+          </p>
+
+          <h4
+            className={
+              remaining < 0
+                ? "over-budget"
+                : ""
+            }
+          >
+            ₹ {remaining.toLocaleString()}
+          </h4>
+
+        </div>
+
       </div>
 
-      <span
-  className={
-    remaining < 0
-      ? "over-budget"
-      : ""
-  }
->
+      {remaining < 0 && (
 
-  {remaining < 0
-    ? `Over Budget ₹${Math.abs(remaining)}`
-    : `Remaining ₹${remaining}`}
+        <div className="budget-warning">
 
-</span>
+          ⚠️ Over Budget by ₹
+          {Math.abs(
+            remaining
+          ).toLocaleString()}
+
+        </div>
+
+      )}
 
     </div>
 
   );
+
 };
 
 export default BudgetTracker;

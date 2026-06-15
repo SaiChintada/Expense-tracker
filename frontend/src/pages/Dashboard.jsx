@@ -151,57 +151,55 @@ const Dashboard = ({
         </div>
 
         {/* Budget Alert */}
+<div className="insight-box">
 
-        <div className="insight-box">
+  {monthlyBudget > 0 && (
 
-          {monthlyBudget > 0 && (
+    <div className="budget-alert">
 
-            <div className="budget-alert">
+      {expense > monthlyBudget ? (
 
-              {expense >
-              monthlyBudget ? (
+        <p>
+          🚨 Budget Exceeded by ₹{expense - monthlyBudget}
+        </p>
 
-                <p>
-                  🚨 Budget Exceeded
-                </p>
+      ) : budgetUsed >= 80 ? (
 
-              ) : budgetUsed >=
-                80 ? (
+        <p>
+          ⚠️ {budgetUsed}% of budget used
+        </p>
 
-                <p>
-                  ⚠️ {budgetUsed}%
-                  of budget used
-                </p>
+      ) : (
 
-              ) : (
+        <p>
+          ✅ Budget healthy
+        </p>
 
-                <p>
-                  ✅ Budget healthy
-                </p>
+      )}
 
-              )}
+    </div>
 
-            </div>
+  )}
 
-          )}
+  <div className="balance-alert">
 
-          {balance > 0 ? (
+    {balance > 0 ? (
 
-            <p>
-              Great job 🎉
-              Your balance is positive.
-            </p>
+      <p>
+        🎉 Great job! You have a positive balance of ₹{balance}
+      </p>
 
-          ) : (
+    ) : (
 
-            <p>
-              Your expenses are higher
-              than income this month.
-            </p>
+      <p>
+        ⚠️ Expenses are higher than income this month
+      </p>
 
-          )}
+    )}
 
-        </div>
+  </div>
+
+</div>
 
         {/* Health + Goal */}
 

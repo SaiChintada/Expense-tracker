@@ -3212,6 +3212,32 @@ body{
   font-weight:500;
 }
 
+
+.insight-box{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:24px;
+}
+
+.budget-alert,
+.balance-alert{
+  padding:18px 24px;
+  border-radius:18px;
+  font-size:15px;
+  font-weight:600;
+}
+
+.budget-alert{
+  background:rgba(99,102,241,0.15);
+  border:1px solid rgba(99,102,241,0.3);
+}
+
+.balance-alert{
+  background:rgba(34,197,94,0.12);
+  border:1px solid rgba(34,197,94,0.25);
+}
+
 .ai-card{
 
   margin-bottom:30px;
@@ -4557,7 +4583,7 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:24px;
-  align-items:stretch;
+  align-items:start;
 }
 
 .dashboard-row > *{
