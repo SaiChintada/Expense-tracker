@@ -4025,7 +4025,7 @@ body{
 
   padding:32px;
 
-  min-height:360px;
+  min-height:280px;
 
   border:1px solid rgba(
     255,
@@ -4327,6 +4327,8 @@ body{
   min-height:90px;
 }
 
+
+
 .budget-card{
   background:linear-gradient(
     135deg,
@@ -4334,11 +4336,9 @@ body{
     #1e293b
   );
 
-  border-radius:28px;
+  border-radius:24px;
 
-  padding:32px;
-
-  height:380px;
+  padding:28px;
 
   border:1px solid rgba(
     255,
@@ -4346,24 +4346,36 @@ body{
     255,
     0.06
   );
-}
 
-.budget-card{
+  min-height:220px;
+
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  justify-content:flex-start;
 }
+
 .budget-card h2{
-  font-size:18px;
-  color:#cbd5e1;
-  margin-bottom:20px;
+  font-size:32px;
+  font-weight:700;
+  color:white;
+  margin-bottom:15px;
 }
 
 .budget-card h1{
-  font-size:56px;
-  font-weight:800;
-  margin:16px 0 24px;
+  font-size:42px;
+  font-weight:700;
+  margin:10px 0 12px; 
   line-height:1;
+}
+
+.budget-footer{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px; 
+}
+
+.budget-warning{
+  margin-top:10px;
 }
 
 .dashboard-row{
@@ -4401,9 +4413,6 @@ body{
   align-items:start;
 }
 
-.dashboard-row > *{
-  height:100%;
-}
 
 .profile-tag{
 
@@ -4962,7 +4971,7 @@ body{
 
   text-align:center;
 
-  height:300px;
+  height:280px;
 }
 
 .health-grid {
@@ -5011,12 +5020,7 @@ body{
   background: rgba(255,255,255,0.03);
 }
 
-.dashboard-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-  margin-bottom:24px;
-}
+
 
 .premium-card{
   background:linear-gradient(
@@ -5036,7 +5040,7 @@ body{
 
   padding:32px;
 
-  min-height:360px;
+  min-height:280px;
 
   display:flex;
   flex-direction:column;
@@ -5083,7 +5087,7 @@ body{
 
   padding:32px;
 
-  min-height:300px;
+  min-height:280px;
 
   display:flex;
 
@@ -5114,7 +5118,7 @@ body{
 
   padding:32px;
 
-  height:300px;
+  height:280px;
 
   border:1px solid rgba(
     255,
@@ -5176,20 +5180,18 @@ body{
 
   padding:32px;
 
-  min-height:360px;
+  min-height:280px;
 
   box-sizing:border-box;
 }
 
 .performance-card{
-
   display:flex;
-
   flex-direction:column;
+  justify-content:flex-start;
 
-  justify-content:center;
-
-  height:300px;
+  margin-top:-5px;
+  transform:translateY(-5px);
 }
 
 .goal-card h2,
@@ -5253,7 +5255,3 @@ body{
   margin-bottom:8px;
 }
 
-.budget-footer h4{
-  font-size:28px;
-  margin-top:6px;
-}
