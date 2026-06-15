@@ -4239,9 +4239,9 @@ body{
 
 .health-score{
 
-  width:120px;
+  width:130px;
 
-  height:120px;
+  height:130px;
 
   margin:0 auto;
 
@@ -4253,7 +4253,7 @@ body{
 
   justify-content:center;
 
-  font-size:42px;
+  font-size:52px;
 
   font-weight:700;
 
@@ -4338,7 +4338,7 @@ body{
 
   padding:32px;
 
-  min-height:360px;
+  height:380px;
 
   border:1px solid rgba(
     255,
@@ -4348,27 +4348,22 @@ body{
   );
 }
 
+.budget-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
 .budget-card h2{
-  font-size:24px;
-
-  font-weight:700;
-
-  color:white;
-
+  font-size:18px;
+  color:#cbd5e1;
   margin-bottom:20px;
 }
 
 .budget-card h1{
-
-  font-size:64px;
-
+  font-size:56px;
   font-weight:800;
-
+  margin:16px 0 24px;
   line-height:1;
-
-  margin:20px 0 30px;
-
-  color:white;
 }
 
 .dashboard-row{
@@ -4966,6 +4961,8 @@ body{
   justify-content:center;
 
   text-align:center;
+
+  height:300px;
 }
 
 .health-grid {
@@ -5086,7 +5083,7 @@ body{
 
   padding:32px;
 
-  min-height:360px;
+  min-height:300px;
 
   display:flex;
 
@@ -5117,7 +5114,7 @@ body{
 
   padding:32px;
 
-  min-height:auto;
+  height:300px;
 
   border:1px solid rgba(
     255,
@@ -5154,7 +5151,7 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:24px;
-  margin-bottom:24px;
+  margin-bottom:40px;
 }
 
 .health-card,
@@ -5191,6 +5188,8 @@ body{
   flex-direction:column;
 
   justify-content:center;
+
+  height:300px;
 }
 
 .goal-card h2,
@@ -5203,4 +5202,58 @@ body{
   font-weight:700;
 
   margin-bottom:24px;
+}
+
+.goal-input{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:16px;
+  background:#1f2937;
+  color:white;
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+.goal-stats{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.goal-progress{
+  width:100%;
+  height:14px;
+  background:#1f2937;
+  border-radius:50px;
+  overflow:hidden;
+  margin-bottom:15px;
+}
+
+.goal-fill{
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    #10b981,
+    #22c55e
+  );
+  border-radius:50px;
+}
+.budget-footer{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:20px;
+}
+
+.budget-label{
+  color:#94a3b8;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.budget-footer h4{
+  font-size:28px;
+  margin-top:6px;
 }
