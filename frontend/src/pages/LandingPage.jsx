@@ -1,4 +1,3 @@
-
 import "../styles/LandingPage.css";
 import { useNavigate } from "react-router-dom";
 
@@ -7,34 +6,41 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
+
     <div className="landing-page">
 
-      <h1>
-        FinFlow
-      </h1>
+      <nav className="landing-navbar">
+        Navbar
+      </nav>
 
-      <p>
-        Smart Personal Finance Manager
-      </p>
+      <section className="hero-section">
+        Hero
+      </section>
 
-      <button
-        onClick={() =>
-          navigate("/register")
-        }
-      >
-        Get Started
-      </button>
+      <section className="features-section">
+        Features
+      </section>
 
-      <button
-        onClick={() =>
-          navigate("/login")
-        }
-      >
-        Login
-      </button>
+      <section className="stats-section">
+        Stats
+      </section>
+
+      <section className="preview-section">
+        Dashboard Preview
+      </section>
+
+      <section className="cta-section">
+        CTA
+      </section>
+
+      <footer className="landing-footer">
+        Footer
+      </footer>
 
     </div>
+
   );
+
 };
 
 export default LandingPage;
