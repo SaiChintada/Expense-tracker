@@ -5190,8 +5190,8 @@ body{
   flex-direction:column;
   justify-content:flex-start;
 
-  margin-top:-5px;
-  transform:translateY(-5px);
+  margin-top:-1px;
+  transform:translateY(-1px);
 }
 
 .goal-card h2,

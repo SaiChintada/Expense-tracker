@@ -16,6 +16,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Settings from "./pages/Settings";
 
+import LandingPage from "./pages/LandingPage";
+
 import API from "./services/api";
 
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -154,6 +156,11 @@ function App() {
   }
 />
 
+    <Route
+  path="/"
+  element={<LandingPage />}
+/>
+
       <Route
   path="/settings"
   element={
@@ -169,14 +176,6 @@ function App() {
   }
 />
 
-      <Route
-        path="/"
-        element={
-          <Navigate
-            to="/dashboard"
-          />
-        }
-      />
 
     </Routes>
 
