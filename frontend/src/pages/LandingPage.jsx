@@ -363,12 +363,73 @@ const LandingPage = () => {
 </section>
 
       <section className="cta-section">
-        CTA
-      </section>
 
-      <footer className="landing-footer">
-        Footer
-      </footer>
+  <div className="cta-container">
+
+    <h2>
+      Ready To Take Control Of Your Finances?
+    </h2>
+
+    <p>
+      Join FinFlow today and start managing
+      your money smarter than ever.
+    </p>
+
+    <button
+      className="cta-button"
+      onClick={() =>
+        navigate("/register")
+      }
+    >
+      Get Started Free
+    </button>
+
+  </div>
+
+</section>
+
+     <footer
+  id="contact"
+  className="landing-footer"
+>
+
+  <div className="footer-content">
+
+    <h2>
+      FinFlow
+    </h2>
+
+    <p>
+      Smart Personal Finance Management System
+    </p>
+
+    <div className="footer-links">
+
+      <a href="#features">
+        Features
+      </a>
+
+      <a href="#preview">
+        Preview
+      </a>
+
+      <a href="/login">
+        Login
+      </a>
+
+      <a href="/register">
+        Register
+      </a>
+
+    </div>
+
+    <span>
+      © 2026 FinFlow. All Rights Reserved.
+    </span>
+
+  </div>
+
+</footer>
 
     </div>
 
