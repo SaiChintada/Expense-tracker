@@ -240,12 +240,127 @@ const LandingPage = () => {
 </section>
 
       <section className="stats-section">
-        Stats
-      </section>
 
-      <section className="preview-section">
-        Dashboard Preview
-      </section>
+  <div className="section-header">
+
+    <h2>
+      Trusted Financial Tracking
+    </h2>
+
+    <p>
+      Everything you need to manage your money effectively.
+    </p>
+
+  </div>
+
+  <div className="stats-grid">
+
+    <div className="stat-card">
+
+      <h1>
+        10K+
+      </h1>
+
+      <p>
+        Transactions Tracked
+      </p>
+
+    </div>
+
+    <div className="stat-card">
+
+      <h1>
+        98%
+      </h1>
+
+      <p>
+        Budget Accuracy
+      </p>
+
+    </div>
+
+    <div className="stat-card">
+
+      <h1>
+        24/7
+      </h1>
+
+      <p>
+        Financial Monitoring
+      </p>
+
+    </div>
+
+    <div className="stat-card">
+
+      <h1>
+        100%
+      </h1>
+
+      <p>
+        Secure Data
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+     <section
+  id="preview"
+  className="preview-section"
+>
+
+  <div className="section-header">
+
+    <h2>
+      Beautiful Dashboard Experience
+    </h2>
+
+    <p>
+      Monitor your financial health in one place.
+    </p>
+
+  </div>
+
+  <div className="dashboard-preview">
+
+    <div className="preview-balance">
+
+      <h3>
+        Current Balance
+      </h3>
+
+      <h1>
+        ₹ 48,500
+      </h1>
+
+    </div>
+
+    <div className="preview-summary">
+
+      <div className="preview-box">
+        Income
+      </div>
+
+      <div className="preview-box">
+        Expenses
+      </div>
+
+      <div className="preview-box">
+        Reports
+      </div>
+
+      <div className="preview-box">
+        Goals
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
       <section className="cta-section">
         CTA
