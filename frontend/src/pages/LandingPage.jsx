@@ -147,9 +147,97 @@ const LandingPage = () => {
 
 </section>
 
-      <section className="features-section">
-        Features
-      </section>
+      <section
+  id="features"
+  className="features-section"
+>
+
+  <div className="section-header">
+
+    <h2>
+      Everything You Need To Manage Your Finances
+    </h2>
+
+    <p>
+      Powerful tools designed to help you
+      track, save and grow your money.
+    </p>
+
+  </div>
+
+  <div className="features-grid">
+
+    <div className="feature-card">
+
+      <div className="feature-icon">
+        📊
+      </div>
+
+      <h3>
+        Expense Tracking
+      </h3>
+
+      <p>
+        Track every transaction and
+        understand where your money goes.
+      </p>
+
+    </div>
+
+    <div className="feature-card">
+
+      <div className="feature-icon">
+        🎯
+      </div>
+
+      <h3>
+        Savings Goals
+      </h3>
+
+      <p>
+        Set targets and monitor your
+        progress towards financial success.
+      </p>
+
+    </div>
+
+    <div className="feature-card">
+
+      <div className="feature-icon">
+        💰
+      </div>
+
+      <h3>
+        Budget Management
+      </h3>
+
+      <p>
+        Stay within limits and avoid
+        overspending with smart budgeting.
+      </p>
+
+    </div>
+
+    <div className="feature-card">
+
+      <div className="feature-icon">
+        🤖
+      </div>
+
+      <h3>
+        AI Insights
+      </h3>
+
+      <p>
+        Receive intelligent financial
+        suggestions and spending analysis.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
       <section className="stats-section">
         Stats
