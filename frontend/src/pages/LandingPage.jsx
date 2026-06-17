@@ -57,97 +57,71 @@ const LandingPage = () => {
 
     <section className="hero-section">
 
-  <div className="hero-content">
+  <div className="hero-overlay">
 
-    <span className="hero-badge">
+```
+<span className="hero-badge">
 
-      Smart Personal Finance Management
+  Smart Personal Finance Management
 
-    </span>
+</span>
 
-    <h1>
+<h1>
 
-      Track Expenses.
-      <br />
-      Manage Budgets.
-      <br />
-      Grow Savings.
+  Your Personal Finance
+  <br />
+  Command Center
 
-    </h1>
+</h1>
 
-    <p>
+<p>
 
-      ExpenseFlow helps you monitor spending,
-      manage budgets, track savings goals,
-      analyze financial performance and gain
-      valuable insights through a beautiful
-      and intuitive dashboard.
+  Track spending, manage budgets,
+  monitor savings goals and gain
+  powerful financial insights —
+  all from one beautiful dashboard.
 
-    </p>
+</p>
 
-    <div className="hero-actions">
+<div className="hero-actions">
 
-      <button
-        className="hero-btn"
-        onClick={() =>
-          navigate("/register")
-        }
-      >
+  <button
+    className="hero-btn"
+    onClick={() =>
+      navigate("/register")
+    }
+  >
+    Start Free
+  </button>
 
-        Start Tracking Free
+  <button
+    className="hero-secondary-btn"
+    onClick={() =>
+      navigate("/login")
+    }
+  >
+    Login
+  </button>
 
-      </button>
+</div>
 
-      <button
-        className="hero-secondary-btn"
-        onClick={() =>
-          navigate("/login")
-        }
-      >
+<div className="hero-features">
 
-        View Demo
+  <span>Budget Tracking</span>
 
-      </button>
+  <span>Analytics</span>
 
-    </div>
+  <span>Savings Goals</span>
 
-    <div className="hero-stats">
+  <span>Smart Reports</span>
 
-      <div>
-
-        <h3>Budgeting</h3>
-
-        <span>
-          Smart Monthly Tracking
-        </span>
-
-      </div>
-
-      <div>
-
-        <h3>Analytics</h3>
-
-        <span>
-          Visual Financial Reports
-        </span>
-
-      </div>
-
-      <div>
-
-        <h3>Goals</h3>
-
-        <span>
-          Savings Progress Monitoring
-        </span>
-
-      </div>
-
-    </div>
+</div>
+```
 
   </div>
 
 </section>
+
 
       <section
   id="features"
