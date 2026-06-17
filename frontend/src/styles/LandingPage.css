@@ -4,7 +4,6 @@
   color:white;
 }
 
-.landing-navbar,
 .hero-section,
 .features-section,
 .stats-section,
@@ -22,17 +21,26 @@
   justify-content:space-between;
   align-items:center;
 
+  padding:20px 8%;
+
   position:sticky;
   top:0;
 
   backdrop-filter:blur(12px);
 
   z-index:100;
+
+  border-bottom:1px solid rgba(
+    255,
+    255,
+    255,
+    0.05
+  );
 }
 
 .logo{
 
-  font-size:30px;
+  font-size:24px;
   font-weight:800;
 
   color:#8b5cf6;
