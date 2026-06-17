@@ -55,26 +55,37 @@ const LandingPage = () => {
 
 </nav>
 
-     <section className="hero-section">
+    <section className="hero-section">
 
   <div className="hero-content">
 
-    <div className="hero-left">
+    <span className="hero-badge">
 
-      <h1>
-        Track Expenses.
-        <br />
-        Manage Budgets.
-        <br />
-        Grow Savings.
-      </h1>
+      Smart Personal Finance Management
 
-      <p>
-        ExpenseFlow helps you monitor spending,
-        manage budgets, track goals and gain
-        financial insights through a beautiful
-        dashboard experience.
-      </p>
+    </span>
+
+    <h1>
+
+      Track Expenses.
+      <br />
+      Manage Budgets.
+      <br />
+      Grow Savings.
+
+    </h1>
+
+    <p>
+
+      ExpenseFlow helps you monitor spending,
+      manage budgets, track savings goals,
+      analyze financial performance and gain
+      valuable insights through a beautiful
+      and intuitive dashboard.
+
+    </p>
+
+    <div className="hero-actions">
 
       <button
         className="hero-btn"
@@ -82,26 +93,53 @@ const LandingPage = () => {
           navigate("/register")
         }
       >
+
         Start Tracking Free
+
+      </button>
+
+      <button
+        className="hero-secondary-btn"
+        onClick={() =>
+          navigate("/login")
+        }
+      >
+
+        View Demo
+
       </button>
 
     </div>
 
-    <div className="hero-right">
+    <div className="hero-stats">
 
-      <div className="hero-card balance-card">
+      <div>
 
-        <span>Current Balance</span>
+        <h3>Budgeting</h3>
 
-        <h2>₹ 48,500</h2>
+        <span>
+          Smart Monthly Tracking
+        </span>
 
       </div>
 
-      <div className="hero-card analytics-card">
+      <div>
 
-        <span>Monthly Savings</span>
+        <h3>Analytics</h3>
 
-        <h2>₹ 12,000</h2>
+        <span>
+          Visual Financial Reports
+        </span>
+
+      </div>
+
+      <div>
+
+        <h3>Goals</h3>
+
+        <span>
+          Savings Progress Monitoring
+        </span>
 
       </div>
 
