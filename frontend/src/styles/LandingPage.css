@@ -160,172 +160,127 @@ html{
 
 .hero-section{
 
-  padding:140px 8% 120px;
+min-height:85vh;
 
-  text-align:center;
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:120px 8%;
+
+position:relative;
+
+text-align:center;
+
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#111827
+);
 }
 
-.hero-content{
+.hero-overlay{
 
-  max-width:900px;
+max-width:900px;
 
-  margin:0 auto;
+margin:auto;
 }
 
 .hero-badge{
 
-  display:inline-block;
+display:inline-block;
 
-  padding:10px 20px;
+padding:10px 20px;
 
-  border-radius:999px;
+border-radius:999px;
 
-  background:
-  rgba(
-    139,
-    92,
-    246,
-    0.15
-  );
+background:
+rgba(
+139,
+92,
+246,
+.15
+);
 
-  color:#8b5cf6;
+color:#8b5cf6;
 
-  font-weight:600;
+font-weight:600;
 
-  margin-bottom:24px;
+margin-bottom:30px;
 }
 
-.hero-content h1{
+.hero-overlay h1{
 
-  font-size:72px;
+font-size:76px;
 
-  line-height:1.1;
+line-height:1.05;
 
-  margin-bottom:24px;
+margin-bottom:24px;
 }
 
-.hero-content p{
+.hero-overlay p{
 
-  max-width:700px;
+max-width:720px;
 
-  margin:0 auto 36px;
+margin:0 auto 40px;
 
-  color:#cbd5e1;
+font-size:22px;
 
-  font-size:20px;
+line-height:1.8;
 
-  line-height:1.8;
+color:#cbd5e1;
 }
 
 .hero-actions{
 
-  display:flex;
+display:flex;
 
-  justify-content:center;
+justify-content:center;
 
-  gap:16px;
+gap:16px;
 
-  margin-bottom:60px;
+margin-bottom:60px;
 }
 
-.hero-btn{
+.hero-features{
 
-  background:#8b5cf6;
+display:flex;
 
-  color:white;
+justify-content:center;
 
-  border:none;
+flex-wrap:wrap;
 
-  padding:16px 32px;
-
-  border-radius:14px;
-
-  cursor:pointer;
-
-  font-weight:600;
-
-  transition:.3s;
+gap:16px;
 }
 
-.hero-btn:hover{
+.hero-features span{
 
-  transform:translateY(-3px);
+padding:12px 20px;
+
+border-radius:999px;
+
+background:
+rgba(
+255,
+255,
+255,
+.04
+);
+
+border:1px solid
+rgba(
+255,
+255,
+255,
+.06
+);
+
+color:#cbd5e1;
 }
 
-.hero-secondary-btn{
-
-  background:transparent;
-
-  color:white;
-
-  border:1px solid
-  rgba(
-    255,
-    255,
-    255,
-    0.15
-  );
-
-  padding:16px 32px;
-
-  border-radius:14px;
-
-  cursor:pointer;
-
-  transition:.3s;
-}
-
-.hero-secondary-btn:hover{
-
-  border-color:#8b5cf6;
-
-  color:#8b5cf6;
-}
-
-.hero-stats{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
-  gap:24px;
-}
-
-.hero-stats div{
-
-  background:
-  rgba(
-    255,
-    255,
-    255,
-    0.03
-  );
-
-  border:1px solid
-  rgba(
-    255,
-    255,
-    255,
-    0.05
-  );
-
-  border-radius:20px;
-
-  padding:24px;
-}
-
-.hero-stats h3{
-
-  color:#8b5cf6;
-
-  margin-bottom:8px;
-}
-
-.hero-stats span{
-
-  color:#cbd5e1;
-}
 
 .preview-card{
 
