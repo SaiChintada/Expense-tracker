@@ -17,19 +17,19 @@ const LandingPage = () => {
 
   <div className="nav-links">
 
-    <a href="#features">
-      Features
-    </a>
+  <a href="#features">
+    Features
+  </a>
 
-    <a href="#preview">
-      Preview
-    </a>
+  <a href="#preview">
+    Preview
+  </a>
 
-    <a href="#contact">
-      Contact
-    </a>
+  <a href="#contact">
+    Contact
+  </a>
 
-  </div>
+</div>
 
   <div className="nav-buttons">
 
