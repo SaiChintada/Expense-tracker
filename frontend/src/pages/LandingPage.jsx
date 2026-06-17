@@ -55,90 +55,54 @@ const LandingPage = () => {
 
 </nav>
 
-      <section className="hero-section">
+     <section className="hero-section">
 
-  <div className="hero-left">
+  <div className="hero-content">
 
-    <span className="hero-badge">
-      Smart Personal Finance Manager
-    </span>
+    <div className="hero-left">
 
-    <h1>
+      <h1>
+        Track Expenses.
+        <br />
+        Manage Budgets.
+        <br />
+        Grow Savings.
+      </h1>
 
-      Take Control
-      <br />
-      Of Your Finances
-
-    </h1>
-
-    <p>
-
-      Track expenses,
-      manage budgets,
-      achieve savings goals,
-      and gain powerful insights
-      into your financial future.
-
-    </p>
-
-    <div className="hero-buttons">
+      <p>
+        ExpenseFlow helps you monitor spending,
+        manage budgets, track goals and gain
+        financial insights through a beautiful
+        dashboard experience.
+      </p>
 
       <button
-        className="hero-primary"
+        className="hero-btn"
         onClick={() =>
           navigate("/register")
         }
       >
-        Get Started
-      </button>
-
-      <button
-        className="hero-secondary"
-        onClick={() =>
-          navigate("/login")
-        }
-      >
-        Login
+        Start Tracking Free
       </button>
 
     </div>
 
-  </div>
+    <div className="hero-right">
 
-  <div className="hero-right">
+      <div className="hero-card balance-card">
 
-    <div className="preview-card">
+        <span>Current Balance</span>
 
-      <h3>
-        Current Balance
-      </h3>
+        <h2>₹ 48,500</h2>
 
-      <h1>
-        ₹ 48,500
-      </h1>
-
-      <p>
-        +12.5% This Month
-      </p>
-
-    </div>
-
-    <div className="preview-grid">
-
-      <div className="mini-card">
-        Budget
       </div>
 
-      <div className="mini-card">
-        Reports
-      </div>
+      <div className="hero-card analytics-card">
 
-      <div className="mini-card">
-        Goals
-      </div>
+        <span>Monthly Savings</span>
 
-      <div className="mini-card">
-        Insights
+        <h2>₹ 12,000</h2>
+
       </div>
 
     </div>

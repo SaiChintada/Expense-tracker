@@ -158,39 +158,16 @@ html{
   );
 }
 
-.hero-section{
+.hero-content{
 
   display:grid;
 
   grid-template-columns:
-  1fr 1fr;
-
-  align-items:center;
+  1.2fr 1fr;
 
   gap:60px;
 
-  min-height:85vh;
-}
-
-.hero-badge{
-
-  background:
-  rgba(
-    139,
-    92,
-    246,
-    0.15
-  );
-
-  color:#8b5cf6;
-
-  padding:10px 18px;
-
-  border-radius:999px;
-
-  display:inline-block;
-
-  margin-bottom:20px;
+  align-items:center;
 }
 
 .hero-left h1{
@@ -204,54 +181,59 @@ html{
 
 .hero-left p{
 
-  color:#cbd5e1;
-
   font-size:20px;
 
-  line-height:1.8;
+  color:#cbd5e1;
+
+  margin-bottom:30px;
 
   max-width:600px;
 }
 
-.hero-buttons{
-
-  margin-top:30px;
+.hero-right{
 
   display:flex;
 
-  gap:16px;
+  flex-direction:column;
+
+  gap:24px;
 }
 
-.hero-primary{
+.hero-card{
 
-  background:#8b5cf6;
+  background:
+  linear-gradient(
+    135deg,
+    #1e293b,
+    #0f172a
+  );
 
-  border:none;
+  padding:32px;
 
-  color:white;
+  border-radius:24px;
 
-  padding:16px 28px;
-
-  border-radius:14px;
-
-  cursor:pointer;
+  border:1px solid
+  rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
 }
 
-.hero-secondary{
+.hero-card span{
 
-  background:transparent;
-
-  border:1px solid rgba(255,255,255,0.1);
-
-  color:white;
-
-  padding:16px 28px;
-
-  border-radius:14px;
-
-  cursor:pointer;
+  color:#cbd5e1;
 }
 
+.hero-card h2{
+
+  margin-top:12px;
+
+  color:#8b5cf6;
+
+  font-size:42px;
+}
 .preview-card{
 
   background:
