@@ -159,14 +159,23 @@ html{
 }
 
 .hero-section{
+
   position:relative;
-  min-height:85vh;
+
+  min-height:90vh;
 
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 
-  text-align:center;
+  padding:120px 8%;
+
+  background:
+  linear-gradient(
+  180deg,
+  #071226 0%,
+  #08152d 100%
+  );
 
   overflow:hidden;
 }
