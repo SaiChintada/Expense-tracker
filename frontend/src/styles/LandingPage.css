@@ -191,6 +191,35 @@ html{
   transform:translate(-50%,-50%);
 }
 
+.hero-highlights{
+
+  display:flex;
+  gap:20px;
+
+  justify-content:center;
+
+  margin-top:60px;
+
+  flex-wrap:wrap;
+}
+
+.highlight-card{
+
+  width:220px;
+
+  background:
+  rgba(255,255,255,.04);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  border-radius:20px;
+
+  padding:25px;
+
+  backdrop-filter:blur(10px);
+}
+
 .hero-overlay{
 
 max-width:900px;

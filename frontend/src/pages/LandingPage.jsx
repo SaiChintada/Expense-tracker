@@ -57,15 +57,15 @@ const LandingPage = () => {
 
   <section className="hero-section">
 
-  <div className="hero-glow"></div>
+  <div className="hero-overlay"></div>
 
-  <div className="hero-content">
+  <div className="hero-container">
 
     <div className="hero-badge">
       ✨ Smart Personal Finance Platform
     </div>
 
-    <h1>
+    <h1 className="hero-title">
       Track Expenses.
       <br />
       Build Wealth.
@@ -73,42 +73,61 @@ const LandingPage = () => {
       Stay In Control.
     </h1>
 
-    <p>
-      Manage transactions, budgets,
-      reports, analytics and savings
-      from a single intelligent platform.
+    <p className="hero-description">
+      Manage transactions, budgets, reports, analytics and savings
+      from a single intelligent platform designed for modern users.
     </p>
 
-    <div className="hero-actions">
-      <button className="hero-primary">
+    <div className="hero-buttons">
+
+      <button
+        className="hero-primary-btn"
+        onClick={() => navigate("/register")}
+      >
         Start Free
       </button>
 
-      <button className="hero-secondary">
-        View Features
+      <button
+        className="hero-secondary-btn"
+      >
+        View Demo
       </button>
+
     </div>
 
-    <div className="hero-highlights">
+    <div className="hero-preview">
 
-      <div className="highlight-card">
-        <span>📊</span>
-        <h3>Expense Tracking</h3>
-      </div>
+      <div className="preview-card">
 
-      <div className="highlight-card">
-        <span>💰</span>
-        <h3>Budget Management</h3>
-      </div>
+        <div className="preview-header">
 
-      <div className="highlight-card">
-        <span>📈</span>
-        <h3>Analytics</h3>
-      </div>
+          <span>Current Balance</span>
 
-      <div className="highlight-card">
-        <span>🤖</span>
-        <h3>AI Insights</h3>
+          <div className="status-dot"></div>
+
+        </div>
+
+        <h2>₹ 2,02,662</h2>
+
+        <div className="preview-stats">
+
+          <div>
+            <p>Income</p>
+            <h4>₹ 3,08,762</h4>
+          </div>
+
+          <div>
+            <p>Expense</p>
+            <h4>₹ 1,06,100</h4>
+          </div>
+
+          <div>
+            <p>Savings</p>
+            <h4>65%</h4>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
