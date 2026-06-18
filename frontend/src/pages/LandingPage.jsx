@@ -55,73 +55,54 @@ const LandingPage = () => {
 
 </nav>
 
-    <section className="hero-section">
+   <section className="hero-section">
 
-  <div className="hero-overlay">
+  <div className="hero-badge">
+    ✨ Smart Personal Finance Management
+  </div>
 
-```
-<span className="hero-badge">
+  <h1 className="hero-title">
+    Track Expenses.
+    <br />
+    Manage Budgets.
+    <br />
+    Grow Savings.
+  </h1>
 
-  Smart Personal Finance Management
+  <p className="hero-subtitle">
+    ExpenseFlow helps you monitor spending,
+    manage budgets, track savings goals and gain
+    powerful financial insights from one dashboard.
+  </p>
 
-</span>
+  <div className="hero-buttons">
 
-<h1>
+    <button
+      className="primary-btn"
+      onClick={() => navigate("/register")}
+    >
+      Get Started Free
+    </button>
 
-  Your Personal Finance
-  <br />
-  Command Center
+    <button
+      className="secondary-btn"
+      onClick={() => navigate("/login")}
+    >
+      Login
+    </button>
 
-</h1>
+  </div>
 
-<p>
+  <div className="dashboard-preview">
 
-  Track spending, manage budgets,
-  monitor savings goals and gain
-  powerful financial insights —
-  all from one beautiful dashboard.
-
-</p>
-
-<div className="hero-actions">
-
-  <button
-    className="hero-btn"
-    onClick={() =>
-      navigate("/register")
-    }
-  >
-    Start Free
-  </button>
-
-  <button
-    className="hero-secondary-btn"
-    onClick={() =>
-      navigate("/login")
-    }
-  >
-    Login
-  </button>
-
-</div>
-
-<div className="hero-features">
-
-  <span>Budget Tracking</span>
-
-  <span>Analytics</span>
-
-  <span>Savings Goals</span>
-
-  <span>Smart Reports</span>
-
-</div>
-```
+    <img
+      src="/frontend/public/dashboard-preview.png"
+      alt="ExpenseFlow Dashboard"
+    />
 
   </div>
 
 </section>
-
 
       <section
   id="features"
