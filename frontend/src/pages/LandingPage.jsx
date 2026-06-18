@@ -55,50 +55,63 @@ const LandingPage = () => {
 
 </nav>
 
-   <section className="hero-section">
+  <section className="hero-section">
 
-  <div className="hero-badge">
-    ✨ Smart Personal Finance Management
-  </div>
+  <div className="hero-glow"></div>
 
-  <h1 className="hero-title">
-    Track Expenses.
-    <br />
-    Manage Budgets.
-    <br />
-    Grow Savings.
-  </h1>
+  <div className="hero-content">
 
-  <p className="hero-subtitle">
-    ExpenseFlow helps you monitor spending,
-    manage budgets, track savings goals and gain
-    powerful financial insights from one dashboard.
-  </p>
+    <div className="hero-badge">
+      ✨ Smart Personal Finance Platform
+    </div>
 
-  <div className="hero-buttons">
+    <h1>
+      Track Expenses.
+      <br />
+      Build Wealth.
+      <br />
+      Stay In Control.
+    </h1>
 
-    <button
-      className="primary-btn"
-      onClick={() => navigate("/register")}
-    >
-      Get Started Free
-    </button>
+    <p>
+      Manage transactions, budgets,
+      reports, analytics and savings
+      from a single intelligent platform.
+    </p>
 
-    <button
-      className="secondary-btn"
-      onClick={() => navigate("/login")}
-    >
-      Login
-    </button>
+    <div className="hero-actions">
+      <button className="hero-primary">
+        Start Free
+      </button>
 
-  </div>
+      <button className="hero-secondary">
+        View Features
+      </button>
+    </div>
 
-  <div className="dashboard-preview">
+    <div className="hero-highlights">
 
-    <img
-      src="/frontend/public/dashboard-preview.png"
-      alt="ExpenseFlow Dashboard"
-    />
+      <div className="highlight-card">
+        <span>📊</span>
+        <h3>Expense Tracking</h3>
+      </div>
+
+      <div className="highlight-card">
+        <span>💰</span>
+        <h3>Budget Management</h3>
+      </div>
+
+      <div className="highlight-card">
+        <span>📈</span>
+        <h3>Analytics</h3>
+      </div>
+
+      <div className="highlight-card">
+        <span>🤖</span>
+        <h3>AI Insights</h3>
+      </div>
+
+    </div>
 
   </div>
 
