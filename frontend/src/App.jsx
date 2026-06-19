@@ -16,7 +16,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Settings from "./pages/Settings";
 
-//import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/LandingPage";
 
 import API from "./services/api";
 
@@ -178,6 +178,11 @@ function App() {
   element={
     <Navigate to="/login" />
   }
+/>
+
+<Route
+  path="/"
+  element={<LandingPage />}
 />
 
     </Routes>
