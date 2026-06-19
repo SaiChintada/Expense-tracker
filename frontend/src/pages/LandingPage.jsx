@@ -12,7 +12,7 @@ const LandingPage = () => {
       <nav className="landing-navbar">
 
   <div className="logo">
-    FinFlow
+    ExpenseFlow
   </div>
 
   <div className="nav-links">
@@ -360,7 +360,7 @@ const LandingPage = () => {
     </h2>
 
     <p>
-      Join FinFlow today and start managing
+      Join ExpenseFlow today and start managing
       your money smarter than ever.
     </p>
 
@@ -385,7 +385,7 @@ const LandingPage = () => {
   <div className="footer-content">
 
     <h2>
-      FinFlow
+      ExpenseFlow
     </h2>
 
     <p>
@@ -413,7 +413,7 @@ const LandingPage = () => {
     </div>
 
     <span>
-      © 2026 FinFlow. All Rights Reserved.
+      © 2026 ExpenseFlow. All Rights Reserved.
     </span>
 
   </div>
