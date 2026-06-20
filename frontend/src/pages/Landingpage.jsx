@@ -1,12 +1,12 @@
-import "./LandingPage.css";
+
 import { useNavigate } from "react-router-dom";
+import "../styles/LandingPage.css";
 
 export default function LandingPage() {
 const navigate = useNavigate();
 
 return ( <div className="landing">
 
-```
   {/* NAVBAR */}
   <nav className="navbar">
     <div className="logo">
