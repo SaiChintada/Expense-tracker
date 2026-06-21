@@ -26,43 +26,84 @@ export default function LandingPage() {
       </nav>
 
       {/* HERO */}
-      <section className="hero">
+     <section className="hero">
 
-        <div className="hero-content">
+  <div className="hero-left">
 
-          <span className="badge">
-            Smart Finance Platform
-          </span>
+    <span className="hero-badge">
+      Smart Finance Platform
+    </span>
 
-          <h1>
-            Manage Money <br />
-            Like A Pro
-          </h1>
+    <h1>
+      Manage Money
+      <br />
+      Like A Pro
+    </h1>
 
-          <p>
-            Track expenses, control budgets,
-            analyze spending and grow savings
-            from one beautiful dashboard.
-          </p>
+    <p>
+      Track expenses, manage budgets,
+      analyze spending and build
+      better financial habits.
+    </p>
 
-          <div className="hero-buttons">
+    <div className="hero-buttons">
 
-            <button
-              onClick={() => navigate("/register")}
-              className="primary-btn"
-            >
-              Start Free
-            </button>
+      <button className="primary-btn">
+        Get Started
+      </button>
 
-            <button className="secondary-btn">
-              Live Demo
-            </button>
+      <button className="secondary-btn">
+        Demo
+      </button>
 
-          </div>
+    </div>
 
+  </div>
+
+  <div className="hero-right">
+
+    <div className="mockup-card">
+
+      <div className="mockup-top">
+
+        <span>Current Balance</span>
+
+        <h2>
+          ₹ 2,02,662
+        </h2>
+
+      </div>
+
+      <div className="mockup-grid">
+
+        <div>
+          Income
+          <strong>
+            ₹ 3.1L
+          </strong>
         </div>
 
-      </section>
+        <div>
+          Expense
+          <strong>
+            ₹ 1.1L
+          </strong>
+        </div>
+
+        <div>
+          Savings
+          <strong>
+            65%
+          </strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* DASHBOARD */}
       <section
