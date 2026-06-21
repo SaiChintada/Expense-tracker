@@ -1,212 +1,209 @@
-
+import "./LandingPage.css";
 import { useNavigate } from "react-router-dom";
-import "../styles/LandingPage.css";
 
 export default function LandingPage() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-return ( <div className="landing">
+  return (
+    <div className="landing">
 
-  {/* NAVBAR */}
-  <nav className="navbar">
-    <div className="logo">
-      ExpenseFlow
-    </div>
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <h2 className="logo">FinFlow</h2>
 
-    <div className="nav-links">
-      <a href="#features">Features</a>
-      <a href="#dashboard">Dashboard</a>
-      <a href="#contact">Contact</a>
-    </div>
+        <div className="nav-links">
+          <a href="#features">Features</a>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#contact">Contact</a>
+        </div>
 
-    <div className="nav-buttons">
-      <button
-        className="login-btn"
-        onClick={() => navigate("/login")}
+        <button
+          className="nav-btn"
+          onClick={() => navigate("/login")}
+        >
+          Get Started
+        </button>
+      </nav>
+
+      {/* HERO */}
+      <section className="hero">
+
+        <div className="hero-content">
+
+          <span className="badge">
+            Smart Finance Platform
+          </span>
+
+          <h1>
+            Manage Money <br />
+            Like A Pro
+          </h1>
+
+          <p>
+            Track expenses, control budgets,
+            analyze spending and grow savings
+            from one beautiful dashboard.
+          </p>
+
+          <div className="hero-buttons">
+
+            <button
+              onClick={() => navigate("/register")}
+              className="primary-btn"
+            >
+              Start Free
+            </button>
+
+            <button className="secondary-btn">
+              Live Demo
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* DASHBOARD */}
+      <section
+        id="dashboard"
+        className="dashboard-section"
       >
-        Login
-      </button>
 
-      <button
-        className="primary-btn"
-        onClick={() => navigate("/register")}
+        <div className="section-header">
+
+          <h2>
+            One Dashboard.
+            Complete Control.
+          </h2>
+
+          <p>
+            Everything you need in one place.
+          </p>
+
+        </div>
+
+        <div className="dashboard-card">
+
+          <img
+            src="/dashboard-preview.png"
+            alt="dashboard"
+          />
+
+        </div>
+
+      </section>
+
+      {/* FEATURES */}
+      <section
+        id="features"
+        className="features"
       >
-        Get Started
-      </button>
-    </div>
-  </nav>
 
-  {/* HERO */}
-  <section className="hero">
+        <h2>
+          Everything You Need
+        </h2>
 
-    <div className="hero-glow"></div>
+        <div className="feature-grid">
 
-    <span className="badge">
-      Smart Personal Finance Platform
-    </span>
+          <div className="feature-card">
+            <h3>Expense Tracking</h3>
+            <p>
+              Monitor every transaction
+              effortlessly.
+            </p>
+          </div>
 
-    <h1>
-      Manage Every Rupee.
-      <br />
-      Build Wealth Faster.
-    </h1>
+          <div className="feature-card">
+            <h3>Budget Planning</h3>
+            <p>
+              Create budgets and stay
+              on target.
+            </p>
+          </div>
 
-    <p>
-      Track expenses, analyze spending,
-      manage budgets and grow savings
-      with one intelligent dashboard.
-    </p>
+          <div className="feature-card">
+            <h3>Analytics</h3>
+            <p>
+              Visual insights into your
+              financial habits.
+            </p>
+          </div>
 
-    <div className="hero-buttons">
+          <div className="feature-card">
+            <h3>AI Insights</h3>
+            <p>
+              Smart suggestions powered
+              by analytics.
+            </p>
+          </div>
 
-      <button
-        className="primary-btn"
-        onClick={() => navigate("/register")}
+        </div>
+
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="steps">
+
+        <h2>
+          How It Works
+        </h2>
+
+        <div className="step-grid">
+
+          <div className="step-card">
+            <span>01</span>
+            <h3>Add Transactions</h3>
+          </div>
+
+          <div className="step-card">
+            <span>02</span>
+            <h3>Track Spending</h3>
+          </div>
+
+          <div className="step-card">
+            <span>03</span>
+            <h3>Grow Savings</h3>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* CTA */}
+      <section className="cta">
+
+        <h2>
+          Ready To Take Control?
+        </h2>
+
+        <p>
+          Start managing your finances today.
+        </p>
+
+        <button
+          onClick={() => navigate("/register")}
+          className="primary-btn"
+        >
+          Create Account
+        </button>
+
+      </section>
+
+      {/* FOOTER */}
+      <footer
+        id="contact"
+        className="footer"
       >
-        Start Free
-      </button>
 
-      <button className="secondary-btn">
-        View Dashboard
-      </button>
+        <h3>FinFlow</h3>
+
+        <p>
+          Track. Save. Grow.
+        </p>
+
+      </footer>
 
     </div>
-
-  </section>
-
-  {/* DASHBOARD */}
-  <section
-    id="dashboard"
-    className="dashboard-section"
-  >
-
-    <h2>
-      Powerful Financial Dashboard
-    </h2>
-
-    <p>
-      Everything you need in one place.
-    </p>
-
-    <div className="dashboard-wrapper">
-
-      <img
-        src="/dashboard-preview.png"
-        alt="dashboard"
-      />
-
-    </div>
-
-  </section>
-
-  {/* FEATURES */}
-  <section
-    id="features"
-    className="features"
-  >
-
-    <h2>
-      Everything You Need
-    </h2>
-
-    <div className="feature-grid">
-
-      <div className="feature-card">
-        <h3>Expense Tracking</h3>
-        <p>
-          Track every transaction instantly.
-        </p>
-      </div>
-
-      <div className="feature-card">
-        <h3>Budget Planning</h3>
-        <p>
-          Stay within limits and save more.
-        </p>
-      </div>
-
-      <div className="feature-card">
-        <h3>Analytics</h3>
-        <p>
-          Understand spending patterns.
-        </p>
-      </div>
-
-      <div className="feature-card">
-        <h3>AI Insights</h3>
-        <p>
-          Smart recommendations for growth.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  {/* HOW IT WORKS */}
-  <section className="how-it-works">
-
-    <h2>
-      How It Works
-    </h2>
-
-    <div className="steps">
-
-      <div className="step">
-        <span>01</span>
-        <h3>Add Transactions</h3>
-      </div>
-
-      <div className="step">
-        <span>02</span>
-        <h3>Track Spending</h3>
-      </div>
-
-      <div className="step">
-        <span>03</span>
-        <h3>Get Insights</h3>
-      </div>
-
-    </div>
-
-  </section>
-
-  {/* CTA */}
-  <section className="cta">
-
-    <h2>
-      Ready To Take Control?
-    </h2>
-
-    <p>
-      Start tracking your finances today.
-    </p>
-
-    <button
-      className="primary-btn"
-      onClick={() => navigate("/register")}
-    >
-      Create Free Account
-    </button>
-
-  </section>
-
-  {/* FOOTER */}
-  <footer
-    id="contact"
-    className="footer"
-  >
-
-    <h3>ExpenseFlow</h3>
-
-    <p>
-      Track. Save. Grow.
-    </p>
-
-  </footer>
-
-</div>
-
-
-);
+  );
 }
