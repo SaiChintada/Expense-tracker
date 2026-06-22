@@ -53,26 +53,40 @@ cursor:pointer;
 /* HERO */
 
 .hero{
-  min-height:90vh;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  position:relative;
 
-  gap:80px;
-
-  padding:120px 8%;
+  overflow:hidden;
 }
 
-.hero-left{
-  flex:1;
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:700px;
+  height:700px;
+
+  background:
+  radial-gradient(
+    circle,
+    rgba(139,92,246,.25),
+    transparent
+  );
+
+  top:-200px;
+  right:-100px;
+
+  z-index:0;
 }
 
+.hero-left,
 .hero-right{
-  flex:1;
 
-  display:flex;
-  justify-content:center;
+  position:relative;
+
+  z-index:1;
 }
 
 .hero-badge{
