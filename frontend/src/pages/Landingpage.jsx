@@ -48,15 +48,15 @@ export default function LandingPage() {
 
     <div className="hero-buttons">
 
-      <button className="primary-btn">
-        Get Started
-      </button>
+  <button className="primary-btn">
+    Get Started Free
+  </button>
 
-      <button className="secondary-btn">
-        Demo
-      </button>
+  <button className="secondary-btn">
+    View Demo
+  </button>
 
-    </div>
+</div>
 
   </div>
 
