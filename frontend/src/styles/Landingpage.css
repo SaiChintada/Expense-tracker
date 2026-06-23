@@ -19,24 +19,39 @@ body{
   overflow:hidden;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
+.hero{
+  padding-top:140px;
+}
+
 /* NAVBAR */
 
 .navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  height: 85px;
 
-  padding:22px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  background:rgba(5,8,22,.75);
+  padding: 0 7%;
 
-  backdrop-filter:blur(18px);
+  background: rgba(7,21,61,0.85);
 
-  border-bottom:1px solid rgba(255,255,255,.05);
+  backdrop-filter: blur(20px);
+
+  border-bottom: 1px solid rgba(255,255,255,.08);
+
+  z-index: 9999;
+
+  transition: all .3s ease;
 }
 
 .logo{
