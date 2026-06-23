@@ -317,41 +317,46 @@ export default function LandingPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how" className="how-section">
+     <section id="how-it-works" className="how-it-works">
 
-        <div className="section-heading">
-          <h2>How It Works</h2>
-        </div>
+  <div className="section-title">
+    <span>PROCESS</span>
+    <h2>How FinFlow Works</h2>
+    <p>
+      Get started in minutes and take complete control
+      of your finances.
+    </p>
+  </div>
 
-        <div className="timeline">
+  <div className="timeline">
 
-          <div className="timeline-item">
-            <span>01</span>
-            <h3>Create Account</h3>
-            <p>Sign up and set up your profile.</p>
-          </div>
+    <div className="process-card">
+      <div className="process-number">01</div>
+      <h3>Create Account</h3>
+      <p>Register and set up your financial profile.</p>
+    </div>
 
-          <div className="timeline-item">
-            <span>02</span>
-            <h3>Add Transactions</h3>
-            <p>Record income and expenses.</p>
-          </div>
+    <div className="process-card">
+      <div className="process-number">02</div>
+      <h3>Add Transactions</h3>
+      <p>Track income and expenses effortlessly.</p>
+    </div>
 
-          <div className="timeline-item">
-            <span>03</span>
-            <h3>Track Insights</h3>
-            <p>Analyze spending patterns.</p>
-          </div>
+    <div className="process-card">
+      <div className="process-number">03</div>
+      <h3>Analyze Insights</h3>
+      <p>Understand spending patterns with reports.</p>
+    </div>
 
-          <div className="timeline-item">
-            <span>04</span>
-            <h3>Reach Goals</h3>
-            <p>Improve savings and budgeting.</p>
-          </div>
+    <div className="process-card">
+      <div className="process-number">04</div>
+      <h3>Reach Goals</h3>
+      <p>Improve savings and budgeting habits.</p>
+    </div>
 
-        </div>
+  </div>
 
-      </section>
+</section>
 
       {/* CTA */}
       <section className="cta-section">
