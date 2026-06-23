@@ -3,43 +3,23 @@ import "../styles/LandingPage.css";
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
-
   const navigate = useNavigate();
 
   return (
-
     <div className="landing-page">
 
       {/* NAVBAR */}
-
       <nav className="navbar">
+        <div className="logo">FinFlow</div>
 
-        <div className="logo">
-          FinFlow
-        </div>
-
-        <div className="nav-center">
-
-          <a href="#about">
-            About
-          </a>
-
-          <a href="#features">
-            Features
-          </a>
-
-          <a href="#how">
-            How It Works
-          </a>
-
-          <a href="#contact">
-            Contact
-          </a>
-
-        </div>
+        <ul className="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
 
         <div className="nav-actions">
-
           <button
             className="login-btn"
             onClick={() => navigate("/login")}
@@ -53,24 +33,20 @@ export default function LandingPage() {
           >
             Register
           </button>
-
         </div>
-
       </nav>
 
       {/* HERO */}
-
       <section className="hero">
 
-        <div className="hero-content">
+        <div className="hero-left">
 
-          <div className="hero-badge">
+          <span className="hero-badge">
             Smart Personal Finance Platform
-          </div>
+          </span>
 
           <h1>
             Manage Your Finances
-            <br />
             Without Spreadsheets
           </h1>
 
@@ -101,40 +77,41 @@ export default function LandingPage() {
 
         </div>
 
-        <div className="hero-preview">
+        <div className="hero-right">
 
-          <div className="dashboard-preview-card">
+          <div className="dashboard-card">
 
-            <div className="preview-header">
-
-              <div>
-                <span>
-                  Current Balance
-                </span>
-
-                <h2>
-                  ₹2,02,662
-                </h2>
-              </div>
-
+            <div className="dashboard-header">
+              <span>Current Balance</span>
+              <h2>₹2,02,662</h2>
             </div>
 
-            <div className="preview-grid">
+            <div className="dashboard-stats">
 
-              <div className="preview-box">
+              <div className="stat-box">
                 <span>Income</span>
                 <strong>₹3.1L</strong>
               </div>
 
-              <div className="preview-box">
+              <div className="stat-box">
                 <span>Expense</span>
                 <strong>₹1.1L</strong>
               </div>
 
-              <div className="preview-box">
+              <div className="stat-box">
                 <span>Savings</span>
                 <strong>65%</strong>
               </div>
+
+            </div>
+
+            <div className="dashboard-chart">
+
+              <div className="bar bar1"></div>
+              <div className="bar bar2"></div>
+              <div className="bar bar3"></div>
+              <div className="bar bar4"></div>
+              <div className="bar bar5"></div>
 
             </div>
 
@@ -145,128 +122,194 @@ export default function LandingPage() {
       </section>
 
       {/* ABOUT */}
+      <section id="about" className="about-section">
 
-      <section
-        id="about"
-        className="about-section"
-      >
+        <div className="section-heading">
+          <h2>About FinFlow</h2>
+          <p>
+            A modern finance platform designed
+            to simplify money management and
+            help users build better financial habits.
+          </p>
+        </div>
 
-        <h2>
-          About FinFlow
-        </h2>
+        <div className="about-grid">
 
-        <p>
-          FinFlow is a modern personal finance
-          platform designed to help users gain
-          complete visibility over their income,
-          expenses, budgets and savings goals.
-          Everything is built with simplicity,
-          speed and clarity in mind.
-        </p>
+          <div className="info-card">
+            <h3>Simple Tracking</h3>
+            <p>
+              Quickly record and organize
+              income and expenses.
+            </p>
+          </div>
+
+          <div className="info-card">
+            <h3>Smart Analytics</h3>
+            <p>
+              Understand spending habits
+              through visual insights.
+            </p>
+          </div>
+
+          <div className="info-card">
+            <h3>Goal Focused</h3>
+            <p>
+              Stay committed to savings
+              and budgeting goals.
+            </p>
+          </div>
+
+        </div>
 
       </section>
 
-
-      
-
-      <section className="stats">
-
-<div className="stat-card">
-<h2>10K+</h2>
-<p>Transactions Tracked</p>
-</div>
-
-<div className="stat-card">
-<h2>5K+</h2>
-<p>Active Users</p>
-</div>
-
-<div className="stat-card">
-<h2>99%</h2>
-<p>Data Accuracy</p>
-</div>
-
-<div className="stat-card">
-<h2>24/7</h2>
-<p>Availability</p>
-</div>
-
-</section>
-
       {/* FEATURES */}
+      <section id="features" className="features-section">
 
-      <section
-        id="features"
-        className="features-section"
-      >
-
-        <div className="section-title">
-
-          <h2>
-            Everything You Need
-          </h2>
-
+        <div className="section-heading">
+          <h2>Everything You Need</h2>
           <p>
             Powerful tools built to simplify
             personal finance management.
           </p>
-
         </div>
 
         <div className="features-grid">
 
           <div className="feature-card">
-
-            <h3>
-              Expense Tracking
-            </h3>
-
+            <h3>Expense Tracking</h3>
             <p>
               Monitor every transaction and
-              understand exactly where your
-              money goes.
+              understand your spending.
             </p>
-
           </div>
 
           <div className="feature-card">
-
-            <h3>
-              Budget Planning
-            </h3>
-
+            <h3>Budget Planning</h3>
             <p>
               Create budgets and stay within
               spending limits effortlessly.
             </p>
-
           </div>
 
           <div className="feature-card">
-
-            <h3>
-              Financial Analytics
-            </h3>
-
+            <h3>Financial Analytics</h3>
             <p>
-              Gain powerful insights into
-              spending patterns and trends.
+              Gain insights through reports
+              and spending trends.
             </p>
-
           </div>
 
           <div className="feature-card">
-
-            <h3>
-              Smart Insights
-            </h3>
-
+            <h3>Savings Goals</h3>
             <p>
-              Discover opportunities to
-              improve savings and financial
-              discipline.
+              Build financial discipline
+              and achieve goals faster.
             </p>
+          </div>
 
+          <div className="feature-card">
+            <h3>Smart Insights</h3>
+            <p>
+              Receive meaningful financial
+              recommendations.
+            </p>
+          </div>
+
+          <div className="feature-card">
+            <h3>Secure Data</h3>
+            <p>
+              Keep your financial records
+              protected and organized.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* DASHBOARD SHOWCASE */}
+      <section className="showcase-section">
+
+        <div className="showcase-left">
+
+          <h2>
+            One Dashboard.
+            Complete Financial Control.
+          </h2>
+
+          <ul>
+            <li>Track income and expenses</li>
+            <li>Create smart budgets</li>
+            <li>Analyze spending patterns</li>
+            <li>Monitor savings goals</li>
+            <li>Generate financial reports</li>
+          </ul>
+
+        </div>
+
+        <div className="showcase-right">
+
+          <div className="showcase-card">
+
+            <div className="showcase-top">
+              Monthly Overview
+            </div>
+
+            <div className="mini-grid">
+
+              <div>Income</div>
+              <div>Expenses</div>
+              <div>Savings</div>
+              <div>Reports</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* WHY CHOOSE */}
+      <section className="why-section">
+
+        <div className="section-heading">
+          <h2>Why Choose FinFlow</h2>
+        </div>
+
+        <div className="why-grid">
+
+          <div className="why-card">
+            <h3>Clean Interface</h3>
+            <p>
+              Focus on finances without
+              distractions.
+            </p>
+          </div>
+
+          <div className="why-card">
+            <h3>Fast Performance</h3>
+            <p>
+              Optimized for smooth and
+              responsive experience.
+            </p>
+          </div>
+
+          <div className="why-card">
+            <h3>Secure Platform</h3>
+            <p>
+              Designed with privacy and
+              security in mind.
+            </p>
+          </div>
+
+          <div className="why-card">
+            <h3>Easy To Use</h3>
+            <p>
+              Start managing finances
+              immediately.
+            </p>
           </div>
 
         </div>
@@ -274,71 +317,36 @@ export default function LandingPage() {
       </section>
 
       {/* HOW IT WORKS */}
+      <section id="how" className="how-section">
 
-      <section
-        id="how"
-        className="how-section"
-      >
-
-        <div className="section-title">
-
-          <h2>
-            How It Works
-          </h2>
-
+        <div className="section-heading">
+          <h2>How It Works</h2>
         </div>
 
-        <div className="steps-grid">
+        <div className="timeline">
 
-          <div className="step-card">
-
-            <span>
-              01
-            </span>
-
-            <h3>
-              Add Transactions
-            </h3>
-
-            <p>
-              Record your income and expenses
-              within seconds.
-            </p>
-
+          <div className="timeline-item">
+            <span>01</span>
+            <h3>Create Account</h3>
+            <p>Sign up and set up your profile.</p>
           </div>
 
-          <div className="step-card">
-
-            <span>
-              02
-            </span>
-
-            <h3>
-              Analyze Spending
-            </h3>
-
-            <p>
-              Understand financial habits
-              through visual reports.
-            </p>
-
+          <div className="timeline-item">
+            <span>02</span>
+            <h3>Add Transactions</h3>
+            <p>Record income and expenses.</p>
           </div>
 
-          <div className="step-card">
+          <div className="timeline-item">
+            <span>03</span>
+            <h3>Track Insights</h3>
+            <p>Analyze spending patterns.</p>
+          </div>
 
-            <span>
-              03
-            </span>
-
-            <h3>
-              Improve Savings
-            </h3>
-
-            <p>
-              Build better financial discipline
-              and achieve your goals.
-            </p>
-
+          <div className="timeline-item">
+            <span>04</span>
+            <h3>Reach Goals</h3>
+            <p>Improve savings and budgeting.</p>
           </div>
 
         </div>
@@ -346,11 +354,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-
-      <section
-        id="contact"
-        className="cta-section"
-      >
+      <section className="cta-section">
 
         <h2>
           Ready To Take Control
@@ -358,8 +362,8 @@ export default function LandingPage() {
         </h2>
 
         <p>
-          Start tracking expenses and
-          managing budgets today.
+          Start managing expenses,
+          budgets and savings today.
         </p>
 
         <button
@@ -372,35 +376,22 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
+      <footer
+        id="contact"
+        className="footer"
+      >
 
-      <footer className="footer">
-
-        <div>
-          <h3>FinFlow</h3>
-          <p>Track. Save. Grow.</p>
+        <div className="footer-logo">
+          FinFlow
         </div>
 
-        <div>
-          <h4>Product</h4>
-          <p>Features</p>
-          <p>Analytics</p>
-          <p>Reports</p>
-        </div>
-
-        <div>
-          <h4>Company</h4>
-          <p>About</p>
-          <p>Contact</p>
-        </div>
-
-        <div>
-          <h4>Legal</h4>
-          <p>Privacy</p>
-          <p>Terms</p>
-        </div>
+        <p>
+          Track. Save. Grow.
+        </p>
 
       </footer>
 
     </div>
   );
 }
+
