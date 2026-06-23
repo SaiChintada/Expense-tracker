@@ -166,6 +166,33 @@ export default function LandingPage() {
 
       </section>
 
+
+      
+
+      <section className="stats">
+
+<div className="stat-card">
+<h2>10K+</h2>
+<p>Transactions Tracked</p>
+</div>
+
+<div className="stat-card">
+<h2>5K+</h2>
+<p>Active Users</p>
+</div>
+
+<div className="stat-card">
+<h2>99%</h2>
+<p>Data Accuracy</p>
+</div>
+
+<div className="stat-card">
+<h2>24/7</h2>
+<p>Availability</p>
+</div>
+
+</section>
+
       {/* FEATURES */}
 
       <section
