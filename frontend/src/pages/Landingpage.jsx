@@ -375,17 +375,32 @@ export default function LandingPage() {
 
       <footer className="footer">
 
-        <h3>
-          FinFlow
-        </h3>
+        <div>
+          <h3>FinFlow</h3>
+          <p>Track. Save. Grow.</p>
+        </div>
 
-        <p>
-          Track. Save. Grow.
-        </p>
+        <div>
+          <h4>Product</h4>
+          <p>Features</p>
+          <p>Analytics</p>
+          <p>Reports</p>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <p>About</p>
+          <p>Contact</p>
+        </div>
+
+        <div>
+          <h4>Legal</h4>
+          <p>Privacy</p>
+          <p>Terms</p>
+        </div>
 
       </footer>
 
     </div>
   );
 }
-
