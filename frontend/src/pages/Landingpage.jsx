@@ -12,13 +12,12 @@ export default function LandingPage() {
       <nav className="navbar">
         <div className="logo">FinFlow</div>
 
-        <ul className="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how">How It Works</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-
+        <div className="nav-links">
+  <a href="#about">About</a>
+  <a href="#features">Features</a>
+  <a href="#how-it-works">How It Works</a>
+  <a href="#contact">Contact</a>
+</div>
         <div className="nav-actions">
           <button
             className="login-btn"
