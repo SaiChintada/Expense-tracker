@@ -2,20 +2,17 @@ import "../styles/LandingPage.css";
 import { useNavigate } from "react-router-dom";
 
 import {
-  Wallet,
-  BarChart3,
-  PiggyBank,
-  ShieldCheck,
-  ArrowRight,
-  Sparkles,
-  Menu,
-  X,
-  TrendingUp,
-  Target,
-  CreditCard,
-  Mail,
-  Github,
-  Linkedin,
+Wallet,
+BarChart3,
+PiggyBank,
+ShieldCheck,
+ArrowRight,
+Sparkles,
+Menu,
+X,
+TrendingUp,
+Target,
+Mail
 } from "lucide-react";
 
 import { useState } from "react";
@@ -164,45 +161,7 @@ View Demo
 
 </div>
 
-<div className="hero-users">
 
-<div className="mini-card">
-
-<TrendingUp/>
-
-<span>
-
-Smart Analytics
-
-</span>
-
-</div>
-
-<div className="mini-card">
-
-<ShieldCheck/>
-
-<span>
-
-Secure Platform
-
-</span>
-
-</div>
-
-<div className="mini-card">
-
-<PiggyBank/>
-
-<span>
-
-Savings Goals
-
-</span>
-
-</div>
-
-</div>
 
 </div>
 
@@ -900,10 +859,62 @@ Create Free Account
 
 </section>
 
+{/* ================= CONTACT ================= */}
+
+<section
+id="contact"
+className="contact-section"
+>
+
+<div className="section-title">
+
+<span>CONTACT</span>
+
+<h2>
+Let's Talk
+</h2>
+
+<p>
+Have questions or feedback?
+We'd love to hear from you.
+</p>
+
+</div>
+
+<div className="contact-grid">
+
+<div className="contact-card">
+
+<h3>Email</h3>
+
+<p>support@finflow.com</p>
+
+</div>
+
+<div className="contact-card">
+
+<h3>Location</h3>
+
+<p>Hyderabad, India</p>
+
+</div>
+
+<div className="contact-card">
+
+<h3>Availability</h3>
+
+<p>24/7 Support</p>
+
+</div>
+
+</div>
+
+</section>
+
+
 {/* ================= FOOTER ================= */}
 
 <footer
-id="contact"
 className="footer"
 >
 
@@ -957,27 +968,13 @@ How It Works
 
 <div>
 
-<h4>
+<h4>Contact</h4>
 
-Contact
+<p>support@finflow.com</p>
 
-</h4>
+<p>Hyderabad, India</p>
 
-<p>
-
-support@finflow.com
-
-</p>
-
-<div className="socials">
-
-<Github/>
-
-<Linkedin/>
-
-<Mail/>
-
-</div>
+<p>Available 24/7</p>
 
 </div>
 

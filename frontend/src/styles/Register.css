@@ -1,0 +1,808 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,sans-serif;
+    background:#050B18;
+}
+
+/* ===========================
+   PAGE
+=========================== */
+
+.register-page{
+
+    min-height:100vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#050B18;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+/* ===========================
+   BACKGROUND
+=========================== */
+
+.register-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+    background-size:60px 60px;
+
+    opacity:.35;
+
+}
+
+.register-circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+}
+
+.circle1{
+
+    width:420px;
+
+    height:420px;
+
+    background:#7C3AED;
+
+    top:-120px;
+
+    left:-120px;
+
+    opacity:.35;
+
+}
+
+.circle2{
+
+    width:420px;
+
+    height:420px;
+
+    background:#2563EB;
+
+    bottom:-120px;
+
+    right:-120px;
+
+    opacity:.25;
+
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.register-container{
+
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+
+    max-width:1250px;
+
+    display:grid;
+
+    grid-template-columns:1fr 520px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+    0 40px 120px rgba(0,0,0,.45);
+
+}
+
+/* ===========================
+   LEFT SIDE
+=========================== */
+
+.register-left{
+
+    padding:80px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:60px;
+
+}
+
+.brand-icon{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #8B5CF6,
+        #6366F1
+    );
+
+    color:#fff;
+
+}
+
+.brand h2{
+
+    color:white;
+
+    font-size:32px;
+
+    font-weight:700;
+
+}
+
+.register-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    width:max-content;
+
+    padding:10px 20px;
+
+    border-radius:40px;
+
+    color:#C4B5FD;
+
+    background:rgba(139,92,246,.12);
+
+    border:1px solid rgba(139,92,246,.25);
+
+    margin-bottom:30px;
+
+}
+
+.register-left h1{
+
+    font-size:60px;
+
+    color:white;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    font-weight:800;
+
+}
+
+.register-left h1 span{
+
+    color:#8B5CF6;
+
+}
+
+.register-left p{
+
+    max-width:520px;
+
+    color:#94A3B8;
+
+    line-height:1.8;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+   REGISTER CARD
+=========================== */
+
+.register-card{
+
+    background:rgba(12,18,35,.92);
+
+    backdrop-filter:blur(25px);
+
+    padding:70px 55px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    border-left:1px solid rgba(255,255,255,.08);
+
+}
+
+.register-card h2{
+
+    font-size:38px;
+
+    color:#fff;
+
+    margin-bottom:12px;
+
+    font-weight:700;
+
+}
+
+.register-card>p{
+
+    color:#94A3B8;
+
+    margin-bottom:40px;
+
+    line-height:1.7;
+
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.register-card form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ===========================
+   INPUT BOX
+=========================== */
+
+.input-box{
+
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:0 20px;
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:16px;
+
+    transition:.35s;
+
+}
+
+.input-box svg{
+
+    color:#8B5CF6;
+
+    flex-shrink:0;
+
+}
+
+.input-box input{
+
+    flex:1;
+
+    height:100%;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+.input-box input::placeholder{
+
+    color:#6B7280;
+
+}
+
+.input-box:hover{
+
+    border-color:#8B5CF6;
+
+    transform:translateY(-2px);
+
+}
+
+.input-box:focus-within{
+
+    border-color:#8B5CF6;
+
+    box-shadow:0 0 0 4px rgba(139,92,246,.15);
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.register-btn{
+
+    margin-top:10px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    background:linear-gradient(
+        135deg,
+        #8B5CF6,
+        #6D28D9
+    );
+
+    transition:.35s;
+
+}
+
+.register-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 20px 45px rgba(139,92,246,.35);
+
+}
+
+.register-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ===========================
+   LOGIN LINK
+=========================== */
+
+.login-text{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    color:#9CA3AF;
+
+}
+
+.login-text a{
+
+    color:#8B5CF6;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    margin-left:6px;
+
+    transition:.3s;
+
+}
+
+.login-text a:hover{
+
+    color:#A78BFA;
+
+}
+
+/* ===========================================
+   ANIMATIONS
+=========================================== */
+
+@keyframes floatUp {
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+@keyframes fadeLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes fadeRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+.register-left{
+
+    animation:fadeLeft .9s ease;
+
+}
+
+.register-card{
+
+    animation:fadeRight .9s ease;
+
+}
+
+.circle1{
+
+    animation:floatUp 8s ease-in-out infinite;
+
+}
+
+.circle2{
+
+    animation:floatUp 10s ease-in-out infinite;
+
+}
+
+/* ===========================================
+   HOVER EFFECTS
+=========================================== */
+
+.brand{
+
+    transition:.35s;
+
+}
+
+.brand:hover{
+
+    transform:translateX(8px);
+
+}
+
+.brand-icon{
+
+    transition:.35s;
+
+}
+
+.brand:hover .brand-icon{
+
+    transform:rotate(-8deg) scale(1.08);
+
+}
+
+.register-tag{
+
+    transition:.35s;
+
+}
+
+.register-tag:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(139,92,246,.25);
+
+}
+
+.register-left h1 span{
+
+    transition:.35s;
+
+}
+
+.register-left h1:hover span{
+
+    color:#A78BFA;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media (max-width:1100px){
+
+.register-container{
+
+grid-template-columns:1fr;
+
+max-width:650px;
+
+}
+
+.register-left{
+
+padding:60px;
+
+text-align:center;
+
+align-items:center;
+
+}
+
+.register-left p{
+
+max-width:100%;
+
+}
+
+.register-card{
+
+border-left:none;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+}
+
+@media (max-width:768px){
+
+.register-page{
+
+padding:20px;
+
+}
+
+.register-container{
+
+border-radius:22px;
+
+}
+
+.register-left{
+
+padding:45px 30px;
+
+}
+
+.register-left h1{
+
+font-size:42px;
+
+}
+
+.register-card{
+
+padding:45px 30px;
+
+}
+
+.register-card h2{
+
+font-size:32px;
+
+}
+
+.input-box{
+
+height:56px;
+
+}
+
+.register-btn{
+
+height:56px;
+
+}
+
+.brand{
+
+justify-content:center;
+
+}
+
+}
+
+@media (max-width:480px){
+
+.register-left{
+
+padding:35px 22px;
+
+}
+
+.register-left h1{
+
+font-size:34px;
+
+line-height:1.2;
+
+}
+
+.register-left p{
+
+font-size:15px;
+
+}
+
+.register-card{
+
+padding:35px 22px;
+
+}
+
+.register-card h2{
+
+font-size:28px;
+
+}
+
+.register-card>p{
+
+font-size:14px;
+
+}
+
+.input-box{
+
+padding:0 16px;
+
+}
+
+.input-box input{
+
+font-size:15px;
+
+}
+
+.register-btn{
+
+font-size:16px;
+
+}
+
+.login-text{
+
+font-size:14px;
+
+}
+
+.brand h2{
+
+font-size:28px;
+
+}
+
+.brand-icon{
+
+width:50px;
+
+height:50px;
+
+}
+
+}
+
+/* ===========================================
+   EXTRA POLISH
+=========================================== */
+
+.input-box,
+.register-btn,
+.register-tag,
+.brand,
+.brand-icon{
+
+will-change:transform;
+
+}
+
+.register-page{
+
+scroll-behavior:smooth;
+
+}
